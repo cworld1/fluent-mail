@@ -1,0 +1,20 @@
+{
+  "name": "report-before",
+  "private": true,
+  "scripts": {
+    "build": "slidev build",
+    "dev": "slidev --open",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "^0.40.14",
+    "@slidev/client": "0.40.14",
+    "@slidev/theme-default": "*",
+    "@slidev/theme-seriph": "*"
+  },
+  "devDependencies": {
+    "@iconify-json/logos": "^1.1.25",
+    "playwright-chromium": "^1.32.3",
+    "sass": "^1.62.0"
+  }
+}
