@@ -7,6 +7,7 @@ import FluentUI
 
 FluScrollablePage{
 
+    // 首页github板块
     ListModel{
         id:model_header
         ListElement{
@@ -15,13 +16,13 @@ FluScrollablePage{
             desc:"The latest FluentUI controls and styles for your applications."
             url:"https://github.com/zhuzichu520/FluentUI"
         }
-
     }
 
     Item{
         Layout.fillWidth: true
         height: 320
         Image {
+            id: bg
             fillMode:Image.PreserveAspectCrop
             anchors.fill: parent
             verticalAlignment: Qt.AlignTop
@@ -46,6 +47,7 @@ FluScrollablePage{
         }
 
         ListView{
+            id: list
             anchors{
                 left: parent.left
                 right: parent.right
@@ -61,6 +63,7 @@ FluScrollablePage{
             }
             clip: false
             delegate:Item{
+                id: control
                 width: 220
                 height: 240
                 FluArea{
@@ -68,6 +71,15 @@ FluScrollablePage{
                     width: 200
                     height: 220
                     anchors.centerIn: parent
+                    color: 'transparent'
+                    FluAcrylic {
+                        sourceItem:bg
+                        anchors.fill: parent
+                        color: FluTheme.dark ? Window.active ?  Qt.rgba(38/255,44/255,54/255,1) : Qt.rgba(39/255,39/255,39/255,1) : Qt.rgba(251/255,251/255,253/255,1)
+                        rectX: list.x-list.contentX+10+(control.width)*index
+                        rectY: list.y+10
+                        acrylicOpacity:0.8
+                    }
                     Rectangle{
                         anchors.fill: parent
                         radius: 8
