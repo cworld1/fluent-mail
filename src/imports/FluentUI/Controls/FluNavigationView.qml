@@ -16,9 +16,11 @@ Item {
     property string title: ""
     property FluObject items
     property FluObject footerItems
+    property bool dontPageAnimation: false
     property int displayMode: FluNavigationView.Auto
     property Component autoSuggestBox
     property Component actionItem
+    property int topPadding: 0
     enum PageModeFlag{
         Standard = 0,
         SingleTop = 1,
@@ -456,11 +458,16 @@ Item {
         id:nav_app_bar
         width: parent.width
         height: 40
+        anchors{
+            top: parent.top
+            topMargin: control.topPadding
+        }
         z:999
         RowLayout{
             height:parent.height
             spacing: 0
             FluIconButton{
+                id:btn_back
                 iconSource: FluentIcons.ChromeBack
                 Layout.leftMargin: 5
                 Layout.preferredWidth: 30
@@ -476,7 +483,6 @@ Item {
                     if(item.idx<(nav_list.count - layout_footer.count)){
                         layout_footer.currentIndex = -1
                     }else{
-                        console.debug(item.idx-(nav_list.count-layout_footer.count))
                         layout_footer.currentIndex = item.idx-(nav_list.count-layout_footer.count)
                     }
                     nav_list.currentIndex = item.idx
@@ -557,7 +563,7 @@ Item {
                     properties: "y"
                     from: 0
                     to: nav_swipe.height
-                    duration: 167
+                    duration: dontPageAnimation ? 0 : 167
                     easing.type: Easing.BezierSpline
                     easing.bezierCurve: [ 1, 0, 0, 0 ]
                 }
@@ -567,7 +573,7 @@ Item {
                     properties: "y";
                     from: nav_swipe.height;
                     to: 0
-                    duration: 167
+                    duration: dontPageAnimation ? 0 : 167
                     easing.type: Easing.BezierSpline
                     easing.bezierCurve: [ 0, 0, 0, 1 ]
                 }
@@ -584,6 +590,7 @@ Item {
             d.enableNavigationPanel = false
         }
     }
+
     Rectangle{
         id:layout_list
         width: {
@@ -614,29 +621,36 @@ Item {
         border.color: FluTheme.dark ? Qt.rgba(45/255,45/255,45/255,1) : Qt.rgba(226/255,230/255,234/255,1)
         border.width:  d.isMinimal || d.isCompactAndPanel ? 1 : 0
         color: {
-            if(d.isMinimal || d.isCompactAndPanel){
+            if(d.isMinimal){
                 return FluTheme.dark ? Qt.rgba(61/255,61/255,61/255,1) : Qt.rgba(243/255,243/255,243/255,1)
             }
-            if(Window.window.active){
-                return FluTheme.dark ? Qt.rgba(26/255,34/255,41/255,1) : Qt.rgba(238/255,244/255,249/255,1)
-            }
-            return FluTheme.dark ? Qt.rgba(32/255,32/255,32/255,1) : Qt.rgba(243/255,243/255,243/255,1)
+            return "transparent"
         }
-        Behavior on color{
-            ColorAnimation {
-                duration: 300
-            }
-        }
+
         x: {
             if(d.displayMode !== FluNavigationView.Minimal)
                 return 0
             return d.isMinimalAndPanel  ? 0 : -width
         }
+        FluAcrylic {
+            sourceItem:nav_swipe
+            anchors.fill: layout_list
+            color: {
+                if(d.isMinimal){
+                    return FluTheme.dark ? Qt.rgba(61/255,61/255,61/255,1) : Qt.rgba(243/255,243/255,243/255,1)
+                }
+                return "transparent"
+            }
+            visible: d.isMinimal
+            rectX: layout_list.x
+            rectY: layout_list.y - 60
+            acrylicOpacity:0.9
+        }
         Item{
             id:layout_header
             width: layout_list.width
             clip: true
-            y:nav_app_bar.height
+            y:nav_app_bar.height+control.topPadding
             height: autoSuggestBox ? 38 : 0
             Loader{
                 id:loader_auto_suggest_box
@@ -921,5 +935,11 @@ Item {
                 return
             }
         }
+    }
+    function backButton(){
+        return btn_back
+    }
+    function navButton(){
+        return btn_nav
     }
 }

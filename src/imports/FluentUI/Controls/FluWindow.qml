@@ -30,14 +30,17 @@ Window {
         }
         return FluTheme.dark ? Qt.rgba(32/255,32/255,32/255,1) : Qt.rgba(243/255,243/255,243/255,1)
     }
+    property alias backgroundOpacity: bg.opacity
     signal initArgument(var argument)
     id:window
+    color:"transparent"
     onClosing:(event)=>closeFunc(event)
     Component.onCompleted: {
         helper.initWindow(window)
         initArgument(argument)
     }
     Rectangle{
+        id: bg
         anchors.fill: parent
         color: backgroundColor
         Behavior on color{
@@ -59,16 +62,16 @@ Window {
         id:helper
     }
     function showSuccess(text,duration,moremsg){
-        infoBar.showSuccess(text,duration,moremsg);
+        infoBar.showSuccess(text,duration,moremsg)
     }
     function showInfo(text,duration,moremsg){
-        infoBar.showInfo(text,duration,moremsg);
+        infoBar.showInfo(text,duration,moremsg)
     }
     function showWarning(text,duration,moremsg){
-        infoBar.showWarning(text,duration,moremsg);
+        infoBar.showWarning(text,duration,moremsg)
     }
     function showError(text,duration,moremsg){
-        infoBar.showError(text,duration,moremsg);
+        infoBar.showError(text,duration,moremsg)
     }
     function registerForWindowResult(path){
         return helper.createRegister(window,path)
@@ -81,5 +84,4 @@ Window {
             pageRegister.onResult(data)
         }
     }
-
 }

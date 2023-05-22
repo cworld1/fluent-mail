@@ -13,7 +13,7 @@ endif()
 set(QML_PLUGIN_DIRECTORY ${CMAKE_PREFIX_PATH}/qml/FluentUI)
 
 #设置版本号
-add_definitions(-DVERSION=1,3,0,0)
+add_definitions(-DVERSION=1,3,1,0)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Quick Qml ShaderTools)
 
@@ -61,9 +61,9 @@ qt_add_qml_module(fluentuiplugin
 
 #链接库
 target_link_libraries(fluentuiplugin PUBLIC
-    Qt::Core
-    Qt::Quick
-    Qt::Qml
+    Qt::CorePrivate
+    Qt::QuickPrivate
+    Qt::QmlPrivate
 )
 
 #链接库 win32库 不然mingw会编译错误

@@ -19,10 +19,11 @@ Rectangle{
     property color closeNormalColor: Qt.rgba(0,0,0,0)
     property color closeHoverColor:  Qt.rgba(251/255,115/255,115/255,1)
     property bool showDark: false
+    property bool titleVisible: true
+    property bool isMac: FluTools.isMacos()
     property color borerlessColor : FluTheme.dark ? FluTheme.primaryColor.lighter : FluTheme.primaryColor.dark
     id:root
     color: Qt.rgba(0,0,0,0)
-    visible: false
     height: visible ? 30 : 0
     opacity: visible
     z: 65535
@@ -33,7 +34,7 @@ Rectangle{
         property bool resizable: win && !(win.minimumHeight === win.maximumHeight && win.maximumWidth === win.minimumWidth)
     }
     TapHandler {
-        onTapped: if (tapCount === 2) toggleMaximized()
+        onTapped: if (tapCount === 2) btn_maximize.clicked()
         gesturePolicy: TapHandler.DragThreshold
     }
     DragHandler {
@@ -45,9 +46,11 @@ Rectangle{
         text: title
         anchors{
             verticalCenter: parent.verticalCenter
-            left: parent.left
-            leftMargin: 10
+            left: isMac ? undefined : parent.left
+            leftMargin: isMac ? undefined : 10
+            horizontalCenter: isMac ? parent.horizontalCenter : undefined
         }
+        visible: root.titleVisible
         color:root.textColor
     }
     RowLayout{
@@ -75,6 +78,7 @@ Rectangle{
             }
         }
         FluIconButton{
+            id:btn_minimize
             width: 40
             height: 30
             iconSource : FluentIcons.ChromeMinimize
@@ -82,33 +86,40 @@ Rectangle{
             iconSize: 11
             text:minimizeText
             radius: 0
+            visible: !isMac
             iconColor: root.textColor
             color: hovered ? minimizeHoverColor : minimizeNormalColor
             onClicked: {
-                d.win.showMinimized()
+                d.win.visibility = Window.Minimized
             }
         }
         FluIconButton{
+            id:btn_maximize
             width: 40
             height: 30
             iconSource : d.isRestore  ? FluentIcons.ChromeRestore : FluentIcons.ChromeMaximize
             color: hovered ? maximizeHoverColor : maximizeNormalColor
             Layout.alignment: Qt.AlignVCenter
-            visible: d.resizable
+            visible: d.resizable && !isMac
             radius: 0
             iconColor: root.textColor
             text:d.isRestore?restoreText:maximizeText
             iconSize: 11
             onClicked: {
-                toggleMaximized()
+                if (d.win.visibility === Window.Maximized)
+                    d.win.visibility = Window.Windowed
+                else
+                    d.win.visibility = Window.Maximized
             }
         }
         FluIconButton{
+            id:btn_close
             iconSource : FluentIcons.ChromeClose
             Layout.alignment: Qt.AlignVCenter
             text:closeText
             width: 40
             height: 30
+            visible: !isMac
             radius: 0
             iconSize: 10
             iconColor: hovered ? Qt.rgba(1,1,1,1) : root.textColor
@@ -118,13 +129,17 @@ Rectangle{
             }
         }
     }
-    function toggleMaximized() {
-        if(!d.resizable)
-            return
-        if (d.win.visibility === Window.Maximized) {
-            d.win.showNormal();
-        } else {
-            d.win.showMaximized();
-        }
+
+    function minimizeButton(){
+        return btn_minimize
     }
+
+    function maximizeButton(){
+        return btn_maximize
+    }
+
+    function closeButton(){
+        return btn_close
+    }
+
 }
