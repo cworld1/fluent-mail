@@ -4,7 +4,12 @@ En::En(QObject *parent)
     : Lang{parent}
 {
     setObjectName("En");
-    home("Home");
+
+    inbox("Inbox");
+    starred("Starred");
+    trash("Trash");
+
+    // home("Home");
     basic_input("Basic Input");
     form("Form");
     surface("Surfaces");

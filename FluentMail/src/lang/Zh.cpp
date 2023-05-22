@@ -4,7 +4,12 @@ Zh::Zh(QObject *parent)
     : Lang{parent}
 {
     setObjectName("Zh");
-    home("首页");
+
+    inbox("收件箱");
+    starred("星标邮件");
+    trash("垃圾箱");
+
+    // home("首页");
     basic_input("基本输入");
     form("表单");
     surface("表面");

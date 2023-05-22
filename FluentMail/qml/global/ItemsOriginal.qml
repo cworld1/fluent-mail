@@ -7,9 +7,10 @@ FluObject{
 
     property var navigationView
 
+    // 主页
     FluPaneItem{
-        title:lang.home
-        icon:FluentIcons.Home
+        title: lang.inbox
+        icon: FluentIcons.Home
         //        cusIcon: Image{
         //            anchors.centerIn: parent
         //            source: FluTheme.dark ? "qrc:/FluentMail/res/svg/home_dark.svg" : "qrc:/FluentMail/res/svg/home.svg"
@@ -22,6 +23,21 @@ FluObject{
         }
     }
 
+    // 星标邮件
+    FluPaneItem {
+        title: lang.starred
+        icon: FluentIcons.FavoriteStar
+        onTap: navigationView.push("qrc:/FluentMail/qml/page/T_TableView.qml")
+    }
+
+    // 垃圾箱
+    FluPaneItem {
+        title: lang.trash
+        icon: FluentIcons.Delete
+        onTap: navigationView.push("qrc:/FluentMail/qml/page/T_MailList.qml")
+    }
+
+    // 其他的
     FluPaneItemExpander{
         title:lang.basic_input
         icon:FluentIcons.CheckboxComposite

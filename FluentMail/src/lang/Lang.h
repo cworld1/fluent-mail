@@ -7,7 +7,11 @@
 class Lang : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY_AUTO(QString,home);
+    Q_PROPERTY_AUTO(QString,inbox);
+    Q_PROPERTY_AUTO(QString,starred);
+    Q_PROPERTY_AUTO(QString,trash);
+
+//    Q_PROPERTY_AUTO(QString,home);
     Q_PROPERTY_AUTO(QString,basic_input);
     Q_PROPERTY_AUTO(QString,form);
     Q_PROPERTY_AUTO(QString,surface);
