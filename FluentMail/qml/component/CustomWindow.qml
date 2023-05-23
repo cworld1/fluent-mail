@@ -1,7 +1,6 @@
 ﻿import QtQuick
 import QtQuick.Layouts
 import FluentUI
-import org.wangwenx190.FramelessHelper
 
 FluWindow {
 
@@ -35,21 +34,6 @@ FluWindow {
         clip: true
     }
 
-    FramelessHelper{
-        id:framless_helper
-        onReady: {
-            setTitleBarItem(title_bar)
-            framless_helper.moveWindowToDesktopCenter()
-            setHitTestVisible(title_bar.minimizeButton())
-            setHitTestVisible(title_bar.maximizeButton())
-            setHitTestVisible(title_bar.closeButton())
-            framless_helper.setWindowFixedSize(fixSize)
-            title_bar.maximizeButton.visible = !fixSize
-            if (blurBehindWindowEnabled)
-                window.backgroundOpacity = 0.1
-            window.visible = true
-        }
-    }
     Connections{
         target: FluTheme
         function onDarkChanged(){
