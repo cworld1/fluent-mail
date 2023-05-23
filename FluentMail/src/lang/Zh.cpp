@@ -1,4 +1,4 @@
-#include "Zh.h"
+﻿#include "Zh.h"
 
 Zh::Zh(QObject *parent)
     : Lang{parent}
@@ -11,7 +11,10 @@ Zh::Zh(QObject *parent)
     trash("垃圾箱");
     readed("已读");
 
-    // home("首页");
+    // 首页
+    welcome("欢迎使用流畅邮箱");
+
+    // 其他
     basic_input("基本输入");
     form("表单");
     surface("表面");

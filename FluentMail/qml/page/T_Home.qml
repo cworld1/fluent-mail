@@ -7,20 +7,29 @@ import FluentUI
 
 FluScrollablePage{
 
-    // 首页github板块
+    // 首页小板块（仅内容）
     ListModel{
         id:model_header
         ListElement{
             icon:"qrc:/FluentMail/res/image/ic_home_github.png"
             title:"FluentUI GitHub"
             desc:"The latest FluentUI controls and styles for your applications."
-            url:"https://github.com/zhuzichu520/FluentUI"
+            url:"qrc:/FluentMail/qml/page/T_MailList.qml"
+        }
+
+        ListElement{
+            icon:"qrc:/FluentMail/res/image/ic_home_github.png"
+            title:"FluentUI GitHub"
+            desc:"The latest FluentUI controls and styles for your applications."
+            url:"qrc:/FluentMail/qml/page/T_MailList.qml"
         }
     }
 
+    // 首页小板块（布局）
     Item{
         Layout.fillWidth: true
         height: 320
+        // 图片
         Image {
             id: bg
             fillMode:Image.PreserveAspectCrop
@@ -32,11 +41,13 @@ FluScrollablePage{
             anchors.fill: parent
             gradient: Gradient{
                 GradientStop { position: 0.8; color: FluTheme.dark ? Qt.rgba(0,0,0,0) : Qt.rgba(1,1,1,0) }
-                GradientStop { position: 1.0; color: FluTheme.dark ? Qt.rgba(0,0,0,1) : Qt.rgba(1,1,1,1) }
+                GradientStop { position: 1.0; color: FluTheme.dark ? Qt.rgba(0,0,0,1) : Qt.rgba(238, 244, 249, 1) }
             }
+            radius: 8
         }
+        // 顶部文字
         FluText{
-            text:"FluentUI Gallery"
+            text: lang.welcome
             font: FluTextStyle.TitleLarge
             anchors{
                 top: parent.top
@@ -46,6 +57,7 @@ FluScrollablePage{
             }
         }
 
+        // 小板块
         ListView{
             id: list
             anchors{
@@ -55,7 +67,7 @@ FluScrollablePage{
             }
             orientation: ListView.Horizontal
             height: 240
-            model: model_header
+            model: model_header // 引用之前的数据
             header: Item{height: 10;width: 10}
             footer: Item{height: 10;width: 10}
             ScrollBar.horizontal: FluScrollBar{
@@ -141,7 +153,7 @@ FluScrollablePage{
                             else scrollbar_header.increase()
                         }
                         onClicked: {
-                            Qt.openUrlExternally(model.url)
+                            navigationView.push(model.url)
                         }
                     }
                 }
@@ -241,6 +253,7 @@ FluScrollablePage{
         }
     }
 
+    // 第二块板块（功能）
     FluText{
         text: "Recently added samples"
         font: FluTextStyle.Title

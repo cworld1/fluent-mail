@@ -1,4 +1,4 @@
-#include "En.h"
+﻿#include "En.h"
 
 En::En(QObject *parent)
     : Lang{parent}
@@ -11,7 +11,10 @@ En::En(QObject *parent)
     trash("Trash");
     readed("Readed");
 
-    // home("Home");
+    // 首页
+    welcome("Welcome with FluentMail");
+
+    // 其他
     basic_input("Basic Input");
     form("Form");
     surface("Surfaces");
