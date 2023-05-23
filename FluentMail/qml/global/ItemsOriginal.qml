@@ -9,7 +9,7 @@ FluObject{
 
     // 主页
     FluPaneItem{
-        title: lang.inbox
+        title: lang.home
         icon: FluentIcons.Home
         //        cusIcon: Image{
         //            anchors.centerIn: parent
@@ -27,13 +27,20 @@ FluObject{
     FluPaneItem {
         title: lang.starred
         icon: FluentIcons.FavoriteStar
-        onTap: navigationView.push("qrc:/FluentMail/qml/page/T_TableView.qml")
+        onTap: navigationView.push("qrc:/FluentMail/qml/page/T_MailList.qml")
     }
 
     // 垃圾箱
     FluPaneItem {
         title: lang.trash
         icon: FluentIcons.Delete
+        onTap: navigationView.push("qrc:/FluentMail/qml/page/T_MailList.qml")
+    }
+
+    // 已发送
+    FluPaneItem {
+        title: lang.readed
+        icon: FluentIcons.Completed
         onTap: navigationView.push("qrc:/FluentMail/qml/page/T_MailList.qml")
     }
 

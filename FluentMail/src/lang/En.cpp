@@ -1,13 +1,15 @@
-﻿#include "En.h"
+#include "En.h"
 
 En::En(QObject *parent)
     : Lang{parent}
 {
     setObjectName("En");
 
-    inbox("Inbox");
+    // 侧栏
+    home("Home");
     starred("Starred");
     trash("Trash");
+    readed("Readed");
 
     // home("Home");
     basic_input("Basic Input");

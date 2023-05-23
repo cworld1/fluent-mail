@@ -1,13 +1,15 @@
-﻿#include "Zh.h"
+#include "Zh.h"
 
 Zh::Zh(QObject *parent)
     : Lang{parent}
 {
     setObjectName("Zh");
 
-    inbox("收件箱");
+    // 侧栏
+    home("主页");
     starred("星标邮件");
     trash("垃圾箱");
+    readed("已读");
 
     // home("首页");
     basic_input("基本输入");
