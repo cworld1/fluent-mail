@@ -9,7 +9,7 @@ if(APPLE)
     set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "" FORCE)
 endif()
 
-#设置QML插件输出目录->D:\Qt\6.4.3\msvc2019_64\qml\FluentUI
+#设置QML插件输出目录->D:\Qt\6.5.0\msvc2019_64\qml\FluentUI
 set(QML_PLUGIN_DIRECTORY ${CMAKE_PREFIX_PATH}/qml/FluentUI)
 
 #设置版本号
