@@ -1,7 +1,6 @@
 ﻿#include "En.h"
 
-En::En(QObject *parent)
-    : Lang{parent}
+En::En(QObject *parent) : Lang{parent}
 {
     setObjectName("En");
 

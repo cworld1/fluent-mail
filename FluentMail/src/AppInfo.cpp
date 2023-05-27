@@ -4,27 +4,36 @@
 #include <QDebug>
 
 #define STR(x) #x
-#define VER_JOIN(a,b,c,d) STR(a.b.c.d)
+#define VER_JOIN(a, b, c, d) STR(a.b.c.d)
 #define VER_JOIN_(x) VER_JOIN x
 #define VER_STR VER_JOIN_((VERSION))
 
-AppInfo::AppInfo(QObject *parent)
-    : QObject{parent}
+// 初始化为英语
+AppInfo::AppInfo(QObject *parent) : QObject{parent}
 {
     version(VER_STR);
     lang(new En());
 }
 
-void AppInfo::changeLang(const QString& locale){
-    if(_lang){
+// 当更改语言时释放语言资源
+void AppInfo::changeLang(const QString &locale)
+{
+    if (_lang)
+    {
         _lang->deleteLater();
     }
-    if(locale=="Zh"){
+
+    // 判断语言类型
+    if (locale == "Zh")
+    {
         lang(new Zh());
-    }else if(locale=="En"){
-        lang(new En());
-    }else {
+    }
+    else if (locale == "En")
+    {
         lang(new En());
     }
-
+    else
+    {
+        lang(new En());
+    }
 }

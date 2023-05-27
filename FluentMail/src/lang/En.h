@@ -11,7 +11,6 @@ public:
     explicit En(QObject *parent = nullptr);
 
 signals:
-
 };
 
 #endif // EN_H
