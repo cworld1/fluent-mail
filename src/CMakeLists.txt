@@ -45,6 +45,7 @@ foreach(filepath IN LISTS qml_files resource_files)
 endforeach()
 
 #添加qml模块
+qt_policy(SET QTP0001 NEW)
 qt_add_library(fluentuiplugin SHARED)
 qt_add_qml_module(fluentuiplugin
     #没有下面这行代码就会生成fluentuiplugin.dll与fluentuipluginplugin.dll两个动态库
@@ -57,6 +58,7 @@ qt_add_qml_module(fluentuiplugin
     RESOURCES ${resource_files}
     #支持designer
     DESIGNER_SUPPORTED
+    RESOURCE_PREFIX /
 )
 
 #链接库
