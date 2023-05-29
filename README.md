@@ -1,14 +1,20 @@
+<div align=center>
+
+<img src="./fluentmail/favicon.ico" height="100px">
+
 # FluentMail
 
 A program to send and recieve emails with attachments.
 
-<!-- ## Installnation
+![Screenshot](./doc/screenshot.png)
 
-Install scaffold:
+</div>
 
-```bash
-pip install --upgrade poetry
-```
+## Local Development
+
+Install Qt desktop application framework:
+
+[Download Qt OSS: Get Qt Online Installer](https://www.qt.io/download-qt-installer-oss)
 
 Install independencies:
 
@@ -16,35 +22,42 @@ Install independencies:
 poetry install
 ```
 
-If you have some troubles above command, please try to reinstall the problematic package by `pip`. Exapmle:
+Making sure you've installed with Qt, MinGW/MSVC, CMake and Ninja from the Qt installer.
+
+If you have some troubles about the version, please check and use the version below to ensure the code running correctly:
+
+- Qt SDK: 6.5.0
+- MinGW: 11.2.0
+- CMake: 3.24.2
+- Ninja: 1.11.1
+
+Then try clone the repository:
 
 ```bash
-pip install --upgrade pyqt5
-```
-
-If you still have troubles, try to install all dependencies with `requirements.txt`:
-
-```bash
-pip install -r requirements.txt
+git clone --recursive https://github.com/cworld1/fluent-mail.git
 ```
 
 ## Run the code
 
 ```bash
-poetry run python ./main.py
+cd fluent-mail
+mkdir build
+cd build
+cmake -DCMAKE_PREFIX_PATH=<YOUR_QT_SDK_DIR_PATH> -DCMAKE_BUILD_TYPE=Release -GNinja <PATH_TO_THE_REPOSITORY>
+cmake --build . --config Release --target all --parallel
 ```
 
 ## UI Design Scheme
 
-| Name                    | Value                        |
-| ----------------------- | ---------------------------- |
-| Logo                    | ![logo](./res/logo_mini.png) |
-| Main color              | #1DE9B6                      |
-| Background color        | #31363B                      |
-| Deeper background color | #232629                      |
-| Border color            | #515558                      |
-| Border radius           | 7px                          |
-| Font                    | Microsoft YaHei UI           | -->
+| Name                      | Value              |
+| ------------------------- | ------------------ |
+| Title                     | Fluent Mail        |
+| Main color                | #0066B4            |
+| Background light color    | #EEF4F9            |
+| Background dark color     | #1A2228            |
+| Background inactive color | #202020            |
+| Border radius             | 8px                |
+| Font                      | Microsoft YaHei UI |
 
 ## License
 
