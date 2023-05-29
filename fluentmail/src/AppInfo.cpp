@@ -37,3 +37,8 @@ void AppInfo::changeLang(const QString &locale)
         lang(new En());
     }
 }
+
+void AppInfo::buttonclick(const QString &text)
+{
+    qDebug() << text;
+}

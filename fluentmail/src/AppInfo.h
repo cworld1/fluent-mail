@@ -8,12 +8,13 @@
 class AppInfo : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY_AUTO(QString,version)
-    Q_PROPERTY_AUTO(Lang*,lang)
+    Q_PROPERTY_AUTO(QString, version)
+    Q_PROPERTY_AUTO(Lang *, lang)
 public:
     explicit AppInfo(QObject *parent = nullptr);
-    Q_INVOKABLE void changeLang(const QString& locale);
+    Q_INVOKABLE void changeLang(const QString &locale);
     Q_SIGNAL void activeWindow();
+    Q_INVOKABLE void buttonclick(const QString &text);
 };
 
 #endif // APPINFO_H
