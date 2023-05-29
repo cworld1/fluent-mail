@@ -61,7 +61,7 @@ FluWindow {
         id:close_app
         title:"退出"
         message:"确定要退出程序吗？"
-        negativeText:"最小化"
+        negativeText: "最小化"
         buttonFlags: FluContentDialog.NeutralButton | FluContentDialog.NegativeButton | FluContentDialog.PositiveButton
         onNegativeClicked:{
             system_tray.showMessage("提示","Fluent Mail 已隐藏至托盘，点击托盘可再次激活窗口");
@@ -83,7 +83,7 @@ FluWindow {
         items: ItemsOriginal
         footerItems:ItemsFooter
         z:11
-        displayMode:MainEvent.displayMode
+        displayMode: MainEvent.displayMode
         logo: "qrc:/fluentmail/res/image/favicon.ico"
         title:"FluentMail"
         autoSuggestBox:FluAutoSuggestBox{
