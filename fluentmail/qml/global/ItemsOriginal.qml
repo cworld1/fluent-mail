@@ -1,4 +1,4 @@
-pragma Singleton
+﻿pragma Singleton
 
 import QtQuick
 import FluentUI
@@ -27,6 +27,9 @@ FluObject {
     FluPaneItem {
         title: lang.compose
         icon: FluentIcons.Edit
+        recentlyUpdated: true
+        image: "qrc:/fluentmail/res/image/control/AutoSuggestBox.png"
+        desc: "1982年，第一张电脑笑脸 :-) 诞生。今天，人们已经习惯用它来表达心情。尝试使用它吧！"
         onTap: {
             navigationView.push("qrc:/fluentmail/qml/page/T_Compose.qml")
         }
@@ -36,21 +39,24 @@ FluObject {
     FluPaneItem {
         title: lang.inbox
         icon: FluentIcons.Mail
+        recentlyUpdated: true
+        image: "qrc:/fluentmail/res/image/control/CommandBarFlyout.png"
+        desc: "1987年9月14日21时07分，中国第一封电子邮件从北京发往德国。“越过长城，走向世界。”"
         onTap: {
             navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
         }
     }
+
+    FluPaneItemSeparator {}
+
     // 星标邮件
     FluPaneItem {
         title: lang.starred
         icon: FluentIcons.FavoriteStar
-        onTap: navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
-    }
-
-    // 垃圾箱
-    FluPaneItem {
-        title: lang.trash
-        icon: FluentIcons.Delete
+        recentlyAdded: true
+        order: 0
+        image: "qrc:/fluentmail/res/image/control/StandardUICommand.png"
+        desc: "点亮你的收件箱，点亮行迹与感动。"
         onTap: navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
     }
 
@@ -58,6 +64,10 @@ FluObject {
     FluPaneItem {
         title: lang.readed
         icon: FluentIcons.Completed
+        recentlyAdded: true
+        order: 1
+        image: "qrc:/fluentmail/res/image/control/Checkbox.png"
+        desc: "信息已传递，等待远方回音。"
         onTap: navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
     }
 
@@ -65,6 +75,10 @@ FluObject {
     FluPaneItem {
         title: lang.drafts
         icon: FluentIcons.KnowledgeArticle
+        recentlyAdded: true
+        order: 2
+        image: "qrc:/fluentmail/res/image/control/InkCanvas.png"
+        desc: "你创造的创意沉淀之地，思绪的保留室。"
         onTap: navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
     }
 
@@ -72,17 +86,22 @@ FluObject {
     FluPaneItem {
         title: lang.trash
         icon: FluentIcons.Delete
+        recentlyAdded: true
+        order: 3
+        image: "qrc:/fluentmail/res/image/control/ParallaxView.png"
+        desc: "垃圾箱，是一个不可逆的过程。"
         onTap: navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
     }
 
+    FluPaneItemSeparator {}
+
     // 其他的
     FluPaneItemExpander {
-        title:lang.basic_input
-        icon:FluentIcons.CheckboxComposite
+        title: lang.basic_input
+        icon: FluentIcons.CheckboxComposite
         FluPaneItem {
             title:"Buttons"
             image:"qrc:/fluentmail/res/image/control/Button.png"
-            recentlyUpdated:true
             desc:"A control that responds to user input and raisesa Click event."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Buttons.qml")
@@ -97,7 +116,6 @@ FluObject {
         FluPaneItem {
             title:"Slider"
             image:"qrc:/fluentmail/res/image/control/Slider.png"
-            recentlyUpdated:true
             desc:"A control that lets the user select from a rangeof values by moving a Thumb control along atrack."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Slider.qml")
@@ -106,7 +124,6 @@ FluObject {
         FluPaneItem {
             title:"CheckBox"
             image:"qrc:/fluentmail/res/image/control/Checkbox.png"
-            recentlyUpdated:true
             desc:"A control that a user can select or clear."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_CheckBox.qml")
@@ -161,7 +178,6 @@ FluObject {
         FluPaneItem {
             title:"InfoBar"
             image:"qrc:/fluentmail/res/image/control/InfoBar.png"
-            recentlyUpdated:true
             desc:"An inline message to display app-wide statuschange information."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_InfoBar.qml")
@@ -240,8 +256,6 @@ FluObject {
         FluPaneItem {
             title:"Pivot"
             image:"qrc:/fluentmail/res/image/control/Pivot.png"
-            recentlyAdded:true
-            order:3
             desc:"Presents information from different sources in atabbed view."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Pivot.qml")
@@ -256,8 +270,6 @@ FluObject {
         FluPaneItem {
             title:"TabView"
             image:"qrc:/fluentmail/res/image/control/TabView.png"
-            recentlyAdded:true
-            order:1
             desc:"A control that displays a collection of tabs thatcan be used to display several documents."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_TabView.qml")
@@ -272,8 +284,6 @@ FluObject {
         FluPaneItem {
             title:"TableView"
             image:"qrc:/fluentmail/res/image/control/DataGrid.png"
-            recentlyAdded:true
-            order:4
             desc:"The TableView control provides a flexible way to display a collection of data in rows and columns"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_TableView.qml")
@@ -288,8 +298,6 @@ FluObject {
         FluPaneItem {
             title:"FlipView"
             image:"qrc:/fluentmail/res/image/control/FlipView.png"
-            recentlyAdded:true
-            order:2
             desc:"Presents a collection of items that the user canflip through, one item at a time."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_FlipView.qml")
@@ -332,8 +340,6 @@ FluObject {
         FluPaneItem {
             title:"MediaPlayer"
             image:"qrc:/fluentmail/res/image/control/MediaPlayerElement.png"
-            recentlyAdded:true
-            order:0
             desc:"A control to display video and image content."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_MediaPlayer.qml")
@@ -352,50 +358,50 @@ FluObject {
             }
             if (item instanceof FluPaneItemExpander)
             {
-            for(var j=0;j<item.children.length;j++){
-                var itemChild = item.children[j]
-                if (itemChild instanceof FluPaneItem && itemChild.recentlyAdded)
-                {
-                    arr.push(itemChild)
+                for (var j=0;j<item.children.length;j++) {
+                    var itemChild = item.children[j]
+                    if (itemChild instanceof FluPaneItem && itemChild.recentlyAdded)
+                    {
+                        arr.push(itemChild)
+                    }
                 }
             }
         }
+        arr.sort(function(o1, o2){ return o1.order-o2.order })
+        return arr
     }
-    arr.sort(function(o1, o2){ return o2.order-o1.order })
-    return arr
-}
 
-function getRecentlyUpdatedData()
-{
-    var arr = []
-    var items = navigationView.getItems();
-    for (var i=0;i<items.length;i++) {
-        var item = items[i]
-        if (item instanceof FluPaneItem && item.recentlyUpdated)
-        {
-            arr.push(item)
+    function getRecentlyUpdatedData()
+    {
+        var arr = []
+        var items = navigationView.getItems();
+        for (var i=0;i<items.length;i++) {
+            var item = items[i]
+            if (item instanceof FluPaneItem && item.recentlyUpdated)
+            {
+                arr.push(item)
+            }
         }
+        return arr
     }
-    return arr
-}
 
-function getSearchData()
-{
-    var arr = []
-    var items = navigationView.getItems();
-    for (var i=0;i<items.length;i++) {
-        var item = items[i]
-        if (item instanceof FluPaneItem)
-        {
-        arr.push({title:item.title, key:item.key})
+    function getSearchData()
+    {
+        var arr = []
+        var items = navigationView.getItems();
+        for (var i=0;i<items.length;i++) {
+            var item = items[i]
+            if (item instanceof FluPaneItem)
+            {
+                arr.push({title:item.title, key:item.key})
+            }
         }
+        return arr
     }
-    return arr
-}
 
-function startPageByItem(data)
-{
-    navigationView.startPageByItem(data)
-}
+    function startPageByItem(data)
+    {
+        navigationView.startPageByItem(data)
+    }
 
 }
