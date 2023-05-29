@@ -1,4 +1,4 @@
-﻿pragma Singleton
+pragma Singleton
 
 import QtQuick
 import FluentUI
@@ -11,18 +11,35 @@ FluObject {
     FluPaneItem {
         title: lang.home
         icon: FluentIcons.Home
-        //        cusIcon: Image {
-        //            anchors.centerIn: parent
-        //            source: FluTheme.dark ? "qrc:/fluentmail/res/svg/home_dark.svg" : "qrc:/fluentmail/res/svg/home.svg"
-        //            sourceSize: Qt.size(30, 30)
-        //            width: 18
-        //            height: 18
-        //        }
+        // cusIcon: Image {
+        //     anchors.centerIn: parent
+        //     source: FluTheme.dark ? "qrc:/fluentmail/res/svg/home_dark.svg" : "qrc:/fluentmail/res/svg/home.svg"
+        //     sourceSize: Qt.size(30, 30)
+        //     width: 18
+        //     height: 18
+        // }
         onTap: {
             navigationView.push("qrc:/fluentmail/qml/page/T_Home.qml")
         }
     }
 
+    // 写邮件
+    FluPaneItem {
+        title: lang.compose
+        icon: FluentIcons.Edit
+        onTap: {
+            navigationView.push("qrc:/fluentmail/qml/page/T_Compose.qml")
+        }
+    }
+
+    // 收件箱
+    FluPaneItem {
+        title: lang.inbox
+        icon: FluentIcons.Mail
+        onTap: {
+            navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
+        }
+    }
     // 星标邮件
     FluPaneItem {
         title: lang.starred
@@ -41,6 +58,20 @@ FluObject {
     FluPaneItem {
         title: lang.readed
         icon: FluentIcons.Completed
+        onTap: navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
+    }
+
+    // 草稿
+    FluPaneItem {
+        title: lang.drafts
+        icon: FluentIcons.KnowledgeArticle
+        onTap: navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
+    }
+
+    // 垃圾箱
+    FluPaneItem {
+        title: lang.trash
+        icon: FluentIcons.Delete
         onTap: navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
     }
 

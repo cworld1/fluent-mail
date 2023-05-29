@@ -6,9 +6,13 @@ Zh::Zh(QObject *parent) : Lang{parent}
 
     // 侧栏
     home("主页");
+    compose("写邮件");
+    inbox("收件箱");
+
     starred("星标邮件");
-    trash("垃圾箱");
     readed("已读");
+    drafts("草稿");
+    trash("垃圾箱");
 
     // 首页
     welcome("欢迎使用流畅邮箱");

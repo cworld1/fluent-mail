@@ -10,9 +10,13 @@ class Lang : public QObject
 
     // 侧栏
     Q_PROPERTY_AUTO(QString, home);
+    Q_PROPERTY_AUTO(QString, compose);
+    Q_PROPERTY_AUTO(QString, inbox);
+
     Q_PROPERTY_AUTO(QString, starred);
-    Q_PROPERTY_AUTO(QString, trash);
     Q_PROPERTY_AUTO(QString, readed);
+    Q_PROPERTY_AUTO(QString, drafts);
+    Q_PROPERTY_AUTO(QString, trash);
 
     // 首页
     Q_PROPERTY_AUTO(QString, welcome);

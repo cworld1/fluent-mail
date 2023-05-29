@@ -6,9 +6,13 @@ En::En(QObject *parent) : Lang{parent}
 
     // 侧栏
     home("Home");
+    compose("Compose");
+    inbox("Inbox");
+
     starred("Starred");
-    trash("Trash");
     readed("Readed");
+    drafts("Drafts");
+    trash("Trash");
 
     // 首页
     welcome("Welcome with FluentMail");
