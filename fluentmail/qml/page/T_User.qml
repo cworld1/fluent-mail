@@ -6,6 +6,8 @@ import FluentUI
 import "../component"
 
 FluScrollablePage {
+    property var loginPageRegister: registerForWindowResult("/login")
+
     title: "User"
 
     FluArea {
@@ -32,7 +34,10 @@ FluScrollablePage {
             FluFilledButton {
                 text: "新增账号"
                 onClicked: {
-                    showSuccess("新增！")
+                    loginPageRegister.launch({
+                        smtp_port: 465,
+                        pop3_port: 995,
+                    })
                 }
                 Layout.alignment: Qt.AlignRight
             }

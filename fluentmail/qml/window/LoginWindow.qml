@@ -5,61 +5,153 @@ import FluentUI
 
 FluWindow {
 
-    id:window
-    title:"登录"
-    width: 400
-    height: 400
-    minimumWidth: 400
+    id: window
+    title: "User"
+    width: 950
+    height: 550
+    minimumWidth: 800
     minimumHeight: 400
-    maximumWidth: 400
-    maximumHeight: 400
+    // maximumWidth: 400
+    // maximumHeight: 600
+    launchMode: FluWindow.SingleTask
 
-    onInitArgument:
-        (argument)=>{
-            textbox_uesrname.updateText(argument.username)
-            textbox_password.focus =  true
-        }
+    onInitArgument: (argument) => {
+        smtp_port.updateText(argument.smtp_port)
+        pop3_port.updateText(argument.pop3_port)
+        textbox_username.focus =  true
+    }
+    RowLayout {
+        anchors.fill: parent
+        spacing: 50
 
-    ColumnLayout{
-        anchors{
-            left: parent.left
-            right: parent.right
-            verticalCenter: parent.verticalCenter
-        }
-
-        FluAutoSuggestBox{
-            id:textbox_uesrname
-            items:[{title:"Admin"},{title:"User"}]
-            placeholderText: "请输入账号"
-            Layout.preferredWidth: 260
-            Layout.alignment: Qt.AlignHCenter
-        }
-
-        FluTextBox{
-            id:textbox_password
-            Layout.topMargin: 20
-            Layout.preferredWidth: 260
-            placeholderText: "请输入密码"
-            echoMode:TextInput.Password
-            Layout.alignment: Qt.AlignHCenter
-        }
-
-        FluFilledButton{
-            text:"登录"
-            Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: 20
-            onClicked:{
-                if(textbox_password.text === ""){
-                    showError("请随便输入一个密码")
-                    return
-                }
-                onResult({password:textbox_password.text})
-                window.close()
+        // 轮播图
+        FluCarousel {
+            width: 400
+            height: 350
+            Layout.alignment: Qt.AlignLeft
+            Layout.leftMargin: 70
+            Layout.horizontalStretchFactor: 2
+            Layout.fillWidth: true
+            Component.onCompleted: {
+                setData([{url:"qrc:/fluentmail/res/image/banner_1.jpg"}, {url:"qrc:/fluentmail/res/image/banner_2.jpg"}, {url:"qrc:/fluentmail/res/image/banner_3.jpg"}])
             }
         }
 
+        ColumnLayout {
+            Layout.alignment: Qt.AlignRight
+            Layout.rightMargin: 70
+            Layout.horizontalStretchFactor: 3
+            Layout.fillWidth: true
+
+            // 标题
+            FluText {
+                text: "Add user"
+                font: FluTextStyle.Title
+                Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                Layout.fillWidth: true
+            }
+
+            // 名称
+            FluText {
+                Layout.topMargin: 10
+                Layout.bottomMargin: 1
+                text: "Name"
+            }
+            FluTextBox {
+                id: textbox_username
+                placeholderText: "Name"
+                Layout.alignment: Qt.AlignHCenter
+                Layout.fillWidth: true
+            }
+
+            // 邮箱
+            FluText {
+                text: "Email"
+                Layout.topMargin: 10
+                Layout.bottomMargin: 1
+            }
+            FluTextBox {
+                id: textbox_email
+                placeholderText: "Email"
+                Layout.alignment: Qt.AlignHCenter
+                Layout.fillWidth: true
+            }
+
+            // 密码
+            FluText {
+                text: "Password"
+                Layout.topMargin: 10
+                Layout.bottomMargin: 1
+            }
+            FluTextBox {
+                id: textbox_password
+                placeholderText: "请输入密码"
+                echoMode:TextInput.Password
+                Layout.alignment: Qt.AlignHCenter
+                Layout.fillWidth: true
+            }
+
+            // SMTP
+            FluText {
+                text: "SMTP"
+                Layout.topMargin: 10
+                Layout.bottomMargin: 1
+            }
+            RowLayout {
+                FluTextBox {
+                    id: smtp_site
+                    placeholderText: "SMTP Site"
+                    Layout.fillWidth: true
+                }
+                FluAutoSuggestBox {
+                    id: smtp_port
+                    items: [ {title: "465"}, {title: "987"} ]
+                    placeholderText: "Port"
+                    Layout.preferredWidth: 100
+                    Layout.alignment: Qt.AlignHCenter
+                }
+            }
+
+            // POP3
+            FluText {
+                text: "POP3"
+                Layout.topMargin: 10
+                Layout.bottomMargin: 1
+            }
+            RowLayout {
+                FluTextBox {
+                    id: pop3_site
+                    placeholderText: "POP3 Site"
+                    Layout.fillWidth: true
+                }
+                FluAutoSuggestBox {
+                    id: pop3_port
+                    items: [ {title: "465"}, {title: "987"} ]
+                    placeholderText: "Port"
+                    Layout.preferredWidth: 100
+                    Layout.alignment: Qt.AlignHCenter
+                }
+            }
+
+            FluFilledButton {
+                text: "登录"
+                Layout.alignment: Qt.AlignRight
+                Layout.topMargin: 20
+                onClicked: {
+                    if(textbox_username.text === ""
+                        || textbox_email.text === ""
+                        || textbox_password.text === ""
+                        || smtp_site.text === ""
+                        || smtp_port.text === ""
+                        || pop3_site.text === ""
+                        || pop3_port.text === "") {
+                        showError("请完整输入信息")
+                        return
+                    }
+                    onResult({ password: textbox_password.text })
+                    window.close()
+                }
+            }
+        }
     }
-
-
-
 }
