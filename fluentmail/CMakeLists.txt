@@ -22,7 +22,7 @@ file(TO_CMAKE_PATH "/" PATH_SEPARATOR)
 # 设置版本号
 add_definitions(-DVERSION=1,3,1,0)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick REQUIRED)
+find_package(Qt6 REQUIRED COMPONENTS Quick Sql REQUIRED)
 
 # 遍历所有Cpp文件
 file(GLOB_RECURSE CPP_FILES *.cpp *.h)
@@ -95,6 +95,7 @@ set_target_properties(fluentmail PROPERTIES
 # 链接库
 target_link_libraries(fluentmail PRIVATE
     Qt6::Quick
+    Qt6::Sql
     fluentuiplugin
 )
 
