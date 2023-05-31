@@ -62,13 +62,8 @@ FluScrollablePage {
                     color: {
                         if (item_mouse.containsMouse)
                         {
-                            if (FluTheme.dark)
-                            {
-                                return Qt.rgba(1, 1, 1, 0.03)
-                            }
-                            else {
-                                return Qt.rgba(0, 0, 0, 0.03)
-                            }
+                            if (FluTheme.dark) return Qt.rgba(1, 1, 1, 0.03)
+                                else return Qt.rgba(0, 0, 0, 0.03)
                         }
                         else {
                             return Qt.rgba(0, 0, 0, 0)
@@ -77,8 +72,8 @@ FluScrollablePage {
                 }
                 // 标题
                 FluText {
-                    id: item_title
-                    text: modelData.title
+                    id: item_name
+                    text: modelData.name
                     font: FluTextStyle.BodyStrong
                     anchors {
                         left: parent.left
@@ -89,18 +84,18 @@ FluScrollablePage {
                 }
                 // 描述
                 FluText {
-                    id: item_desc
-                    text: modelData.desc
+                    id: item_email
+                    text: modelData.email
                     color: FluColors.Grey120
                     wrapMode: Text.WrapAnywhere
                     elide: Text.ElideRight
                     font: FluTextStyle.Caption
                     maximumLineCount: 2
                     anchors {
-                        left: item_title.left
+                        left: item_name.left
                         right: parent.right
                         rightMargin: 20
-                        top: item_title.bottom
+                        top: item_name.bottom
                         topMargin: 5
                     }
                 }
@@ -147,20 +142,7 @@ FluScrollablePage {
         implicitHeight: contentHeight
         cellHeight: 140
         cellWidth: 270
-        model: [
-            {
-                title: "CWorld QQ Mail",
-                desc: "cworld0@qq.com"
-            },
-            {
-                title: "CWorld GMail",
-                desc: "wolf0813cy@gmail.com"
-            },
-            {
-                title: "CWorld Outlook",
-                desc: "cworld0@outlook.com"
-            },
-        ]
+        model: appInfo.user.getUsers()
         interactive: false
         delegate: com_item
     }

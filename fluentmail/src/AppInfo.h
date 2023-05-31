@@ -1,8 +1,9 @@
-#ifndef APPINFO_H
+﻿#ifndef APPINFO_H
 #define APPINFO_H
 
 #include <QObject>
 #include "lang/Lang.h"
+#include "tool/User.h"
 #include "stdafx.h"
 
 class AppInfo : public QObject
@@ -10,6 +11,7 @@ class AppInfo : public QObject
     Q_OBJECT
     Q_PROPERTY_AUTO(QString, version)
     Q_PROPERTY_AUTO(Lang *, lang)
+    Q_PROPERTY_AUTO(User *, user)
 public:
     explicit AppInfo(QObject *parent = nullptr);
     Q_SIGNAL void activeWindow();
