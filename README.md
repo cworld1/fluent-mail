@@ -26,7 +26,7 @@ Making sure you've installed with Qt, MinGW/MSVC, CMake and Ninja from the Qt in
 
 If you have some troubles about the version, please check and use the version below to ensure the code running correctly:
 
-- Qt SDK: 6.5.0
+- Qt SDK: 6.5.1
 - MinGW: 11.2.0
 - CMake: 3.24.2
 - Ninja: 1.11.1

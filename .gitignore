@@ -170,7 +170,7 @@ tags
 # End of https://www.toptal.com/developers/gitignore/api/vim,visualstudiocode,qtcreator,c++,qt,qml,cmake
 
 ### Custom ###
-app
+.cache
 bin
 build
 db
