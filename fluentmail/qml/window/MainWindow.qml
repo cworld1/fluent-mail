@@ -35,7 +35,7 @@ FluWindow {
     SystemTrayIcon {
         id:system_tray
         visible: true
-        icon.source: "qrc:/fluentmail/res/image/favicon.ico"
+        icon.source: "qrc:/fluentmail/favicon.ico"
         tooltip: "Fluent Mail"
         menu: Menu {
             MenuItem {
@@ -84,7 +84,7 @@ FluWindow {
         footerItems:ItemsFooter
         z:11
         displayMode: MainEvent.displayMode
-        logo: "qrc:/fluentmail/res/image/favicon.ico"
+        logo: "qrc:/fluentmail/favicon.ico"
         title:"FluentMail"
         autoSuggestBox:FluAutoSuggestBox{
             width: 280

@@ -25,7 +25,7 @@ FluWindow {
         footerItems: ItemsFooter
         z: 11
         displayMode: MainEvent.displayMode
-        logo: "qrc:/fluentmail/res/image/favicon.ico"
+        logo: "qrc:/fluentmail/favicon.ico"
         title: "FluentUI"
     }
 
