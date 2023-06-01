@@ -1,4 +1,4 @@
-import QtQuick
+﻿import QtQuick
 import QtQuick.Layouts
 import QtQuick.Window
 import QtQuick.Controls
@@ -132,15 +132,15 @@ FluScrollablePage {
                 left: parent.left
             }
             FluText {
-                text: lang.locale
+                text: "Test"
                 font: FluTextStyle.BodyStrong
                 Layout.bottomMargin: 4
             }
             FluFilledButton {
-                // anchors.centerIn: parent
-                text:"Filled Button"
+                text:"Test Button"
                 onClicked: {
                     appInfo.buttonclick("Test")
+                    FluApp.navigate("/about")
                 }
             }
         }
