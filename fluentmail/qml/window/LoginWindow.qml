@@ -10,7 +10,7 @@ FluWindow {
     width: 950
     height: 550
     minimumWidth: 800
-    minimumHeight: 400
+    minimumHeight: 500
     // maximumWidth: 400
     // maximumHeight: 600
     launchMode: FluWindow.SingleTask
@@ -18,7 +18,7 @@ FluWindow {
     onInitArgument: (argument) => {
         smtp_port.updateText(argument.smtp_port)
         pop3_port.updateText(argument.pop3_port)
-        textbox_username.focus =  true
+        textbox_username.focus = true
     }
     RowLayout {
         anchors.fill: parent
@@ -27,7 +27,7 @@ FluWindow {
         // 轮播图
         FluCarousel {
             width: 400
-            height: 350
+            height: 500
             Layout.alignment: Qt.AlignLeft
             Layout.leftMargin: 70
             Layout.horizontalStretchFactor: 2
@@ -99,7 +99,7 @@ FluWindow {
             }
             RowLayout {
                 FluTextBox {
-                    id: smtp_site
+                    id: smtp_host
                     placeholderText: "SMTP Site"
                     Layout.fillWidth: true
                 }
@@ -120,7 +120,7 @@ FluWindow {
             }
             RowLayout {
                 FluTextBox {
-                    id: pop3_site
+                    id: pop3_host
                     placeholderText: "POP3 Site"
                     Layout.fillWidth: true
                 }
@@ -141,14 +141,22 @@ FluWindow {
                     if(textbox_username.text === ""
                         || textbox_email.text === ""
                         || textbox_password.text === ""
-                        || smtp_site.text === ""
+                        || smtp_host.text === ""
                         || smtp_port.text === ""
-                        || pop3_site.text === ""
+                        || pop3_host.text === ""
                         || pop3_port.text === "") {
                         showError("请完整输入信息")
                         return
                     }
-                    onResult({ password: textbox_password.text })
+                    onResult({
+                        name: textbox_username.text,
+                        email: textbox_email.text,
+                        passwd: textbox_password.text,
+                        smtp: smtp_host.text,
+                        smtp_port: smtp_port.text,
+                        pop3: pop3_host.text,
+                        pop3_port: pop3_port.text
+                    })
                     window.close()
                 }
             }

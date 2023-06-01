@@ -10,6 +10,24 @@ FluScrollablePage {
 
     title: "User"
 
+    Connections {
+        target: loginPageRegister
+        function onResult(data)
+        {
+            if(appInfo.user.addUser(
+                data.name, data.email, data.passwd, 
+                data.smtp, data.smtp_port,
+                data.pop3, data.pop3_port
+            ))
+            {
+                showSuccess("添加成功！")
+            }
+            else {
+                showError("添加失败！")
+            }
+        }
+    }
+
     FluArea {
         Layout.fillWidth: true
         Layout.topMargin: 20
@@ -110,7 +128,7 @@ FluScrollablePage {
                     text: "删除"
                     iconSource: FluentIcons.Delete
                     onClicked: {
-                        showWarning("已删除！")
+                        double_btn_dialog.open()
                     }
                     anchors {
                         left: parent.left
@@ -119,10 +137,36 @@ FluScrollablePage {
                         bottomMargin: 15
                     }
                 }
+                // 二次确认
+                FluContentDialog{
+                    id: double_btn_dialog
+                    title: "Tip"
+                    message:"Are you sure to delete this user?"
+                    buttonFlags: FluContentDialog.NegativeButton | FluContentDialog.PositiveButton
+                    negativeText: "Cancel"
+                    onNegativeClicked:{
+                        showError("取消删除！")
+                    }
+                    positiveText: "Delete"
+                    onPositiveClicked:{
+                        if (appInfo.user.delUser(modelData.id) === false) {
+                            showError("删除失败！")
+                        }
+                        else
+                            showWarning("已删除！")
+                    }
+                }
                 FluFilledButton {
                     text: "切换"
+                    disabled: modelData.isCurUser
                     onClicked: {
-                        showSuccess("已切换！")
+                        if (appInfo.user.setUser(modelData.id) === false) {
+                            showError("切换失败！")
+                        }
+                        else {
+                            showSuccess("已切换！")
+                            disabled = true
+                        }
                     }
                     anchors {
                         right: parent.right

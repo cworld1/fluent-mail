@@ -17,20 +17,29 @@
 class DataObject : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QString name READ name)
-    Q_PROPERTY(QString email READ email)
+    Q_PROPERTY(QString id READ id NOTIFY changed)
+    Q_PROPERTY(QString name READ name NOTIFY changed)
+    Q_PROPERTY(QString email READ email NOTIFY changed)
+    Q_PROPERTY(bool isCurUser READ isCurUser NOTIFY changed)
 
 public:
-    DataObject(const QString &name, const QString &email)
-        : m_name(name), m_email(email)
+    DataObject(const QString &id, const QString &name, const QString &email, const bool &isCurUser = false)
+        : m_id(id), m_name(name), m_email(email), m_isCurUser(isCurUser)
     {
     }
+    QString id() const { return m_id; }
     QString name() const { return m_name; }
     QString email() const { return m_email; }
+    bool isCurUser() const { return m_isCurUser; }
+
+signals:
+    void changed();
 
 private:
+    QString m_id;
     QString m_name;
     QString m_email;
+    bool m_isCurUser;
 };
 
 class User : public QObject
@@ -39,8 +48,12 @@ class User : public QObject
 public:
     explicit User(QObject *parent = nullptr);
     Q_INVOKABLE QList<QObject *> getUsers();
-    Q_INVOKABLE void getCurrentUser();
-    // Q_INVOKABLE void addUser(const QString &name, const QString &email);
+    Q_INVOKABLE QString getCurUser();
+    Q_INVOKABLE bool setUser(const QString id);
+    Q_INVOKABLE bool delUser(const QString id);
+    Q_INVOKABLE bool addUser(const QString &name, const QString &email, const QString &passwd,
+                             const QString &smtp, const int smtp_port,
+                             const QString &pop3, const int pop3_port);
 
 private:
     QSqlDatabase db;
