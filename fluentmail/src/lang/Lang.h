@@ -9,6 +9,8 @@ class Lang : public QObject
     Q_OBJECT
 
     // 侧栏
+    Q_PROPERTY_AUTO(QString, search);
+
     Q_PROPERTY_AUTO(QString, home);
     Q_PROPERTY_AUTO(QString, compose);
     Q_PROPERTY_AUTO(QString, inbox);
@@ -18,9 +20,35 @@ class Lang : public QObject
     Q_PROPERTY_AUTO(QString, drafts);
     Q_PROPERTY_AUTO(QString, trash);
 
+    Q_PROPERTY_AUTO(QString, user);
+    Q_PROPERTY_AUTO(QString, settings);
+
     // 首页
     Q_PROPERTY_AUTO(QString, welcome);
+    Q_PROPERTY_AUTO(QString, common_use);
+    Q_PROPERTY_AUTO(QString, recommend);
 
+    // 写邮件
+    Q_PROPERTY_AUTO(QString, to);
+    Q_PROPERTY_AUTO(QString, to_placeholder);
+    Q_PROPERTY_AUTO(QString, subject);
+    Q_PROPERTY_AUTO(QString, subject_placeholder);
+    Q_PROPERTY_AUTO(QString, content_placeholder);
+    Q_PROPERTY_AUTO(QString, save_to_drafts);
+    Q_PROPERTY_AUTO(QString, send);
+
+    // 设置
+    Q_PROPERTY_AUTO(QString, dark_mode);
+    Q_PROPERTY_AUTO(QString, dark_mode_sys);
+    Q_PROPERTY_AUTO(QString, dark_mode_light);
+    Q_PROPERTY_AUTO(QString, dark_mode_dark);
+
+    Q_PROPERTY_AUTO(QString, navigation_view);
+    Q_PROPERTY_AUTO(QString, navigation_view_open);
+    Q_PROPERTY_AUTO(QString, navigation_view_compact);
+    Q_PROPERTY_AUTO(QString, navigation_view_minimal);
+    Q_PROPERTY_AUTO(QString, navigation_view_auto);
+    
     Q_PROPERTY_AUTO(QString, basic_input);
     Q_PROPERTY_AUTO(QString, form);
     Q_PROPERTY_AUTO(QString, surface);
@@ -28,12 +56,6 @@ class Lang : public QObject
     Q_PROPERTY_AUTO(QString, navigation);
     Q_PROPERTY_AUTO(QString, theming);
     Q_PROPERTY_AUTO(QString, media);
-    Q_PROPERTY_AUTO(QString, dark_mode);
-    Q_PROPERTY_AUTO(QString, sys_dark_mode);
-    Q_PROPERTY_AUTO(QString, search);
-    Q_PROPERTY_AUTO(QString, about);
-    Q_PROPERTY_AUTO(QString, settings);
-    Q_PROPERTY_AUTO(QString, navigation_view_display_mode);
     Q_PROPERTY_AUTO(QString, locale);
 
 public:

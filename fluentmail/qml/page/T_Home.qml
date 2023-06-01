@@ -250,7 +250,7 @@ FluScrollablePage {
 
     // 次级小组件（真实功能布局）
     FluText {
-        text: "Recently added samples"
+        text: lang.common_use
         font: FluTextStyle.Title
         Layout.topMargin: 20
         Layout.leftMargin: 20
@@ -267,7 +267,7 @@ FluScrollablePage {
     }
 
     FluText {
-        text: "Recently updated samples"
+        text: lang.recommend
         font: FluTextStyle.Title
         Layout.topMargin: 20
         Layout.leftMargin: 20

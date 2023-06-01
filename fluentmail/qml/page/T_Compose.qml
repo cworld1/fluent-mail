@@ -6,7 +6,7 @@ import FluentUI
 import "../component"
 
 FluScrollablePage {
-    title: "Compose Email"
+    title: lang.compose
 
     FluArea {
         Layout.fillWidth: true
@@ -22,10 +22,10 @@ FluScrollablePage {
                 FluText {
                     Layout.preferredWidth: 70
                     Layout.topMargin: 2
-                    text: "To: "
+                    text: lang.to
                 }
                 FluTextBox {
-                    placeholderText: "Email address"
+                    placeholderText: lang.to_placeholder
                     Layout.fillWidth: true
                 }
             }
@@ -33,15 +33,15 @@ FluScrollablePage {
                 FluText {
                     Layout.preferredWidth: 70
                     Layout.topMargin: 2
-                    text: "Subject: "
+                    text: lang.subject
                 }
                 FluTextBox {
-                    placeholderText: "Subject"
+                    placeholderText: lang.subject_placeholder
                     Layout.fillWidth: true
                 }
             }
             FluMultilineTextBox {
-                placeholderText: "Enter content"
+                placeholderText: lang.content_placeholder
                 Layout.fillWidth: true
                 Layout.fillHeight: true
             }
@@ -55,7 +55,7 @@ FluScrollablePage {
         paddings: 10
 
         FluButton {
-            text: "存到草稿箱"
+            text: lang.save_to_drafts
             onClicked: {
                 showWarning("草稿箱")
             }
@@ -71,7 +71,7 @@ FluScrollablePage {
                 right: parent.right
             }
             FluFilledButton {
-                text: "发送"
+                text: lang.send
                 onClicked: {
                     showSuccess("点击发送")
                 }

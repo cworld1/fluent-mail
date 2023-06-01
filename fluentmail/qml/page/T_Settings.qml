@@ -1,4 +1,4 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Layouts
 import QtQuick.Window
 import QtQuick.Controls
@@ -31,9 +31,9 @@ FluScrollablePage {
             // 选项
             Repeater {
                 model: [
-                { title: "System", mode: FluDarkMode.System },
-                { title:"Light", mode: FluDarkMode.Light },
-                { title:"Dark", mode: FluDarkMode.Dark }
+                { title: lang.dark_mode_sys, mode: FluDarkMode.System },
+                { title: lang.dark_mode_light, mode: FluDarkMode.Light },
+                { title: lang.dark_mode_dark, mode: FluDarkMode.Dark }
                 ]
                 delegate: FluRadioButton {
                     selected : FluTheme.darkMode === modelData.mode
@@ -61,16 +61,16 @@ FluScrollablePage {
             }
 
             FluText {
-                text:lang.navigation_view_display_mode
+                text: lang.navigation_view
                 font: FluTextStyle.BodyStrong
                 Layout.bottomMargin: 4
             }
             Repeater {
                 model: [
-                { title: "Open", mode: FluNavigationView.Open },
-                { title: "Compact", mode: FluNavigationView.Compact },
-                { title: "Minimal", mode: FluNavigationView.Minimal },
-                { title: "Auto", mode: FluNavigationView.Auto }
+                    { title: lang.navigation_view_open, mode: FluNavigationView.Open },
+                    { title: lang.navigation_view_compact, mode: FluNavigationView.Compact },
+                    { title: lang.navigation_view_minimal, mode: FluNavigationView.Minimal },
+                    { title: lang.navigation_view_auto, mode: FluNavigationView.Auto }
                 ]
                 delegate: FluRadioButton {
                     selected: MainEvent.displayMode === modelData.mode
