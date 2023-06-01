@@ -44,15 +44,15 @@ FluScrollablePage{
     }
 
     FluContentDialog{
-        id:double_btn_dialog
-        title:"友情提示"
-        message:"确定要退出程序么？"
+        id: double_btn_dialog
+        title: "友情提示"
+        message: "确定要退出程序么？"
         buttonFlags: FluContentDialog.NegativeButton | FluContentDialog.PositiveButton
-        negativeText:"取消"
-        onNegativeClicked:{
+        negativeText: "取消"
+        onNegativeClicked: {
             showSuccess("点击取消按钮")
         }
-        positiveText:"确定"
+        positiveText: "确定"
         onPositiveClicked:{
             showSuccess("点击确定按钮")
         }
@@ -66,7 +66,7 @@ FluScrollablePage{
         FluButton{
             anchors.verticalCenter: parent.verticalCenter
             Layout.topMargin: 20
-            text:"Show Triple Button Dialog"
+            text: "Show Triple Button Dialog"
             onClicked: {
                 triple_btn_dialog.open()
             }
