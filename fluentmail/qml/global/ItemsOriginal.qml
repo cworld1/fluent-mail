@@ -4,7 +4,6 @@ import QtQuick
 import FluentUI
 
 FluObject {
-
     property var navigationView
 
     // 主页
@@ -79,7 +78,7 @@ FluObject {
         order: 2
         image: "qrc:/fluentmail/res/image/control/InkCanvas.png"
         desc: "你创造的创意沉淀之地，思绪的保留室。"
-        onTap: navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
+        onTap: navigationView.push("qrc:/fluentmail/qml/page/T_DraftList.qml")
     }
 
     // 垃圾箱
@@ -281,14 +280,14 @@ FluObject {
                 navigationView.push("qrc:/fluentmail/qml/page/T_TreeView.qml")
             }
         }
-        FluPaneItem {
-            title:"TableView"
-            image:"qrc:/fluentmail/res/image/control/DataGrid.png"
-            desc:"The TableView control provides a flexible way to display a collection of data in rows and columns"
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_TableView.qml")
-            }
-        }
+        // FluPaneItem {
+        //     title:"TableView"
+        //     image:"qrc:/fluentmail/res/image/control/DataGrid.png"
+        //     desc:"The TableView control provides a flexible way to display a collection of data in rows and columns"
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_TableView.qml")
+        //     }
+        // }
         FluPaneItem {
             title:"MultiWindow"
             onTap: {

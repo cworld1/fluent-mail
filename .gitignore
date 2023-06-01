@@ -174,3 +174,5 @@ tags
 bin
 build
 db
+test
+settings.ini

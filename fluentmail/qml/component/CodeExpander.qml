@@ -114,7 +114,7 @@ FluExpander{
           "FluWindow",
           "FluWindowResize",
           "FluToggleButton",
-          "FluTableView",
+          // "FluTableView",
           "FluColors",
           "FluTheme",
           "FluStatusView",
