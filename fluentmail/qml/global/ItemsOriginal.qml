@@ -1,4 +1,4 @@
-﻿pragma Singleton
+pragma Singleton
 
 import QtQuick
 import FluentUI
@@ -120,14 +120,14 @@ FluObject {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Slider.qml")
             }
         }
-        FluPaneItem {
-            title: "CheckBox"
-            image: "qrc:/fluentmail/res/image/control/Checkbox.png"
-            desc: "A control that a user can select or clear."
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_CheckBox.qml")
-            }
-        }
+        // FluPaneItem {
+        //     title: "CheckBox"
+        //     image: "qrc:/fluentmail/res/image/control/Checkbox.png"
+        //     desc: "A control that a user can select or clear."
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_CheckBox.qml")
+        //     }
+        // }
         // FluPaneItem {
         //     title: "ToggleSwitch"
         //     onTap: {
