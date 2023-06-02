@@ -333,18 +333,18 @@ FluObject {
         }
     }
 
-    FluPaneItemExpander {
-        title: lang.media
-        icon: FluentIcons.Media
-        FluPaneItem {
-            title: "MediaPlayer"
-            image: "qrc:/fluentmail/res/image/control/MediaPlayerElement.png"
-            desc: "A control to display video and image content."
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_MediaPlayer.qml")
-            }
-        }
-    }
+    // FluPaneItemExpander {
+    //     title: lang.media
+    //     icon: FluentIcons.Media
+    //     FluPaneItem {
+    //         title: "MediaPlayer"
+    //         image: "qrc:/fluentmail/res/image/control/MediaPlayerElement.png"
+    //         desc: "A control to display video and image content."
+    //         onTap: {
+    //             navigationView.push("qrc:/fluentmail/qml/page/T_MediaPlayer.qml")
+    //         }
+    //     }
+    // }
 
     function getRecentlyAddedData()
     {
