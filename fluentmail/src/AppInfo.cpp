@@ -21,23 +21,15 @@ AppInfo::AppInfo(QObject *parent) : QObject{parent}
 void AppInfo::changeLang(const QString &locale)
 {
     if (_lang)
-    {
         _lang->deleteLater();
-    }
 
     // 判断语言类型
     if (locale == "Zh")
-    {
         lang(new Zh());
-    }
     else if (locale == "En")
-    {
         lang(new En());
-    }
     else
-    {
         lang(new En());
-    }
 }
 
 void AppInfo::buttonclick(const QString &text)

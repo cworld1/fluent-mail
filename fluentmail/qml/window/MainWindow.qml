@@ -86,7 +86,8 @@ FluWindow {
         displayMode: MainEvent.displayMode
         logo: "qrc:/fluentmail/favicon.ico"
         title: "FluentMail"
-        autoSuggestBox: FluAutoSuggestBox{
+        // 顶栏搜索框
+        autoSuggestBox: FluAutoSuggestBox {
             width: 280
             anchors.centerIn: parent
             iconSource: FluentIcons.Search
@@ -97,13 +98,14 @@ FluWindow {
                     ItemsOriginal.startPageByItem(data)
                 }
         }
-        actionItem: Item{
+        // 顶栏右侧按钮
+        actionItem: Item {
             height: 40
             width: 148
             RowLayout{
                 anchors.centerIn: parent
                 spacing: 5
-                FluText{
+                FluText {
                     text: lang.dark_mode
                 }
                 FluToggleSwitch{
