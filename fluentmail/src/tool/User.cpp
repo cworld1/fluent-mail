@@ -116,7 +116,25 @@ bool User::createTables(QString dbType)
         qDebug() << "创建 cur_user 表失败：" << query.lastError().text();
         return false;
     }
+
+    // 创建 drafts 表
+    cmd = "CREATE TABLE IF NOT EXISTS drafts ("
+          "id INTEGER PRIMARY KEY " +
+          incrementCmd +
+          " NOT NULL, "
+          "email VARCHAR(255) NOT NULL, "
+          "subject VARCHAR(255) NOT NULL, "
+          "content TEXT NOT NULL, "
+          "updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+          ");";
+    if (query.exec(cmd))
+        debugList.append("drafts");
     else
+    {
+        qDebug() << "创建 drafts 表失败：" << query.lastError().text();
+        return false;
+    }
+
     qDebug() << "成功创建表：" << debugList.join(", ");
 
     return true;
@@ -245,5 +263,149 @@ bool User::addUser(const QString &name, const QString &email, const QString &pas
         qDebug() << "设置当前用户成功";
     else
         qDebug() << "设置当前用户失败：" << query.lastError().text();
+    return true;
+}
+
+/**
+ * @brief 获取草稿列表
+ * @return QList<QObject *> 草稿列表
+ */
+QList<QObject *> User::getDrafts(int page, int page_size)
+{
+    QList<QObject *> dataList;
+    QString cmd = "SELECT id, email, subject, content, updated_at FROM drafts "
+                  "ORDER BY updated_at DESC "
+                  "LIMIT " +
+                  QString::number(page_size) + " OFFSET " + QString::number((page - 1) * page_size) + ";";
+    if (query.exec(cmd))
+    {
+        while (query.next())
+        {
+            QString id = query.value(0).toString();
+            QString email = query.value(1).toString();
+            QString subject = query.value(2).toString();
+            QString content = query.value(3).toString();
+            QString updated_at = query.value(4).toString();
+
+            DraftObject *draftObject = new DraftObject(
+                id, email, subject, content, updated_at);
+            dataList.append(draftObject);
+        }
+    }
+    else
+    {
+        qDebug() << "查询失败：" << query.lastError().text();
+    }
+    return dataList;
+}
+
+/**
+ * @brief 获取当前草稿
+ * @return QString 草稿 id
+ * @note 如果没有草稿，则创建一个空草稿
+ */
+DraftObject *User::getLatestDraft()
+{
+    QString id, email, subject, content, updated_at;
+    // 检查是否有草稿
+    query.exec("SELECT COUNT(*) FROM drafts;");
+    query.next();
+    if (query.value(0).toInt() == 0)
+    {
+        // 创建空草稿
+        QString cmd = "INSERT INTO drafts (email, subject, content) "
+                      "VALUES ('', '', '');";
+        if (query.exec(cmd))
+        {
+            id = query.lastInsertId().toString();
+            qDebug() << "新增草稿成功！id：" << id;
+        }
+        else
+            qDebug() << "新增草稿失败：" << query.lastError().text();
+        email = subject = content = updated_at = "";
+    }
+    else
+    {
+        // 获取最新草稿
+        QString cmd = "SELECT id, email, subject, content, updated_at "
+                      "FROM drafts ORDER BY updated_at DESC LIMIT 1;";
+        if (query.exec(cmd))
+        {
+            query.next();
+            id = query.value(0).toString();
+            email = query.value(1).toString();
+            subject = query.value(2).toString();
+            content = query.value(3).toString();
+            updated_at = query.value(4).toString();
+        }
+        else
+            qDebug() << "查询最新草稿失败：" << query.lastError().text();
+    }
+    // qDebug() << id << email << subject << content << updated_at;
+
+    DraftObject *draftObject = new DraftObject(id, email, subject, content, updated_at);
+    return draftObject;
+}
+
+/**
+ * @brief 更新草稿
+ * @param id 草稿 id
+ * @return bool 是否成功
+ */
+bool User::updateDraft(const QString &id)
+{
+    QString cmd = "UPDATE drafts SET updated_at = CURRENT_TIMESTAMP "
+                  "WHERE id = " +
+                  id + ";";
+    if (query.exec(cmd))
+        qDebug() << "更新草稿成功！id：" << id;
+    else
+    {
+        qDebug() << "更新草稿失败：" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+/**
+ * @brief 删除草稿
+ * @param id 草稿 id
+ */
+bool User::deleteDraft(const QString &id)
+{
+    QString cmd = "DELETE FROM drafts WHERE id = " + id + ";";
+    if (query.exec(cmd))
+        qDebug() << "删除草稿成功！id：" << id;
+    else
+    {
+        qDebug() << "删除草稿失败：" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+/**
+ * @brief 保存草稿
+ * @param id 草稿 id
+ * @param email 邮箱
+ * @param subject 主题
+ * @param content 内容
+ * @return bool 是否成功
+ */
+bool User::saveDraft(const QString &id, const QString &email, const QString &subject, const QString &content)
+{
+    QString cmd = "UPDATE drafts SET email = '" + email +
+                  "', subject = '" + subject +
+                  "', content = '" + content +
+                  "', updated_at = CURRENT_TIMESTAMP "
+                  "WHERE id = " +
+                  id + ";";
+    if (query.exec(cmd))
+        qDebug() << "保存草稿成功！id：" << id;
+    else
+    {
+        qDebug() << "保存草稿失败：" << query.lastError().text();
+        return false;
+    }
     return true;
 }
