@@ -7,6 +7,15 @@ import "../component"
 
 FluScrollablePage {
     title: lang.compose
+    property var draft: {}
+
+    Component.onCompleted: {
+        draft = appInfo.user.getLatestDraft()
+        textbox_email.text = draft.email
+        textbox_subject.text = draft.subject
+        textbox_content.text = draft.content
+        textbox_email.focus = true
+    }
 
     FluArea {
         Layout.fillWidth: true
@@ -25,6 +34,7 @@ FluScrollablePage {
                     text: lang.to
                 }
                 FluTextBox {
+                    id: textbox_email
                     placeholderText: lang.to_placeholder
                     Layout.fillWidth: true
                 }
@@ -36,11 +46,13 @@ FluScrollablePage {
                     text: lang.subject
                 }
                 FluTextBox {
+                    id: textbox_subject
                     placeholderText: lang.subject_placeholder
                     Layout.fillWidth: true
                 }
             }
             FluMultilineTextBox {
+                id: textbox_content
                 placeholderText: lang.content_placeholder
                 Layout.fillWidth: true
                 Layout.fillHeight: true
@@ -57,7 +69,13 @@ FluScrollablePage {
         FluButton {
             text: lang.save_to_drafts
             onClicked: {
-                showWarning("草稿箱")
+                appInfo.user.saveDraft(
+                    draft.id,
+                    textbox_email.text,
+                    textbox_subject.text,
+                    textbox_content.text
+                )
+                showSuccess("保存成功")
             }
             anchors {
                 verticalCenter: parent.verticalCenter
