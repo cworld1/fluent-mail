@@ -212,12 +212,12 @@ FluObject {
                 navigationView.push("qrc:/fluentmail/qml/page/T_StatusView.qml")
             }
         }
-        FluPaneItem {
-            title: "Carousel"
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_Carousel.qml")
-            }
-        }
+        // FluPaneItem {
+        //     title: "Carousel"
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_Carousel.qml")
+        //     }
+        // }
         FluPaneItem {
             title: "Expander"
             onTap: {
