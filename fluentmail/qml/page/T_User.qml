@@ -8,7 +8,7 @@ import "../component"
 FluScrollablePage {
     property var loginPageRegister: registerForWindowResult("/login")
 
-    title: "User"
+    title: lang.user
 
     Connections {
         target: loginPageRegister
@@ -144,7 +144,7 @@ FluScrollablePage {
                     message:"Are you sure to delete this user?"
                     buttonFlags: FluContentDialog.NegativeButton | FluContentDialog.PositiveButton
                     negativeText: "Cancel"
-                    onNegativeClicked:{
+                    onNegativeClicked: {
                         showError("取消删除！")
                     }
                     positiveText: "Delete"
@@ -157,6 +157,7 @@ FluScrollablePage {
                     }
                 }
                 FluFilledButton {
+                    id: btn_switch
                     text: "切换"
                     disabled: modelData.isCurUser
                     onClicked: {
@@ -164,8 +165,10 @@ FluScrollablePage {
                             showError("切换失败！")
                         }
                         else {
-                            showSuccess("已切换！")
+                            enable_button()
                             disabled = true
+                            users_grid.forceActiveFocus()
+                            showSuccess("已切换！")
                         }
                     }
                     anchors {
@@ -176,11 +179,15 @@ FluScrollablePage {
                     }
                 }
             }
+
+            // 绑定按钮
+            property var switchButton: btn_switch
         }
     }
 
     // 切换账号
     GridView {
+        id: users_grid
         Layout.topMargin: 10
         Layout.fillWidth: true
         implicitHeight: contentHeight
@@ -189,5 +196,13 @@ FluScrollablePage {
         model: appInfo.user.getUsers()
         interactive: false
         delegate: com_item
+    }
+
+    function enable_button()
+    {
+        for (var i = 0; i < users_grid.count; i++) {
+            const item = users_grid.itemAt(i, 0)
+            item.switchButton.disabled = false
+        }
     }
 }
