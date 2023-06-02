@@ -1,4 +1,4 @@
-pragma Singleton
+﻿pragma Singleton
 
 import QtQuick
 import FluentUI
@@ -174,14 +174,14 @@ FluObject {
     FluPaneItemExpander {
         title: lang.surface
         icon: FluentIcons.SurfaceHub
-        FluPaneItem {
-            title: "InfoBar"
-            image: "qrc:/fluentmail/res/image/control/InfoBar.png"
-            desc: "An inline message to display app-wide statuschange information."
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_InfoBar.qml")
-            }
-        }
+        // FluPaneItem {
+        //     title: "InfoBar"
+        //     image: "qrc:/fluentmail/res/image/control/InfoBar.png"
+        //     desc: "An inline message to display app-wide statuschange information."
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_InfoBar.qml")
+        //     }
+        // }
         FluPaneItem {
             title: "Progress"
             onTap: {
