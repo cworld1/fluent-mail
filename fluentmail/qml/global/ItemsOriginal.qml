@@ -28,7 +28,7 @@ FluObject {
         icon: FluentIcons.Edit
         recentlyUpdated: true
         image: "qrc:/fluentmail/res/image/control/AutoSuggestBox.png"
-        desc: "1982年，第一张电脑笑脸 :-) 诞生。今天，人们已经习惯用它来表达心情。尝试使用它吧！"
+        desc: "1982年，第一张电脑笑脸 : -) 诞生。今天，人们已经习惯用它来表达心情。尝试使用它吧！"
         onTap: {
             navigationView.push("qrc:/fluentmail/qml/page/T_Compose.qml")
         }
@@ -99,72 +99,72 @@ FluObject {
         title: lang.basic_input
         icon: FluentIcons.CheckboxComposite
         FluPaneItem {
-            title:"Buttons"
-            image:"qrc:/fluentmail/res/image/control/Button.png"
-            desc:"A control that responds to user input and raisesa Click event."
+            title: "Buttons"
+            image: "qrc:/fluentmail/res/image/control/Button.png"
+            desc: "A control that responds to user input and raisesa Click event."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Buttons.qml")
             }
         }
         FluPaneItem {
-            title:"Text"
+            title: "Text"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Text.qml")
             }
         }
         FluPaneItem {
-            title:"Slider"
-            image:"qrc:/fluentmail/res/image/control/Slider.png"
-            desc:"A control that lets the user select from a rangeof values by moving a Thumb control along atrack."
+            title: "Slider"
+            image: "qrc:/fluentmail/res/image/control/Slider.png"
+            desc: "A control that lets the user select from a rangeof values by moving a Thumb control along atrack."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Slider.qml")
             }
         }
         FluPaneItem {
-            title:"CheckBox"
-            image:"qrc:/fluentmail/res/image/control/Checkbox.png"
-            desc:"A control that a user can select or clear."
+            title: "CheckBox"
+            image: "qrc:/fluentmail/res/image/control/Checkbox.png"
+            desc: "A control that a user can select or clear."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_CheckBox.qml")
             }
         }
-        FluPaneItem {
-            title:"ToggleSwitch"
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_ToggleSwitch.qml")
-            }
-        }
+        // FluPaneItem {
+        //     title: "ToggleSwitch"
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_ToggleSwitch.qml")
+        //     }
+        // }
     }
 
     FluPaneItemExpander {
-        title:lang.form
-        icon:FluentIcons.GridView
+        title: lang.form
+        icon: FluentIcons.GridView
         FluPaneItem {
-            title:"TextBox"
+            title: "TextBox"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_TextBox.qml")
             }
         }
         FluPaneItem {
-            title:"TimePicker"
+            title: "TimePicker"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_TimePicker.qml")
             }
         }
         FluPaneItem {
-            title:"DatePicker"
+            title: "DatePicker"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_DatePicker.qml")
             }
         }
         FluPaneItem {
-            title:"CalendarPicker"
+            title: "CalendarPicker"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_CalendarPicker.qml")
             }
         }
         FluPaneItem {
-            title:"ColorPicker"
+            title: "ColorPicker"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_ColorPicker.qml")
             }
@@ -172,54 +172,54 @@ FluObject {
     }
 
     FluPaneItemExpander {
-        title:lang.surface
-        icon:FluentIcons.SurfaceHub
+        title: lang.surface
+        icon: FluentIcons.SurfaceHub
         FluPaneItem {
-            title:"InfoBar"
-            image:"qrc:/fluentmail/res/image/control/InfoBar.png"
-            desc:"An inline message to display app-wide statuschange information."
+            title: "InfoBar"
+            image: "qrc:/fluentmail/res/image/control/InfoBar.png"
+            desc: "An inline message to display app-wide statuschange information."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_InfoBar.qml")
             }
         }
         FluPaneItem {
-            title:"Progress"
+            title: "Progress"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Progress.qml")
             }
         }
         FluPaneItem {
-            title:"RatingControl"
+            title: "RatingControl"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_RatingControl.qml")
             }
         }
         FluPaneItem {
-            title:"Badge"
+            title: "Badge"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Badge.qml")
             }
         }
         FluPaneItem {
-            title:"Rectangle"
+            title: "Rectangle"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Rectangle.qml")
             }
         }
         FluPaneItem {
-            title:"StatusView"
+            title: "StatusView"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_StatusView.qml")
             }
         }
         FluPaneItem {
-            title:"Carousel"
+            title: "Carousel"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Carousel.qml")
             }
         }
         FluPaneItem {
-            title:"Expander"
+            title: "Expander"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Expander.qml")
             }
@@ -227,22 +227,22 @@ FluObject {
     }
 
     FluPaneItemExpander {
-        title:lang.popus
-        icon:FluentIcons.ButtonMenu
+        title: lang.popus
+        icon: FluentIcons.ButtonMenu
         FluPaneItem {
-            title:"Dialog"
+            title: "Dialog"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Dialog.qml")
             }
         }
         FluPaneItem {
-            title:"Tooltip"
+            title: "Tooltip"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Tooltip.qml")
             }
         }
         FluPaneItem {
-            title:"Menu"
+            title: "Menu"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Menu.qml")
             }
@@ -250,54 +250,54 @@ FluObject {
     }
 
     FluPaneItemExpander {
-        title:lang.navigation
-        icon:FluentIcons.AllApps
+        title: lang.navigation
+        icon: FluentIcons.AllApps
         FluPaneItem {
-            title:"Pivot"
-            image:"qrc:/fluentmail/res/image/control/Pivot.png"
-            desc:"Presents information from different sources in atabbed view."
+            title: "Pivot"
+            image: "qrc:/fluentmail/res/image/control/Pivot.png"
+            desc: "Presents information from different sources in atabbed view."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Pivot.qml")
             }
         }
         FluPaneItem {
-            title:"BreadcrumbBar"
+            title: "BreadcrumbBar"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_BreadcrumbBar.qml")
             }
         }
         FluPaneItem {
-            title:"TabView"
-            image:"qrc:/fluentmail/res/image/control/TabView.png"
-            desc:"A control that displays a collection of tabs thatcan be used to display several documents."
+            title: "TabView"
+            image: "qrc:/fluentmail/res/image/control/TabView.png"
+            desc: "A control that displays a collection of tabs thatcan be used to display several documents."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_TabView.qml")
             }
         }
         FluPaneItem {
-            title:"TreeView"
+            title: "TreeView"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_TreeView.qml")
             }
         }
         // FluPaneItem {
-        //     title:"TableView"
-        //     image:"qrc:/fluentmail/res/image/control/DataGrid.png"
-        //     desc:"The TableView control provides a flexible way to display a collection of data in rows and columns"
+        //     title: "TableView"
+        //     image: "qrc:/fluentmail/res/image/control/DataGrid.png"
+        //     desc: "The TableView control provides a flexible way to display a collection of data in rows and columns"
         //     onTap: {
         //         navigationView.push("qrc:/fluentmail/qml/page/T_TableView.qml")
         //     }
         // }
         FluPaneItem {
-            title:"MultiWindow"
+            title: "MultiWindow"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_MultiWindow.qml")
             }
         }
         FluPaneItem {
-            title:"FlipView"
-            image:"qrc:/fluentmail/res/image/control/FlipView.png"
-            desc:"Presents a collection of items that the user canflip through, one item at a time."
+            title: "FlipView"
+            image: "qrc:/fluentmail/res/image/control/FlipView.png"
+            desc: "Presents a collection of items that the user canflip through, one item at a time."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_FlipView.qml")
             }
@@ -305,28 +305,28 @@ FluObject {
     }
 
     FluPaneItemExpander {
-        title:lang.theming
-        icon:FluentIcons.Brightness
+        title: lang.theming
+        icon: FluentIcons.Brightness
         FluPaneItem {
-            title:"Acrylic"
+            title: "Acrylic"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Acrylic.qml")
             }
         }
         // FluPaneItem {
-        //     title:"Theme"
+        //     title: "Theme"
         //     onTap: {
         //         navigationView.push("qrc:/fluentmail/qml/page/T_Theme.qml")
         //     }
         // }
         FluPaneItem {
-            title:"Typography"
+            title: "Typography"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Typography.qml")
             }
         }
         FluPaneItem {
-            title:"Awesome"
+            title: "Awesome"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Awesome.qml")
             }
@@ -334,12 +334,12 @@ FluObject {
     }
 
     FluPaneItemExpander {
-        title:lang.media
-        icon:FluentIcons.Media
+        title: lang.media
+        icon: FluentIcons.Media
         FluPaneItem {
-            title:"MediaPlayer"
-            image:"qrc:/fluentmail/res/image/control/MediaPlayerElement.png"
-            desc:"A control to display video and image content."
+            title: "MediaPlayer"
+            image: "qrc:/fluentmail/res/image/control/MediaPlayerElement.png"
+            desc: "A control to display video and image content."
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_MediaPlayer.qml")
             }
@@ -349,7 +349,7 @@ FluObject {
     function getRecentlyAddedData()
     {
         var arr = []
-        for (var i=0;i<children.length;i++) {
+        for (var i = 0; i < children.length; i++) {
             var item = children[i]
             if (item instanceof FluPaneItem && item.recentlyAdded)
             {
@@ -357,7 +357,7 @@ FluObject {
             }
             if (item instanceof FluPaneItemExpander)
             {
-                for (var j=0;j<item.children.length;j++) {
+                for (var j = 0; j < item.children.length; j++) {
                     var itemChild = item.children[j]
                     if (itemChild instanceof FluPaneItem && itemChild.recentlyAdded)
                     {
@@ -366,7 +366,7 @@ FluObject {
                 }
             }
         }
-        arr.sort(function(o1, o2){ return o1.order-o2.order })
+        arr.sort(function(o1, o2){ return o1.order - o2.order })
         return arr
     }
 
@@ -374,7 +374,7 @@ FluObject {
     {
         var arr = []
         var items = navigationView.getItems();
-        for (var i=0;i<items.length;i++) {
+        for (var i = 0; i < items.length; i++) {
             var item = items[i]
             if (item instanceof FluPaneItem && item.recentlyUpdated)
             {
@@ -388,11 +388,11 @@ FluObject {
     {
         var arr = []
         var items = navigationView.getItems();
-        for (var i=0;i<items.length;i++) {
+        for (var i = 0; i < items.length; i++) {
             var item = items[i]
             if (item instanceof FluPaneItem)
             {
-                arr.push({title:item.title, key:item.key})
+                arr.push({title: item.title, key: item.key})
             }
         }
         return arr
