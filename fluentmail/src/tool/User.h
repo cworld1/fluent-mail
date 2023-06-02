@@ -14,16 +14,16 @@
 #include <QSqlError>
 
 // 返回用户信息
-class DataObject : public QObject
+class UserObject : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString id READ id NOTIFY changed)
     Q_PROPERTY(QString name READ name NOTIFY changed)
     Q_PROPERTY(QString email READ email NOTIFY changed)
-    Q_PROPERTY(bool isCurUser READ isCurUser NOTIFY changed)
+    Q_PROPERTY(bool isCurUser READ isCurUser WRITE isCurUser NOTIFY changed)
 
 public:
-    DataObject(const QString &id, const QString &name, const QString &email, const bool &isCurUser = false)
+    UserObject(const QString &id, const QString &name, const QString &email, const bool &isCurUser = false)
         : m_id(id), m_name(name), m_email(email), m_isCurUser(isCurUser)
     {
     }
@@ -31,6 +31,7 @@ public:
     QString name() const { return m_name; }
     QString email() const { return m_email; }
     bool isCurUser() const { return m_isCurUser; }
+    void isCurUser(bool isCurUser) { m_isCurUser = isCurUser; }
 
 signals:
     void changed();
@@ -46,7 +47,11 @@ class User : public QObject
 {
     Q_OBJECT
 public:
+    // 初始化
     explicit User(QObject *parent = nullptr);
+    Q_INVOKABLE bool createTables(QString dbType);
+
+    // 用户相关
     Q_INVOKABLE QList<QObject *> getUsers();
     Q_INVOKABLE QString getCurUser();
     Q_INVOKABLE bool setUser(const QString id);

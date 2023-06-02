@@ -69,10 +69,25 @@ User::User(QObject *parent) : QObject{parent}
         else
             qDebug() << "创建数据库失败：" << query.lastError().text();
     }
-    QString incrementCmd = dbType == "QMYSQL" ? "AUTO_INCREMENT" : "AUTOINCREMENT";
-    // 创建表格
-    QString cmd = "CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY " +
-                  incrementCmd + " NOT NULL, " +
+
+    // 创建表
+    bool tableIsCreate = createTables(dbType);
+}
+
+/**
+ * @brief 创建数据库表
+ * @return bool 是否成功
+ */
+bool User::createTables(QString dbType)
+{
+    QStringList debugList;
+    QString incrementCmd = dbType == "QSQLITE" ? "AUTOINCREMENT" : "AUTO_INCREMENT";
+
+    // 创建 users 表
+    QString cmd = "CREATE TABLE IF NOT EXISTS users ("
+                  "id INTEGER PRIMARY KEY " +
+                  incrementCmd +
+                  " NOT NULL, "
                   "name VARCHAR(255) NOT NULL, "
                   "email VARCHAR(255) NOT NULL, "
                   "passwd VARCHAR(255) NOT NULL, "
@@ -83,9 +98,28 @@ User::User(QObject *parent) : QObject{parent}
                   "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
                   ");";
     if (query.exec(cmd))
-        qDebug() << "成功创建表格";
+        debugList.append("users");
     else
-        qDebug() << "创建表格失败：" << query.lastError().text();
+    {
+        qDebug() << "创建 users 表失败：" << query.lastError().text();
+        return false;
+    }
+
+    // 创建 cur_user 表
+    cmd = "CREATE TABLE IF NOT EXISTS cur_user ("
+          "user_id INT NOT NULL"
+          ");";
+    if (query.exec(cmd))
+        debugList.append("cur_user");
+    else
+    {
+        qDebug() << "创建 cur_user 表失败：" << query.lastError().text();
+        return false;
+    }
+    else
+    qDebug() << "成功创建表：" << debugList.join(", ");
+
+    return true;
 }
 
 /**
@@ -97,7 +131,7 @@ QList<QObject *> User::getUsers()
     QList<QObject *> dataList;
     QString curUser = getCurUser();
 
-    QString cmd = "SELECT id, name, email FROM user;";
+    QString cmd = "SELECT id, name, email FROM users;";
     if (query.exec(cmd))
     {
         while (query.next())
@@ -106,11 +140,10 @@ QList<QObject *> User::getUsers()
             QString name = query.value(1).toString();
             QString email = query.value(2).toString();
 
-            DataObject *dataObject = new DataObject(
+            UserObject *userObject = new UserObject(
                 id, name, email,
-                id == curUser ? true : false
-            );
-            dataList.append(dataObject);
+                id == curUser ? true : false);
+            dataList.append(userObject);
         }
     }
     else
@@ -163,7 +196,7 @@ bool User::setUser(const QString id)
  */
 bool User::delUser(const QString id)
 {
-    QString cmd = "DELETE FROM user WHERE id = " + id + ";";
+    QString cmd = "DELETE FROM users WHERE id = " + id + ";";
     if (query.exec(cmd))
         qDebug() << "删除用户成功！id：" << id;
     else
@@ -188,7 +221,7 @@ bool User::addUser(const QString &name, const QString &email, const QString &pas
                    const QString &smtp, const int smtp_port,
                    const QString &pop3, const int pop3_port)
 {
-    QString cmd = "INSERT INTO user (name, email, passwd, "
+    QString cmd = "INSERT INTO users (name, email, passwd, "
                   "smtp, smtp_port, pop3, pop3_port) "
                   "VALUES ('" +
                   name + "', '" + email + "', '" + passwd + "', '" +
@@ -203,7 +236,6 @@ bool User::addUser(const QString &name, const QString &email, const QString &pas
     }
 
     // 设置当前用户
-    query.exec("CREATE TABLE IF NOT EXISTS cur_user (user_id INT NOT NULL);");
     query.exec("select count(*) from cur_user;");
     if (query.next() && query.value(0).toInt() == 0)
         query.exec("INSERT INTO cur_user (user_id) VALUES (SELECT LAST_INSERT_ID());");

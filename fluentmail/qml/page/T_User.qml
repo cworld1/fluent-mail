@@ -7,6 +7,7 @@ import "../component"
 
 FluScrollablePage {
     property var loginPageRegister: registerForWindowResult("/login")
+    property var users_model: {}
 
     title: lang.user
 
@@ -26,6 +27,10 @@ FluScrollablePage {
                 showError("添加失败！")
             }
         }
+    }
+
+    Component.onCompleted: {
+        users_model = appInfo.user.getUsers()
     }
 
     FluArea {
@@ -153,7 +158,10 @@ FluScrollablePage {
                             showError("删除失败！")
                         }
                         else
+                        {
                             showWarning("已删除！")
+                            users_model = appInfo.user.getUsers()
+                        }
                     }
                 }
                 FluFilledButton {
@@ -165,10 +173,8 @@ FluScrollablePage {
                             showError("切换失败！")
                         }
                         else {
-                            enable_button()
-                            disabled = true
-                            users_grid.forceActiveFocus()
                             showSuccess("已切换！")
+                            users_model = appInfo.user.getUsers()
                         }
                     }
                     anchors {
@@ -193,16 +199,8 @@ FluScrollablePage {
         implicitHeight: contentHeight
         cellHeight: 140
         cellWidth: 270
-        model: appInfo.user.getUsers()
+        model: users_model
         interactive: false
         delegate: com_item
-    }
-
-    function enable_button()
-    {
-        for (var i = 0; i < users_grid.count; i++) {
-            const item = users_grid.itemAt(i, 0)
-            item.switchButton.disabled = false
-        }
     }
 }
