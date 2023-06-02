@@ -34,6 +34,9 @@ En::En(QObject *parent) : Lang{parent}
     send("Send");
 
     // 设置
+    theme_color("Theme color");
+    theme_render_native("Native text rendering");
+    
     dark_mode("Dark Mode");
     dark_mode_sys("Follow system");
     dark_mode_light("Light");

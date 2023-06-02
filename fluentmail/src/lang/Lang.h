@@ -38,6 +38,9 @@ class Lang : public QObject
     Q_PROPERTY_AUTO(QString, send);
 
     // 设置
+    Q_PROPERTY_AUTO(QString, theme_color);
+    Q_PROPERTY_AUTO(QString, theme_render_native);
+
     Q_PROPERTY_AUTO(QString, dark_mode);
     Q_PROPERTY_AUTO(QString, dark_mode_sys);
     Q_PROPERTY_AUTO(QString, dark_mode_light);

@@ -313,12 +313,12 @@ FluObject {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Acrylic.qml")
             }
         }
-        FluPaneItem {
-            title:"Theme"
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_Theme.qml")
-            }
-        }
+        // FluPaneItem {
+        //     title:"Theme"
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_Theme.qml")
+        //     }
+        // }
         FluPaneItem {
             title:"Typography"
             onTap: {

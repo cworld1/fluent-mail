@@ -34,6 +34,9 @@ Zh::Zh(QObject *parent) : Lang{parent}
     send("发送");
 
     // 设置
+    theme_color("主题颜色");
+    theme_render_native("Native 文本渲染");
+
     dark_mode("深色模式");
     dark_mode_sys("跟随系统");
     dark_mode_light("浅色");
