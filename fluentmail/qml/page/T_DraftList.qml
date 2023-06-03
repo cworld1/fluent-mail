@@ -6,7 +6,7 @@ import FluentUI
 import "../component"
 
 FluScrollablePage {
-    property var dataSource: {}
+    property var dataSource: []
 
     title: lang.drafts
 
@@ -27,8 +27,8 @@ FluScrollablePage {
         Layout.fillWidth: true
         Layout.topMargin: 20
         pageCurrent: 1
-        pageCount: 10
-        itemCount: 200
+        pageCount: 5
+        itemCount: 50
         onRequestPage: (page,count) => {
                 loadData(page,count)
             }
@@ -44,7 +44,7 @@ FluScrollablePage {
                     iconSource: FluentIcons.Edit
                     text: "编辑"
                     onClicked: {
-                        showSuccess("前往侧栏编辑！")
+                        showInfo("前往侧栏编辑！")
                         appInfo.user.updateDraft(dataObject.id)
                         loadData(table_view.pageCurrent, table_view.pageCount)
                     }
@@ -62,7 +62,6 @@ FluScrollablePage {
                     }
                 }
             }
-
         }
     }
 
