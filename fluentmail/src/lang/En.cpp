@@ -14,7 +14,7 @@ En::En(QObject *parent) : Lang{parent}
     starred("Starred");
     readed("Readed");
     drafts("Drafts");
-    trash("Trash");
+    deleted("Deleted");
 
     user("User");
     settings("Settings");
@@ -30,6 +30,7 @@ En::En(QObject *parent) : Lang{parent}
     subject("Subject:");
     subject_placeholder("Subject of email");
     content_placeholder("Write something");
+    new_draft("New draft");
     save_to_drafts("Save to drafts");
     send("Send");
 

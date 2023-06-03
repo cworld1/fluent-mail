@@ -83,7 +83,7 @@ FluObject {
 
     // 垃圾箱
     FluPaneItem {
-        title: lang.trash
+        title: lang.deleted
         icon: FluentIcons.Delete
         recentlyAdded: true
         order: 3

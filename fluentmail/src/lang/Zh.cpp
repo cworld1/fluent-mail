@@ -14,7 +14,7 @@ Zh::Zh(QObject *parent) : Lang{parent}
     starred("星标邮件");
     readed("已读");
     drafts("草稿");
-    trash("垃圾箱");
+    deleted("已删除");
 
     user("用户");
     settings("设置");
@@ -30,6 +30,7 @@ Zh::Zh(QObject *parent) : Lang{parent}
     subject("主题：");
     subject_placeholder("邮件主题");
     content_placeholder("书写美好");
+    new_draft("新建草稿");
     save_to_drafts("保存到草稿箱");
     send("发送");
 

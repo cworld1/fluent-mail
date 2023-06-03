@@ -18,7 +18,7 @@ class Lang : public QObject
     Q_PROPERTY_AUTO(QString, starred);
     Q_PROPERTY_AUTO(QString, readed);
     Q_PROPERTY_AUTO(QString, drafts);
-    Q_PROPERTY_AUTO(QString, trash);
+    Q_PROPERTY_AUTO(QString, deleted);
 
     Q_PROPERTY_AUTO(QString, user);
     Q_PROPERTY_AUTO(QString, settings);
@@ -34,6 +34,7 @@ class Lang : public QObject
     Q_PROPERTY_AUTO(QString, subject);
     Q_PROPERTY_AUTO(QString, subject_placeholder);
     Q_PROPERTY_AUTO(QString, content_placeholder);
+    Q_PROPERTY_AUTO(QString, new_draft);
     Q_PROPERTY_AUTO(QString, save_to_drafts);
     Q_PROPERTY_AUTO(QString, send);
 
