@@ -67,15 +67,14 @@ FluScrollablePage {
         paddings: 10
 
         FluButton {
-            text: lang.save_to_drafts
+            text: lang.new_draft
             onClicked: {
-                appInfo.user.saveDraft(
-                    draft.id,
-                    textbox_email.text,
-                    textbox_subject.text,
-                    textbox_content.text
-                )
-                showSuccess("保存成功")
+                draft = appInfo.user.getLatestDraft(true)
+                showSuccess("新建成功")
+                textbox_email.text = draft.email
+                textbox_subject.text = draft.subject
+                textbox_content.text = draft.content
+                textbox_email.focus = true
             }
             anchors {
                 verticalCenter: parent.verticalCenter
@@ -83,10 +82,24 @@ FluScrollablePage {
             }
         }
 
-        Row {
+        RowLayout {
             anchors {
                 verticalCenter: parent.verticalCenter
                 right: parent.right
+            }
+            spacing: 15
+            FluTextButton {
+                text: lang.save_to_drafts
+                onClicked: {
+                    appInfo.user.saveDraft(
+                        draft.id,
+                        textbox_email.text,
+                        textbox_subject.text,
+                        textbox_content.text
+                    )
+                    showSuccess("保存成功")
+                }
+                Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             }
             FluFilledButton {
                 text: lang.send

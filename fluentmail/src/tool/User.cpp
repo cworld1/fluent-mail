@@ -300,17 +300,17 @@ QList<QObject *> User::getDrafts(int page, int page_size)
 }
 
 /**
- * @brief 获取当前草稿
+ * @brief 获取草稿
  * @return QString 草稿 id
  * @note 如果没有草稿，则创建一个空草稿
  */
-DraftObject *User::getLatestDraft()
+DraftObject *User::getLatestDraft(bool is_new)
 {
     QString id, email, subject, content, updated_at;
     // 检查是否有草稿
     query.exec("SELECT COUNT(*) FROM drafts;");
     query.next();
-    if (query.value(0).toInt() == 0)
+    if (query.value(0).toInt() == 0 || is_new)
     {
         // 创建空草稿
         QString cmd = "INSERT INTO drafts (email, subject, content) "
