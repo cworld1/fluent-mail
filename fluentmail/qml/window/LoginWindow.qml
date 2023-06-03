@@ -27,7 +27,7 @@ FluWindow {
         // 轮播图
         FluCarousel {
             width: 400
-            height: 500
+            height: 450
             Layout.alignment: Qt.AlignLeft
             Layout.leftMargin: 70
             Layout.horizontalStretchFactor: 2
@@ -98,6 +98,7 @@ FluWindow {
                 Layout.bottomMargin: 1
             }
             RowLayout {
+                spacing: 5
                 FluTextBox {
                     id: smtp_host
                     placeholderText: "SMTP Site"
@@ -119,6 +120,7 @@ FluWindow {
                 Layout.bottomMargin: 1
             }
             RowLayout {
+                spacing: 5
                 FluTextBox {
                     id: pop3_host
                     placeholderText: "POP3 Site"

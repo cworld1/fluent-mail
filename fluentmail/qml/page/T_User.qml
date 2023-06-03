@@ -7,7 +7,7 @@ import "../component"
 
 FluScrollablePage {
     property var loginPageRegister: registerForWindowResult("/login")
-    property var users_model: {}
+    property var users_model: []
 
     title: lang.user
 
