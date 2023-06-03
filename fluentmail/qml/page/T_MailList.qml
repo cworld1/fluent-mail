@@ -6,27 +6,29 @@ import FluentUI
 import "../component"
 
 FluScrollablePage {
+    property var dataSource: []
 
-    title: "Mail List"
+    title: lang.inbox
 
     Component.onCompleted: {
         const columns = [
-            { title: '状态', dataIndex: 'stats', width: 50 },
-            { title: '标题', dataIndex: 'title', width: 150 },
-            { title: '正文', dataIndex: 'detail', width:280 },
-            { title: '操作', dataIndex: 'action', width:100 },
-            { title: '时间', dataIndex: 'time', width:80 }
+            { title: '已读', dataIndex: 'stats', width: 40 },
+            { title: '发件人', dataIndex: 'email', width: 150 },
+            { title: '标题', dataIndex: 'subject', width: 110 },
+            { title: '正文', dataIndex: 'content', width: 220 },
+            { title: '操作', dataIndex: 'action', width: 60 },
+            { title: '时间', dataIndex: 'recieved_at', width: 90 }
         ];
         table_view.columns = columns
         loadData(1, 10)
     }
 
     FluTableView {
-        id:table_view
+        id: table_view
         Layout.fillWidth: true
         Layout.topMargin: 20
-        pageCurrent:1
-        pageCount:10
+        pageCurrent: 1
+        pageCount: 10
         itemCount: 1000
         onRequestPage: (page,count)=> {
                 loadData(page,count)
@@ -34,21 +36,36 @@ FluScrollablePage {
     }
 
     Component {
-        id:com_action
+        id: com_readed
         Item {
             Row {
                 anchors.centerIn: parent
-                spacing: 10
-                FluFilledButton {
-                    text:"编辑"
-                    horizontalPadding: 6
+                spacing: 3
+                FluCheckBox {
+                    selected: dataModel.is_readed
+                }
+            }
+        }
+    }
+
+    Component {
+        id: com_action
+        Item {
+            Row {
+                anchors.centerIn: parent
+                spacing: 3
+                FluIconButton {
+                    iconSource: dataModel.is_starred ? FluentIcons.FavoriteStarFill : FluentIcons.FavoriteStar
+                    text: "星标"
                     onClicked: {
-                        showSuccess(JSON.stringify(dataObject))
+                        showSuccess("星标成功")
+                        appInfo.user.updateMail(dataObject.id, "is_starred")
+                        loadData(table_view.pageCurrent, table_view.pageCount)
                     }
                 }
-                FluFilledButton {
-                    text:"删除"
-                    horizontalPadding: 6
+                FluIconButton {
+                    iconSource: FluentIcons.Delete
+                    text: "删除"
                     onClicked: {
                         showError(JSON.stringify(dataObject))
                     }
@@ -59,15 +76,10 @@ FluScrollablePage {
 
     function loadData(page, count)
     {
-        const dataSource = []
-        for (var i=0;i<count;i++) {
-            dataSource.push({
-                stats: "已读",
-                title: "第%1封信件".arg((page-1)*count+i+1),
-                detail: "这是一封新邮件",
-                action: com_action,
-                time: "05/22"
-            })
+        dataSource = appInfo.user.getMails(page, count)
+        for (let i = 0; i < dataSource.length; i++) {
+            dataSource[i].stats = com_readed;
+            dataSource[i].action = com_action;
         }
         table_view.dataSource = dataSource
     }

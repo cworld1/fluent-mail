@@ -135,6 +135,28 @@ bool User::createTables(QString dbType)
         return false;
     }
 
+    // 创建 mails 表
+    cmd = "CREATE TABLE IF NOT EXISTS mails ("
+          "id INTEGER PRIMARY KEY " +
+          incrementCmd +
+          " NOT NULL, "
+          "user_id INT NOT NULL, "
+          "email VARCHAR(255) NOT NULL, "
+          "subject VARCHAR(255) NOT NULL, "
+          "content TEXT NOT NULL, "
+          "recieved_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "
+          "is_readed TINYINT DEFAULT 0, "
+          "is_starred TINYINT DEFAULT 0, "
+          "is_deleted TINYINT DEFAULT 0"
+          ");";
+    if (query.exec(cmd))
+        debugList.append("mails");
+    else
+    {
+        qDebug() << "创建 mails 表失败：" << query.lastError().text();
+        return false;
+    }
+
     qDebug() << "成功创建表：" << debugList.join(", ");
 
     return true;
@@ -408,4 +430,65 @@ bool User::saveDraft(const QString &id, const QString &email, const QString &sub
         return false;
     }
     return true;
+}
+
+/**
+ * @brief 获取邮件列表
+ * @param page 页码
+ * @param page_size 每页数量
+ * @param filter 过滤条件
+ */
+QList<QObject *> User::getMails(int page, int page_size, const QString &filter)
+{
+    QList<QObject *> dataList;
+    QString cmd = "SELECT id, email, subject, content, recieved_at, is_readed, is_starred, is_deleted "
+                  "FROM mails WHERE " +
+                  filter +
+                  " AND user_id = (SELECT user_id FROM cur_user) "
+                  "ORDER BY recieved_at DESC "
+                  "LIMIT " +
+                  QString::number(page_size) + " OFFSET " +
+                  QString::number((page - 1) * page_size) + ";";
+    if (query.exec(cmd))
+    {
+        while (query.next())
+        {
+            QString id = query.value(0).toString();
+            QString email = query.value(1).toString();
+            QString subject = query.value(2).toString();
+            QString content = query.value(3).toString();
+            QString recieved_at = query.value(4).toString();
+            bool is_readed = query.value(5).toBool();
+            bool is_starred = query.value(6).toBool();
+            bool is_deleted = query.value(7).toBool();
+            // qDebug() << id << email << subject << content << recieved_at << is_readed << is_starred << is_deleted;
+
+            MailObject *mailObject = new MailObject(
+                id, email, subject, content, recieved_at,
+                is_readed, is_starred, is_deleted);
+            dataList.append(mailObject);
+        }
+    }
+    else
+    {
+        qDebug() << "查询失败：" << query.lastError().text();
+    }
+    return dataList;
+}
+
+/**
+ * @brief 更新邮件
+ * @param id 邮件 id
+ * @param field 字段
+ * @return bool 是否成功
+ */
+void User::updateMail(const QString &id, const QString &field)
+{
+    QString cmd = "UPDATE mails SET " + field + " = NOT " + field + " "
+                  "WHERE id = " +
+                  id + ";";
+    if (query.exec(cmd))
+        qDebug() << "更新邮件成功！id：" << id;
+    else
+        qDebug() << "更新邮件失败：" << query.lastError().text();
 }
