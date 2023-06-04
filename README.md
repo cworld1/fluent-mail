@@ -6,9 +6,17 @@
 
 A program to send and recieve emails with attachments.
 
+</div>
+
+![Light theme](doc/Screenshot-light.png)
+![Dark theme](doc/Screenshot-dark.png)
+
+<details>
+<summary>Something old...</summary>
+
 ![Screenshot](./doc/screenshot.png)
 
-</div>
+</details>
 
 ## Local Development
 
@@ -16,17 +24,14 @@ Install Qt desktop application framework:
 
 [Download Qt OSS: Get Qt Online Installer](https://www.qt.io/download-qt-installer-oss)
 
-Install independencies:
-
-```bash
-poetry install
-```
-
 Making sure you've installed with Qt, MinGW/MSVC, CMake and Ninja from the Qt installer.
 
 If you have some troubles about the version, please check and use the version below to ensure the code running correctly:
 
 - Qt SDK: 6.5.1
+  - Qt MinGW: 11.2.0
+  - Qt 5 Compatibility module: 6.5.1
+  - Qt Shader Tools: 6.5.1
 - MinGW: 11.2.0
 - CMake: 3.24.2
 - Ninja: 1.11.1
@@ -35,12 +40,12 @@ Then try clone the repository:
 
 ```bash
 git clone --recursive https://github.com/cworld1/fluent-mail.git
+cd fluent-mail
 ```
 
 ## Run the code
 
 ```bash
-cd fluent-mail
 mkdir build
 cd build
 cmake -DCMAKE_PREFIX_PATH=<YOUR_QT_SDK_DIR_PATH> -DCMAKE_BUILD_TYPE=Release -GNinja <PATH_TO_THE_REPOSITORY>
