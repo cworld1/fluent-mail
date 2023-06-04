@@ -5,11 +5,10 @@ import FluentUI
 import "../component"
 
 CustomWindow {
-
-    id:window
-    title:"关于"
+    id: window
+    title: lang.about
     width: 600
-    height: 600
+    height: 400
     fixSize: true
     launchMode: FluWindow.SingleTask
 
@@ -25,7 +24,7 @@ CustomWindow {
             Layout.leftMargin: 15
             spacing: 14
             FluText {
-                text:"FluentUI"
+                text: "Fluent Mail"
                 font: FluTextStyle.Title
                 MouseArea {
                     anchors.fill: parent
@@ -46,93 +45,27 @@ CustomWindow {
             Layout.topMargin: 20
             Layout.leftMargin: 15
             FluText {
-                text:"作者："
+                text: "By: "
             }
             FluText {
-                text:"朱子楚"
+                text:"CWorld"
                 Layout.alignment: Qt.AlignBottom
             }
         }
 
         RowLayout {
             spacing: 14
+            Layout.topMargin: 20
             Layout.leftMargin: 15
             FluText {
                 text:"GitHub："
             }
             FluTextButton {
-                id:text_hublink
-                topPadding:0
-                bottomPadding:0
-                text:"https://github.com/zhuzichu520/FluentUI"
+                id: text_link
+                text: "https://github.com/cworld1/fluent-mail"
                 Layout.alignment: Qt.AlignBottom
                 onClicked: {
-                    Qt.openUrlExternally(text_hublink.text)
-                }
-            }
-        }
-
-        RowLayout {
-            spacing: 14
-            Layout.leftMargin: 15
-            FluText {
-                text:"B站："
-            }
-            FluTextButton {
-                topPadding:0
-                bottomPadding:0
-                text:"https://www.bilibili.com/video/BV1mg4y1M71w/"
-                Layout.alignment: Qt.AlignBottom
-                onClicked: {
-                    Qt.openUrlExternally(text)
-                }
-            }
-        }
-
-        RowLayout {
-            spacing: 14
-            Layout.leftMargin: 15
-            FluText {
-                id:text_info
-                text:"如果该项目对你有作用，就请点击上方链接给一个免费的star，或者一键三连，谢谢！"
-                ColorAnimation {
-                    id: animation
-                    target: text_info
-                    property: "color"
-                    from: "red"
-                    to: "blue"
-                    duration: 1000
-                    running: true
-                    loops: Animation.Infinite
-                    easing.type: Easing.InOutQuad
-                }
-            }
-        }
-
-        RowLayout {
-            spacing: 14
-            Layout.topMargin: 20
-            Layout.leftMargin: 15
-            FluText {
-                text:"捐赠："
-            }
-        }
-
-        Item {
-            Layout.preferredWidth: parent.width
-            Layout.preferredHeight: 252
-            Row {
-                anchors.horizontalCenter: parent.horizontalCenter
-                spacing: 30
-                Image {
-                    width: 250
-                    height: 250
-                    source: "qrc:/fluentmail/res/image/qrcode_wx.jpg"
-                }
-                Image {
-                    width: 250
-                    height: 250
-                    source: "qrc:/fluentmail/res/image/qrcode_zfb.jpg"
+                    Qt.openUrlExternally(text_link.text)
                 }
             }
         }
@@ -141,9 +74,10 @@ CustomWindow {
             spacing: 14
             Layout.leftMargin: 15
             Layout.topMargin: 20
+            Layout.fillWidth: true
             FluText {
-                id:text_desc
-                text:"个人开发，维护不易，你们的捐赠就是我继续更新的动力！\n有什么问题提Issues，只要时间充足我就会解决的！！"
+                id: text_desc
+                text: "Fluent Mail is a simple mail client based on Qt and Fluent UI. \nIt is still in the early stages of development. \nIf you have any questions or suggestions, please contact me by email \nor submit an issue on GitHub."
             }
         }
     }
