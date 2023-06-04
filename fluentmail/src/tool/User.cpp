@@ -26,7 +26,7 @@ User::User(QObject *parent) : QObject{parent}
         // 打开
         try
         {
-            if (!db.open())
+            if (db.open())
                 qDebug() << "打开数据库成功";
             else
                 throw QSqlError(db.lastError());
