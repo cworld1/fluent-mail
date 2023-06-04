@@ -184,7 +184,7 @@ FluScrollablePage {
     // 测试
     FluArea {
         Layout.fillWidth: true
-        Layout.topMargin: 20
+        Layout.topMargin: 30
         height: 80
         paddings: 10
         ColumnLayout {
@@ -198,11 +198,19 @@ FluScrollablePage {
                 font: FluTextStyle.BodyStrong
                 Layout.bottomMargin: 4
             }
-            FluFilledButton {
-                text:"Test Button"
-                onClicked: {
-                    appInfo.buttonclick("Test")
-                    FluApp.navigate("/about")
+            RowLayout {
+                FluFilledButton {
+                    text: "About"
+                    onClicked: {
+                        FluApp.navigate("/about")
+                    }
+                }
+                FluFilledButton {
+                    text: "Test"
+                    onClicked: {
+                        appInfo.buttonclick("Test")
+                        console.log(appInfo.server.smtp())
+                    }
                 }
             }
         }

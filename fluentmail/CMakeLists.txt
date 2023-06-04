@@ -22,7 +22,7 @@ file(TO_CMAKE_PATH "/" PATH_SEPARATOR)
 # 设置版本号
 add_definitions(-DVERSION=1,3,2,0)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick Sql REQUIRED)
+find_package(Qt6 REQUIRED COMPONENTS Quick Sql Network REQUIRED)
 
 qt_standard_project_setup()
 
@@ -98,6 +98,7 @@ set_target_properties(fluentmail PROPERTIES
 target_link_libraries(fluentmail PRIVATE
     Qt6::Quick
     Qt6::Sql
+    Qt6::Network
     fluentuiplugin
     FramelessHelper::Core
     FramelessHelper::Quick

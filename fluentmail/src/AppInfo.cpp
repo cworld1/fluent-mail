@@ -17,7 +17,10 @@ AppInfo::AppInfo(QObject *parent) : QObject{parent}
 
     // 初始化为英语
     lang(new En());
+    // 初始化用户数据
     user(new User());
+    // 初始化邮箱服务
+    server(new Server());
 }
 
 void AppInfo::init(QQmlApplicationEngine *engine){

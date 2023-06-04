@@ -7,6 +7,7 @@
 #include "tool/IPC.h"
 #include "lang/Lang.h"
 #include "tool/User.h"
+#include "tool/Server.h"
 #include "stdafx.h"
 
 class AppInfo : public QObject
@@ -15,6 +16,7 @@ class AppInfo : public QObject
     Q_PROPERTY_AUTO(QString, version)
     Q_PROPERTY_AUTO(Lang *, lang)
     Q_PROPERTY_AUTO(User *, user)
+    Q_PROPERTY_AUTO(Server *, server)
 public:
     explicit AppInfo(QObject *parent = nullptr);
     void init(QQmlApplicationEngine *engine);
