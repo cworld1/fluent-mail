@@ -40,7 +40,7 @@ FluScrollablePage {
         paddings: 10
 
         FluText {
-            text: "管理账户"
+            text: lang.manage_user
             font: FluTextStyle.BodyStrong
             anchors {
                 verticalCenter: parent.verticalCenter
@@ -55,7 +55,7 @@ FluScrollablePage {
                 right: parent.right
             }
             FluFilledButton {
-                text: "新增账号"
+                text: lang.manage_user_add
                 onClicked: {
                     loginPageRegister.launch({
                         smtp_port: 465,
@@ -130,7 +130,7 @@ FluScrollablePage {
                 }
                 // 按钮
                 FluIconButton {
-                    text: "删除"
+                    text: lang.manage_user_delete
                     iconSource: FluentIcons.Delete
                     onClicked: {
                         double_btn_dialog.open()
@@ -145,35 +145,35 @@ FluScrollablePage {
                 // 二次确认
                 FluContentDialog{
                     id: double_btn_dialog
-                    title: "Tip"
-                    message:"Are you sure to delete this user?"
+                    title: lang.tip
+                    message: "Are you sure to delete this user?"
                     buttonFlags: FluContentDialog.NegativeButton | FluContentDialog.PositiveButton
-                    negativeText: "Cancel"
+                    negativeText: lang.cancel
                     onNegativeClicked: {
-                        showError("取消删除！")
+                        showError(lang.cancel_info)
                     }
-                    positiveText: "Delete"
+                    positiveText: lang.delete_
                     onPositiveClicked:{
                         if (appInfo.user.delUser(modelData.id) === false) {
-                            showError("删除失败！")
+                            showError(lang.delete_failure)
                         }
                         else
                         {
-                            showWarning("已删除！")
+                            showWarning(lang.delete_success)
                             users_model = appInfo.user.getUsers()
                         }
                     }
                 }
                 FluFilledButton {
                     id: btn_switch
-                    text: "切换"
+                    text: lang.switch_
                     disabled: modelData.isCurUser
                     onClicked: {
                         if (appInfo.user.setUser(modelData.id) === false) {
-                            showError("切换失败！")
+                            showError(lang.switch_failure)
                         }
                         else {
-                            showSuccess("已切换！")
+                            showSuccess(lang.switch_success)
                             users_model = appInfo.user.getUsers()
                         }
                     }

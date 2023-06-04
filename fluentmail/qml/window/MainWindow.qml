@@ -8,9 +8,8 @@ import "../component"
 import "qrc:///fluentmail/qml/global/"
 
 CustomWindow {
-
     id: window
-    title: "FluentMail"
+    title: "Fluent Mail"
     width: 1000
     height: 640
     closeDestory: false
@@ -19,17 +18,22 @@ CustomWindow {
     appBarVisible: false
     launchMode: FluWindow.SingleTask
 
+    // 窗口关闭事件
     closeFunc: function(event){
         close_app.open()
         event.accepted = false
     }
 
+    // 窗口激活事件
+    function onActiveWindow() {
+        window.show()
+        window.raise()
+        window.requestActivate()
+    }
     Connections {
         target: appInfo
-        function onActiveWindow(){
-            window.show()
-            window.raise()
-            window.requestActivate()
+        function active() {
+            onActiveWindow()
         }
     }
 
@@ -41,7 +45,13 @@ CustomWindow {
         tooltip: "Fluent Mail"
         menu: Menu {
             MenuItem {
-                text: "退出"
+                text: lang.show
+                onTriggered: {
+                    onActiveWindow()
+                }
+            }
+            MenuItem {
+                text: lang.exit
                 onTriggered: {
                     window.deleteWindow()
                     FluApp.closeApp()
@@ -49,11 +59,9 @@ CustomWindow {
             }
         }
         onActivated:
-            (reason)=>{
-                if(reason === SystemTrayIcon.Trigger){
-                    window.show()
-                    window.raise()
-                    window.requestActivate()
+            (reason) => {
+                if(reason === SystemTrayIcon.Trigger) {
+                    onActiveWindow()
                 }
             }
     }
@@ -61,22 +69,23 @@ CustomWindow {
     // 退出提示框
     FluContentDialog{
         id: close_app
-        title: "退出"
-        message: "确定要退出程序吗？"
-        negativeText: "最小化"
+        title: lang.tip
+        message: "Are you sure to exit?"
         buttonFlags: FluContentDialog.NeutralButton | FluContentDialog.NegativeButton | FluContentDialog.PositiveButton
+        neutralText: lang.cancel
+        negativeText: lang.minimize
         onNegativeClicked: {
-            system_tray.showMessage("提示","Fluent Mail 已隐藏至托盘，点击托盘可再次激活窗口");
+            system_tray.showMessage(lang.tip, "Fluent Mail is hide in system tray. You can click the icon to reopen it.");
             window.hide()
         }
-        positiveText: "退出"
-        neutralText: "取消"
+        positiveText: lang.exit
         onPositiveClicked: {
             window.deleteWindow()
             FluApp.closeApp()
         }
     }
 
+    // 顶栏
     FluAppBar {
         id: title_bar
         anchors {
@@ -88,9 +97,9 @@ CustomWindow {
         showDark: true
         z: 7
     }
-
-    // 顶栏控制栏
-    FluNavigationView{
+    
+    // 主内容
+    FluNavigationView {
         id: nav_view
         anchors{
             top: parent.top
@@ -99,13 +108,16 @@ CustomWindow {
             bottom: parent.bottom
         }
         z: 999
-        items: ItemsOriginal
-        footerItems:ItemsFooter
         topPadding: FluTools.isMacos() ? 20 : 5
-        displayMode:MainEvent.displayMode
+        // 顶栏
+        title: "Fluent Mail"
         logo: "qrc:/fluentmail/res/image/favicon.ico"
-        title:"FluentUI"
-        autoSuggestBox:FluAutoSuggestBox{
+        displayMode: MainEvent.displayMode
+        // 侧边栏
+        items: ItemsOriginal
+        footerItems: ItemsFooter
+        // 搜索框
+        autoSuggestBox: FluAutoSuggestBox{
             width: 280
             anchors.centerIn: parent
             iconSource: FluentIcons.Search
