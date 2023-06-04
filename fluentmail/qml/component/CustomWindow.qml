@@ -5,7 +5,7 @@ import org.wangwenx190.FramelessHelper
 
 FluWindow {
 
-    id:window
+    id: window
 
     property bool fixSize
     property alias titleVisible: title_bar.titleVisible

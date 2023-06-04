@@ -2,8 +2,8 @@
 import QtQuick.Layouts
 import QtQuick.Window
 import QtQuick.Controls
-import "qrc:///fluentmail/qml/global/"
 import FluentUI
+import "qrc:///fluentmail/qml/global/"
 
 FluScrollablePage {
 
@@ -25,8 +25,8 @@ FluScrollablePage {
                     sourceItem: bg
                     anchors.fill: parent
                     color: FluTheme.dark ? Window.active ? Qt.rgba(38/255, 44/255, 54/255, 1) : Qt.rgba(39/255, 39/255, 39/255, 1) : Qt.rgba(251/255, 251/255, 253/255, 1)
-                    rectX: list.x-list.contentX+10+(control.width)*index
-                    rectY: list.y+10
+                    rectX: list.x - list.contentX + 10 + (control.width) * index
+                    rectY: list.y + 10
                     acrylicOpacity: 0.8
                 }
                 Rectangle {
@@ -34,12 +34,9 @@ FluScrollablePage {
                     radius: 8
                     color: {
                         if (item_mouse.containsMouse)
-                        {
                             return FluTheme.dark ? Qt.rgba(1, 1, 1, 0.03) : Qt.rgba(0, 0, 0, 0.03)
-                        }
-                        else {
+                        else 
                             return Qt.rgba(0, 0, 0, 0)
-                        }
                     }
                 }
                 // 内容
