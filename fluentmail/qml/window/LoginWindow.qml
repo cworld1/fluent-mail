@@ -9,7 +9,7 @@ CustomWindow {
     id: window
     title: lang.user
     width: 950
-    height: 550
+    height: 580
     fixSize: true
     launchMode: FluWindow.SingleTask
 
@@ -25,13 +25,18 @@ CustomWindow {
         // 轮播图
         FluCarousel {
             width: 400
-            height: 450
+            height: 480
+            loopTime: 3000
             Layout.alignment: Qt.AlignLeft
             Layout.leftMargin: 70
             Layout.horizontalStretchFactor: 2
             Layout.fillWidth: true
             Component.onCompleted: {
-                setData([{url:"qrc:/fluentmail/res/image/banner_1.jpg"}, {url:"qrc:/fluentmail/res/image/banner_2.jpg"}, {url:"qrc:/fluentmail/res/image/banner_3.jpg"}])
+                setData([
+                    { url: "qrc:/fluentmail/res/image/banner_1.jpg" },
+                    { url: "qrc:/fluentmail/res/image/banner_2.jpg" },
+                    { url: "qrc:/fluentmail/res/image/banner_3.jpg" }
+                ])
             }
         }
 
