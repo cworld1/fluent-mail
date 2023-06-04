@@ -12,7 +12,7 @@ En::En(QObject *parent) : Lang{parent}
     inbox("Inbox");
 
     starred("Starred");
-    readed("Readed");
+    sent("Sent");
     drafts("Drafts");
     deleted("Deleted");
 

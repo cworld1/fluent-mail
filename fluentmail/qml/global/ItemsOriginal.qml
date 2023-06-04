@@ -61,7 +61,7 @@ FluObject {
 
     // 已发送
     FluPaneItem {
-        title: lang.readed
+        title: lang.sent
         icon: FluentIcons.Completed
         recentlyAdded: true
         order: 1

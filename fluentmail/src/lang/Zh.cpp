@@ -12,7 +12,7 @@ Zh::Zh(QObject *parent) : Lang{parent}
     inbox("收件箱");
 
     starred("星标邮件");
-    readed("已读");
+    sent("已发送");
     drafts("草稿");
     deleted("已删除");
 

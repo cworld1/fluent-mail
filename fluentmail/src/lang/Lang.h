@@ -16,7 +16,7 @@ class Lang : public QObject
     Q_PROPERTY_AUTO(QString, inbox);
 
     Q_PROPERTY_AUTO(QString, starred);
-    Q_PROPERTY_AUTO(QString, readed);
+    Q_PROPERTY_AUTO(QString, sent);
     Q_PROPERTY_AUTO(QString, drafts);
     Q_PROPERTY_AUTO(QString, deleted);
 
