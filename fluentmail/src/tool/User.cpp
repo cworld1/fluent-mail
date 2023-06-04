@@ -125,7 +125,8 @@ bool User::createTables(QString dbType)
           "email VARCHAR(255) NOT NULL, "
           "subject VARCHAR(255) NOT NULL, "
           "content TEXT NOT NULL, "
-          "updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
+          "updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "
+          "is_sent TINYINT DEFAULT 0"
           ");";
     if (query.exec(cmd))
         debugList.append("drafts");
@@ -134,6 +135,12 @@ bool User::createTables(QString dbType)
         qDebug() << "创建 drafts 表失败：" << query.lastError().text();
         return false;
     }
+
+    // 创建 sent 表
+    cmd = "CREATE TABLE IF NOT EXISTS sent ("
+          "draft_id INT PRIMARY KEY, "
+          "user_id INT NOT NULL"
+          ");";
 
     // 创建 mails 表
     cmd = "CREATE TABLE IF NOT EXISTS mails ("
@@ -292,11 +299,11 @@ bool User::addUser(const QString &name, const QString &email, const QString &pas
  * @brief 获取草稿列表
  * @return QList<QObject *> 草稿列表
  */
-QList<QObject *> User::getDrafts(int page, int page_size)
+QList<QObject *> User::getDrafts(int page, int page_size, const QString &filter)
 {
     QList<QObject *> dataList;
-    QString cmd = "SELECT id, email, subject, content, updated_at FROM drafts "
-                  "ORDER BY updated_at DESC "
+    QString cmd = "SELECT id, email, subject, content, updated_at FROM drafts WHERE " + filter +
+                  " ORDER BY updated_at DESC "
                   "LIMIT " +
                   QString::number(page_size) + " OFFSET " + QString::number((page - 1) * page_size) + ";";
     if (query.exec(cmd))
@@ -395,7 +402,7 @@ bool User::updateDraft(const QString &id)
  */
 bool User::deleteDraft(const QString &id)
 {
-    QString cmd = "DELETE FROM drafts WHERE id = " + id + ";";
+    QString cmd = "DELETE FROM sent WHERE draft_id = " + id + "; DELETE FROM drafts WHERE id = " + id + ";";
     if (query.exec(cmd))
         qDebug() << "删除草稿成功！id：" << id;
     else
@@ -485,7 +492,7 @@ QList<QObject *> User::getMails(int page, int page_size, const QString &filter)
 void User::updateMail(const QString &id, const QString &field)
 {
     QString cmd = "UPDATE mails SET " + field + " = NOT " + field + " "
-                  "WHERE id = " +
+                                                                    "WHERE id = " +
                   id + ";";
     if (query.exec(cmd))
         qDebug() << "更新邮件成功！id：" << id;

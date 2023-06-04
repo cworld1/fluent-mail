@@ -138,7 +138,7 @@ public:
                              const QString &pop3, const int pop3_port);
     
     // 草稿相关
-    Q_INVOKABLE QList<QObject *> getDrafts(int page = 1, int page_size = 10);
+    Q_INVOKABLE QList<QObject *> getDrafts(int page = 1, int page_size = 10, const QString &filter = "is_sent = 0");
     Q_INVOKABLE DraftObject *getLatestDraft(bool is_new = false);
     Q_INVOKABLE bool updateDraft(const QString &id);
     Q_INVOKABLE bool deleteDraft(const QString &id);

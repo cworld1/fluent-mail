@@ -67,7 +67,7 @@ FluObject {
         order: 1
         image: "qrc:/fluentmail/res/image/control/Checkbox.png"
         desc: "信息已传递，等待远方回音。"
-        onTap: navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
+        onTap: navigationView.push("qrc:/fluentmail/qml/page/T_DraftList.qml", {pane_title: lang.sent})
     }
 
     // 草稿
@@ -78,7 +78,7 @@ FluObject {
         order: 2
         image: "qrc:/fluentmail/res/image/control/InkCanvas.png"
         desc: "你创造的创意沉淀之地，思绪的保留室。"
-        onTap: navigationView.push("qrc:/fluentmail/qml/page/T_DraftList.qml")
+        onTap: navigationView.push("qrc:/fluentmail/qml/page/T_DraftList.qml", {pane_title: lang.drafts})
     }
 
     // 垃圾箱

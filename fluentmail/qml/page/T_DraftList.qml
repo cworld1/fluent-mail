@@ -7,8 +7,9 @@ import "../component"
 
 FluScrollablePage {
     property var dataSource: []
+    property string pane_title: ""
 
-    title: lang.drafts
+    title: pane_title
 
     Component.onCompleted: {
         const columns = [
@@ -35,7 +36,29 @@ FluScrollablePage {
     }
 
     Component {
-        id: com_action
+        id: com_action_sents
+        Item {
+            Row {
+                anchors.centerIn: parent
+                spacing: 3
+                FluIconButton {
+                    iconSource: FluentIcons.Delete
+                    text: "删除"
+                    onClicked: {
+                        if(appInfo.user.deleteDraft(dataObject.id)) {
+                            showWarning("已删除！")
+                            loadData(table_view.pageCurrent, table_view.pageCount)
+                        }
+                        else
+                            showError("删除失败！")
+                    }
+                }
+            }
+        }
+    }
+
+    Component {
+        id: com_action_drafts
         Item {
             Row {
                 anchors.centerIn: parent
@@ -67,9 +90,22 @@ FluScrollablePage {
 
     function loadData(page, count)
     {
-        dataSource = appInfo.user.getDrafts(page, count)
-        for (let i = 0; i < dataSource.length; i++) {
-            dataSource[i].action = com_action;
+        let filter = ""
+        if (pane_title === lang.sent)
+        {
+            filter = "is_sent = 1 AND id IN (SELECT draft_id FROM sent WHERE user_id = " + appInfo.user.getCurUser() + ")"
+            dataSource = appInfo.user.getDrafts(page, count, filter)
+            for (let i = 0; i < dataSource.length; i++) {
+                dataSource[i].action = com_action_sents;
+            }
+        }
+        else if (pane_title === lang.drafts)
+        {
+            filter = "is_sent = 0"
+            dataSource = appInfo.user.getDrafts(page, count, filter)
+            for (let i = 0; i < dataSource.length; i++) {
+                dataSource[i].action = com_action_drafts;
+            }
         }
         table_view.dataSource = dataSource
     }
