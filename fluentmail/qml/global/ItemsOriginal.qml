@@ -294,12 +294,12 @@ FluObject {
         //         navigationView.push("qrc:/fluentmail/qml/page/T_TableView.qml")
         //     }
         // }
-        FluPaneItem {
-            title: "MultiWindow"
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_MultiWindow.qml")
-            }
-        }
+        // FluPaneItem {
+        //     title: "MultiWindow"
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_MultiWindow.qml")
+        //     }
+        // }
         FluPaneItem {
             title: "FlipView"
             image: "qrc:/fluentmail/res/image/control/FlipView.png"

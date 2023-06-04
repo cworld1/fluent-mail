@@ -14,9 +14,9 @@ Window {
             "/about":"qrc:/fluentmail/qml/window/AboutWindow.qml",
             "/login":"qrc:/fluentmail/qml/window/LoginWindow.qml",
             // "/media":"qrc:/fluentmail/qml/window/MediaWindow.qml",
-            "/singleTaskWindow":"qrc:/fluentmail/qml/window/SingleTaskWindow.qml",
-            "/standardWindow":"qrc:/fluentmail/qml/window/StandardWindow.qml",
-            "/singleInstanceWindow":"qrc:/fluentmail/qml/window/SingleInstanceWindow.qml"
+            // "/singleTaskWindow":"qrc:/fluentmail/qml/window/SingleTaskWindow.qml",
+            // "/standardWindow":"qrc:/fluentmail/qml/window/StandardWindow.qml",
+            // "/singleInstanceWindow":"qrc:/fluentmail/qml/window/SingleInstanceWindow.qml"
         }
         FluApp.initialRoute = "/"
         FluApp.run()
