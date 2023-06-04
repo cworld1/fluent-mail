@@ -42,7 +42,7 @@ FluObject {
         image: "qrc:/fluentmail/res/image/control/CommandBarFlyout.png"
         desc: "1987年9月14日21时07分，中国第一封电子邮件从北京发往德国。“越过长城，走向世界。”"
         onTap: {
-            navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
+            navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml", {pane_title: lang.inbox})
         }
     }
 
@@ -56,7 +56,7 @@ FluObject {
         order: 0
         image: "qrc:/fluentmail/res/image/control/StandardUICommand.png"
         desc: "点亮你的收件箱，点亮行迹与感动。"
-        onTap: navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
+        onTap: navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml", {pane_title: lang.starred})
     }
 
     // 已发送
@@ -89,7 +89,7 @@ FluObject {
         order: 3
         image: "qrc:/fluentmail/res/image/control/ParallaxView.png"
         desc: "垃圾箱，是一个不可逆的过程。"
-        onTap: navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml")
+        onTap: navigationView.push("qrc:/fluentmail/qml/page/T_MailList.qml", {pane_title: lang.deleted})
     }
 
     FluPaneItemSeparator {}

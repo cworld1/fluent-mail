@@ -7,8 +7,9 @@ import "../component"
 
 FluScrollablePage {
     property var dataSource: []
+    property var pane_title: ""
 
-    title: lang.inbox
+    title: pane_title
 
     Component.onCompleted: {
         const columns = [
@@ -43,6 +44,11 @@ FluScrollablePage {
                 spacing: 3
                 FluCheckBox {
                     checked: dataModel.is_readed
+                    onClicked: {
+                        appInfo.user.updateMail(dataObject.id, "is_readed")
+                        showSuccess("操作成功")
+                        loadData(table_view.pageCurrent, table_view.pageCount)
+                    }
                 }
             }
         }
@@ -58,8 +64,8 @@ FluScrollablePage {
                     iconSource: dataModel.is_starred ? FluentIcons.FavoriteStarFill : FluentIcons.FavoriteStar
                     text: "星标"
                     onClicked: {
-                        showSuccess("星标成功")
                         appInfo.user.updateMail(dataObject.id, "is_starred")
+                        showSuccess("操作成功")
                         loadData(table_view.pageCurrent, table_view.pageCount)
                     }
                 }
@@ -67,7 +73,9 @@ FluScrollablePage {
                     iconSource: FluentIcons.Delete
                     text: "删除"
                     onClicked: {
-                        showError(JSON.stringify(dataObject))
+                        appInfo.user.updateMail(dataObject.id, "is_deleted")
+                        showWarning("删除成功")
+                        loadData(table_view.pageCurrent, table_view.pageCount)
                     }
                 }
             }
@@ -76,7 +84,21 @@ FluScrollablePage {
 
     function loadData(page, count)
     {
-        dataSource = appInfo.user.getMails(page, count)
+        let filter = ""
+        if (pane_title === lang.inbox) {
+            filter = "is_deleted = 0"
+        }
+        else if (pane_title === lang.deleted) {
+            filter = "is_deleted = 1"
+        }
+        else if (pane_title === lang.starred) {
+            filter = "is_starred = 1 AND is_deleted = 0"
+        }
+        else {
+            filter = ""
+        }
+
+        dataSource = appInfo.user.getMails(page, count, filter)
         for (let i = 0; i < dataSource.length; i++) {
             dataSource[i].stats = com_readed;
             dataSource[i].action = com_action;
