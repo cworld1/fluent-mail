@@ -1,7 +1,10 @@
-﻿#include "AppInfo.h"
+#include "AppInfo.h"
+
+#include <QQmlContext>
+#include <QDebug>
+
 #include "lang/En.h"
 #include "lang/Zh.h"
-#include <QDebug>
 
 #define STR(x) #x
 #define VER_JOIN(a, b, c, d) STR(a.b.c.d)
@@ -17,6 +20,16 @@ AppInfo::AppInfo(QObject *parent) : QObject{parent}
     user(new User());
 }
 
+void AppInfo::init(QQmlApplicationEngine *engine){
+    QQmlContext * context = engine->rootContext();
+    Lang* lang = this->lang();
+    context->setContextProperty("lang",lang);
+    QObject::connect(this,&AppInfo::langChanged,this,[=]{
+        context->setContextProperty("lang",this->lang());
+    });
+    context->setContextProperty("appInfo",this);
+}
+
 // 当更改语言时释放语言资源
 void AppInfo::changeLang(const QString &locale)
 {
@@ -30,6 +43,21 @@ void AppInfo::changeLang(const QString &locale)
         lang(new En());
     else
         lang(new En());
+}
+
+bool AppInfo::isOwnerProcess(IPC *ipc){
+    QString activeWindowEvent = "activeWindow";
+    if(!ipc->isCurrentOwner()){
+        ipc->postEvent(activeWindowEvent,QString().toUtf8(),0);
+        return false;
+    }
+    if(ipc->isAttached()){
+        ipc->registerEventHandler(activeWindowEvent,[=](const QByteArray&){
+            Q_EMIT this->activeWindow();
+            return true;
+        });
+    }
+    return true;
 }
 
 void AppInfo::buttonclick(const QString &text)

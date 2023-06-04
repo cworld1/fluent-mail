@@ -1,12 +1,13 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt.labs.platform
 import FluentUI
+import "../component"
 import "qrc:///fluentmail/qml/global/"
 
-FluWindow {
+CustomWindow {
 
     id: window
     title: "FluentMail"
@@ -15,6 +16,7 @@ FluWindow {
     closeDestory: false
     minimumWidth: 520
     minimumHeight: 460
+    appBarVisible: false
     launchMode: FluWindow.SingleTask
 
     closeFunc: function(event){
@@ -35,7 +37,7 @@ FluWindow {
     SystemTrayIcon {
         id: system_tray
         visible: true
-        icon.source: "qrc:/fluentmail/favicon.ico"
+        icon.source: "qrc:/fluentmail/res/image/favicon.ico"
         tooltip: "Fluent Mail"
         menu: Menu {
             MenuItem {
@@ -73,52 +75,46 @@ FluWindow {
             window.deleteWindow()
             FluApp.closeApp()
         }
+    }
 
+    FluAppBar {
+        id: title_bar
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+        darkText: lang.dark_mode
+        showDark: true
+        z: 7
     }
 
     // 顶栏控制栏
     FluNavigationView{
         id: nav_view
-        anchors.fill: parent
+        anchors{
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+        z: 999
         items: ItemsOriginal
-        footerItems: ItemsFooter
-        z: 11
-        displayMode: MainEvent.displayMode
-        logo: "qrc:/fluentmail/favicon.ico"
-        title: "FluentMail"
-        // 顶栏搜索框
-        autoSuggestBox: FluAutoSuggestBox {
+        footerItems:ItemsFooter
+        topPadding: FluTools.isMacos() ? 20 : 5
+        displayMode:MainEvent.displayMode
+        logo: "qrc:/fluentmail/res/image/favicon.ico"
+        title:"FluentUI"
+        autoSuggestBox:FluAutoSuggestBox{
             width: 280
             anchors.centerIn: parent
             iconSource: FluentIcons.Search
             items: ItemsOriginal.getSearchData()
             placeholderText: lang.search
-            onItemClicked: 
+            onItemClicked:
                 (data)=>{
                     ItemsOriginal.startPageByItem(data)
                 }
-        }
-        // 顶栏右侧按钮
-        actionItem: Item {
-            height: 40
-            width: 148
-            RowLayout{
-                anchors.centerIn: parent
-                spacing: 5
-                FluText {
-                    text: lang.dark_mode
-                }
-                FluToggleSwitch{
-                    selected: FluTheme.dark
-                    clickFunc: function(){
-                        if(FluTheme.dark){
-                            FluTheme.darkMode = FluDarkMode.Light
-                        }else{
-                            FluTheme.darkMode = FluDarkMode.Dark
-                        }
-                    }
-                }
-            }
         }
         Component.onCompleted: {
             ItemsOriginal.navigationView = nav_view
@@ -126,5 +122,4 @@ FluWindow {
             nav_view.setCurrentIndex(0)
         }
     }
-
 }

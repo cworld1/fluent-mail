@@ -1,4 +1,4 @@
-﻿#include "FluApp.h"
+#include "FluApp.h"
 
 #include <QQmlEngine>
 #include <QGuiApplication>
@@ -23,11 +23,9 @@ FluApp *FluApp::getInstance()
 FluApp::FluApp(QObject *parent)
     : QObject{parent}
 {
-    QFontDatabase::addApplicationFont(":/FluentUI/Font/Segoe_Fluent_Icons.ttf");
 }
 
 FluApp::~FluApp(){
-
 }
 
 void FluApp::init(QQuickWindow *window){
@@ -78,7 +76,6 @@ void FluApp::navigate(const QString& route,const QJsonObject& argument,FluRegist
         fluRegister->to(view);
     }
     view->setColor(QColor(Qt::transparent));
-    view->show();
 }
 
 QJsonArray FluApp::awesomelist(const QString& keyword)

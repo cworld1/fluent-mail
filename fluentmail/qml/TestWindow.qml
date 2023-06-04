@@ -1,4 +1,4 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -17,6 +17,10 @@ FluWindow {
     launchMode: FluWindow.SingleTask
     visible: true
 
+    Component.onCompleted: {
+    //    FluApp.init(window)
+    }
+
     // 顶栏
     FluNavigationView2 {
         id: nav_view
@@ -25,15 +29,44 @@ FluWindow {
         footerItems: ItemsFooter
         z: 11
         displayMode: MainEvent.displayMode
-        logo: "qrc:/fluentmail/favicon.ico"
+        logo: "qrc:/fluentmail/res/image/favicon.ico"
         title: "FluentUI"
-    }
-
-    FluFilledButton {
-        anchors.centerIn: parent
-        text:"Filled Button"
-        onClicked: {
-            console.log("Hello world")
+        autoSuggestBox: FluAutoSuggestBox{
+            width: 280
+            anchors.centerIn: parent
+            iconSource: FluentIcons.Search
+            items: ItemsOriginal.getSearchData()
+            placeholderText: lang.search
+            onItemClicked:
+                (data)=>{
+                    ItemsOriginal.startPageByItem(data)
+                }
+        }
+        actionItem:Item{
+            height: 40
+            width: 148
+            RowLayout{
+                anchors.centerIn: parent
+                spacing: 5
+                FluText{
+                    text:lang.dark_mode
+                }
+                FluToggleSwitch{
+                    checked: FluTheme.dark
+                    onClicked: {
+                        if(FluTheme.dark){
+                            FluTheme.darkMode = FluDarkMode.Light
+                        }else{
+                            FluTheme.darkMode = FluDarkMode.Dark
+                        }
+                    }
+                }
+            }
+        }
+        Component.onCompleted: {
+            ItemsOriginal.navigationView = nav_view
+            ItemsFooter.navigationView = nav_view
+//            nav_view.setCurrentIndex(0)
         }
     }
 

@@ -1,4 +1,4 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Layouts
 import QtQuick.Window
 import QtQuick.Controls
@@ -20,7 +20,6 @@ FluScrollablePage {
         ColumnLayout {
             spacing: 10
             anchors {
-                top: parent.top
                 left: parent.left
             }
             FluText {
@@ -66,8 +65,8 @@ FluScrollablePage {
             FluToggleSwitch {
                 text: lang.theme_render_native
                 Layout.topMargin: 5
-                selected: FluTheme.nativeText
-                clickFunc: function(){
+                checked: FluTheme.nativeText
+                onClicked: {
                     FluTheme.nativeText = !FluTheme.nativeText
                 }
             }
@@ -95,14 +94,14 @@ FluScrollablePage {
             // 选项
             Repeater {
                 model: [
-                { title: lang.dark_mode_sys, mode: FluDarkMode.System },
-                { title: lang.dark_mode_light, mode: FluDarkMode.Light },
-                { title: lang.dark_mode_dark, mode: FluDarkMode.Dark }
+                    { title: lang.dark_mode_sys, mode: FluDarkMode.System },
+                    { title: lang.dark_mode_light, mode: FluDarkMode.Light },
+                    { title: lang.dark_mode_dark, mode: FluDarkMode.Dark }
                 ]
                 delegate: FluRadioButton {
-                    selected : FluTheme.darkMode === modelData.mode
+                    checked: FluTheme.darkMode === modelData.mode
                     text: modelData.title
-                    onClicked: {
+                    clickListener: function() {
                         FluTheme.darkMode = modelData.mode
                     }
                 }
@@ -137,9 +136,9 @@ FluScrollablePage {
                     { title: lang.navigation_view_auto, mode: FluNavigationView.Auto }
                 ]
                 delegate: FluRadioButton {
-                    selected: MainEvent.displayMode === modelData.mode
+                    checked: MainEvent.displayMode === modelData.mode
                     text: modelData.title
-                    onClicked: {
+                    clickListener: function() {
                         MainEvent.displayMode = modelData.mode
                     }
                 }
@@ -150,7 +149,7 @@ FluScrollablePage {
     // 卡片（语言）
     FluArea {
         Layout.fillWidth: true
-        Layout.topMargin: 10
+        Layout.topMargin: 20
         height: 80
         paddings: 10
 
@@ -171,10 +170,9 @@ FluScrollablePage {
                 Repeater {
                     model: ["Zh", "En"]
                     delegate: FluRadioButton {
-                        selected: appInfo.lang.objectName === modelData
+                        checked: appInfo.lang.objectName === modelData
                         text: modelData
-                        onClicked: {
-                            console.debug(modelData)
+                        clickListener: function(){
                             appInfo.changeLang(modelData)
                         }
                     }

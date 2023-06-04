@@ -1,6 +1,6 @@
 <div align=center>
 
-<img src="./fluentmail/favicon.ico" height="100px">
+<img src="./doc/favicon.ico" height="100px">
 
 # FluentMail
 

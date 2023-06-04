@@ -1,18 +1,16 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import FluentUI
+import "../component"
 
-FluWindow {
+CustomWindow {
 
     id: window
-    title: "User"
+    title: lang.user
     width: 950
     height: 550
-    minimumWidth: 800
-    minimumHeight: 500
-    // maximumWidth: 400
-    // maximumHeight: 600
+    fixSize: true
     launchMode: FluWindow.SingleTask
 
     onInitArgument: (argument) => {

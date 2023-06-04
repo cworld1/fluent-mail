@@ -1,8 +1,8 @@
-﻿cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.16)
 
 project(fluentuiplugin LANGUAGES CXX)
 
-# 配置通用编译
+#配置通用编译
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if(APPLE)
@@ -13,7 +13,7 @@ endif()
 set(QML_PLUGIN_DIRECTORY ${CMAKE_PREFIX_PATH}/qml/FluentUI)
 
 # 设置版本号
-add_definitions(-DVERSION=1,3,1,0)
+add_definitions(-DVERSION=1,3,2,0)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Quick Qml ShaderTools)
 
@@ -74,4 +74,9 @@ if(WIN32)
 endif()
 
 # 如果是debug，则生成的库文件名后面拼接d
-set_target_properties(fluentuiplugin PROPERTIES DEBUG_POSTFIX "d")
+# 在MinGW和GCC/Clang中, 默认不会链接带`d`后缀的动态库
+if(MSVC)
+    set_target_properties(fluentuiplugin PROPERTIES DEBUG_POSTFIX "d")  
+endif(MSVC)
+
+

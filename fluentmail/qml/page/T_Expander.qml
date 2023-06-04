@@ -1,4 +1,4 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
@@ -40,7 +40,7 @@ FluScrollablePage{
                             property int selecIndex : 0
                             model: 3
                             delegate:  FluRadioButton{
-                                selected : repeater.selecIndex===index
+                                selected: repeater.selecIndex===index
                                 text:"Radio Button_"+index
                                 onClicked:{
                                     repeater.selecIndex = index

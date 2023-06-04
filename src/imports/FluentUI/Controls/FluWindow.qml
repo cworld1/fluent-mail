@@ -1,4 +1,4 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -31,6 +31,7 @@ Window {
         return FluTheme.dark ? Qt.rgba(32/255,32/255,32/255,1) : Qt.rgba(243/255,243/255,243/255,1)
     }
     property alias backgroundOpacity: bg.opacity
+    property alias backgroundVisible: bg.visible
     signal initArgument(var argument)
     id:window
     color:"transparent"

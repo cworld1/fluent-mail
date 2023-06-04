@@ -1,27 +1,26 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
 import FluentUI
 import "../component"
 
-FluScrollablePage {
+FluScrollablePage{
 
-    property var colors: [FluColors.Yellow, FluColors.Orange, FluColors.Red, FluColors.Magenta, FluColors.Purple, FluColors.Blue, FluColors.Teal, FluColors.Green]
+    property var colors : [FluColors.Yellow,FluColors.Orange,FluColors.Red,FluColors.Magenta,FluColors.Purple,FluColors.Blue,FluColors.Teal,FluColors.Green]
 
     title:"TabView"
 
-    Component {
+    Component{
         id:com_page
-        Rectangle {
+        Rectangle{
             anchors.fill: parent
             color: argument
         }
     }
 
-    function newTab()
-    {
-        tab_view.appendTab("qrc:/fluentmail/favicon.ico", "Document "+tab_view.count(), com_page, colors[Math.floor(Math.random() * 8)].dark)
+    function newTab(){
+        tab_view.appendTab("qrc:/fluentmail/res/image/favicon.ico","Document "+tab_view.count(),com_page,colors[Math.floor(Math.random() * 8)].dark)
     }
 
     Component.onCompleted: {
@@ -30,33 +29,33 @@ FluScrollablePage {
         newTab()
     }
 
-    FluArea {
+    FluArea{
         Layout.fillWidth: true
         Layout.topMargin: 20
         height: 50
         paddings: 10
-        RowLayout {
+        RowLayout{
             spacing: 14
-            FluDropDownButton {
+            FluDropDownButton{
                 id:btn_tab_width_behavior
                 Layout.preferredWidth: 140
                 text:"Equal"
-                items: [
-                    FluMenuItem {
+                items:[
+                    FluMenuItem{
                         text:"Equal"
                         onClicked: {
                             btn_tab_width_behavior.text = text
                             tab_view.tabWidthBehavior = FluTabView.Equal
                         }
                     },
-                    FluMenuItem {
+                    FluMenuItem{
                         text:"SizeToContent"
                         onClicked: {
                             btn_tab_width_behavior.text = text
                             tab_view.tabWidthBehavior = FluTabView.SizeToContent
                         }
                     },
-                    FluMenuItem {
+                    FluMenuItem{
                         text:"Compact"
                         onClicked: {
                             btn_tab_width_behavior.text = text
@@ -65,26 +64,26 @@ FluScrollablePage {
                     }
                 ]
             }
-            FluDropDownButton {
+            FluDropDownButton{
                 id:btn_close_button_visibility
                 text:"Always"
                 Layout.preferredWidth: 120
-                items: [
-                    FluMenuItem {
+                items:[
+                    FluMenuItem{
                         text:"Nerver"
                         onClicked: {
                             btn_close_button_visibility.text = text
                             tab_view.closeButtonVisibility = FluTabView.Nerver
                         }
                     },
-                    FluMenuItem {
+                    FluMenuItem{
                         text:"Always"
                         onClicked: {
                             btn_close_button_visibility.text = text
                             tab_view.closeButtonVisibility = FluTabView.Always
                         }
                     },
-                    FluMenuItem {
+                    FluMenuItem{
                         text:"OnHover"
                         onClicked: {
                             btn_close_button_visibility.text = text
@@ -96,41 +95,40 @@ FluScrollablePage {
         }
     }
 
-    FluArea {
+    FluArea{
         Layout.fillWidth: true
         Layout.topMargin: 15
         height: 400
         paddings: 10
-        FluTabView {
+        FluTabView{
             id:tab_view
-            onNewPressed: {
+            onNewPressed:{
                 newTab()
             }
         }
     }
-    CodeExpander {
+    CodeExpander{
         Layout.fillWidth: true
         Layout.topMargin: -1
-        code:'FluTabView {
-        anchors.fill: parent
-        Component.onCompleted: {
-            newTab()
-            newTab()
-            newTab()
-        }
-        Component {
-            id:com_page
-            Rectangle {
-                anchors.fill: parent
-                color: argument
-            }
-        }
-        function newTab()
-        {
-            tab_view.appendTab("qrc:/fluentmail/favicon.ico", "Document 1", com_page, argument)
+        code:'FluTabView{
+    anchors.fill: parent
+    Component.onCompleted: {
+        newTab()
+        newTab()
+        newTab()
+    }
+    Component{
+        id:com_page
+        Rectangle{
+            anchors.fill: parent
+            color: argument
         }
     }
-    '
+    function newTab(){
+        tab_view.appendTab("qrc:/fluentmail/res/image/favicon.ico","Document 1",com_page,argument)
+    }
 }
+'
+    }
 
 }

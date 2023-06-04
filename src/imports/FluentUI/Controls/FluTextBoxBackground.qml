@@ -1,4 +1,4 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
 import FluentUI
@@ -48,7 +48,7 @@ Rectangle{
         }
         Behavior on height{
             NumberAnimation{
-                duration: 167
+                duration: 83
                 easing.type: Easing.BezierSpline
                 easing.bezierCurve: [ 1, 0, 0, 0 ]
             }

@@ -1,4 +1,4 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Layouts
 import QtQuick.Window
 import QtQuick.Controls
@@ -24,7 +24,7 @@ FluScrollablePage {
                 asynchronous: true
                 source: "qrc:/fluentmail/res/image/banner_3.jpg"
                 anchors.fill: parent
-                sourceSize: Qt.size(width, height)
+                sourceSize: Qt.size(2 * width,2 * height)
             }
             FluAcrylic {
                 sourceItem:image

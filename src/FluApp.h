@@ -1,4 +1,4 @@
-﻿#ifndef FLUAPP_H
+#ifndef FLUAPP_H
 #define FLUAPP_H
 
 #include <QObject>
@@ -8,9 +8,6 @@
 #include <QQmlContext>
 #include <QJsonObject>
 #include <QQmlEngine>
-#include "FluTheme.h"
-#include "FluTools.h"
-#include "FluColors.h"
 #include "FluRegister.h"
 #include "stdafx.h"
 
@@ -30,6 +27,7 @@ class FluApp : public QObject
      */
     Q_PROPERTY_AUTO(QJsonObject,routes);
 
+    QML_FOREIGN(FluApp)
     QML_NAMED_ELEMENT(FluApp)
     QML_SINGLETON
 private:

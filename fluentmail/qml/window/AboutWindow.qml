@@ -1,18 +1,16 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import FluentUI
+import "../component"
 
-FluWindow {
+CustomWindow {
 
     id:window
     title:"关于"
     width: 600
     height: 600
-    minimumWidth: 600
-    minimumHeight: 600
-    maximumWidth: 600
-    maximumHeight: 600
+    fixSize: true
     launchMode: FluWindow.SingleTask
 
     ColumnLayout {

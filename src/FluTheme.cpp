@@ -1,8 +1,10 @@
-﻿#include "FluTheme.h"
+#include "FluTheme.h"
 
 #include "Def.h"
+#include "FluColors.h"
 #include <QPalette>
-#include "FluApp.h"
+#include <QtGui/qpa/qplatformtheme.h>
+#include <QtGui/private/qguiapplication_p.h>
 #include <QGuiApplication>
 
 FluTheme* FluTheme::m_instance = nullptr;
@@ -24,14 +26,16 @@ FluTheme::FluTheme(QObject *parent)
     primaryColor(FluColors::getInstance()->Blue());
     nativeText(false);
     darkMode(Fluent_DarkMode::Fluent_DarkModeType::Light);
+    _systemDark = systemDark();
     qApp->installEventFilter(this);
 }
 
 bool FluTheme::eventFilter(QObject *obj, QEvent *event)
 {
     Q_UNUSED(obj);
-    if (event->type() == QEvent::ApplicationPaletteChange)
+    if (event->type() == QEvent::ApplicationPaletteChange || event->type() == QEvent::ThemeChange)
     {
+        _systemDark = systemDark();
         Q_EMIT darkChanged();
         event->accept();
         return true;
@@ -41,6 +45,10 @@ bool FluTheme::eventFilter(QObject *obj, QEvent *event)
 
 bool FluTheme::systemDark()
 {
+//    if (const QPlatformTheme * const theme = QGuiApplicationPrivate::platformTheme()) {
+//        return (theme->appearance() == QPlatformTheme::Appearance::Dark);
+//    }
+//    return false;
     QPalette palette = qApp->palette();
     QColor color = palette.color(QPalette::Window).rgb();
     return !(color.red() * 0.2126 + color.green() * 0.7152 + color.blue() * 0.0722 > 255 / 2);
@@ -52,7 +60,7 @@ bool FluTheme::dark(){
     }else if(_darkMode == Fluent_DarkMode::Fluent_DarkModeType::Light){
         return false;
     }else if(_darkMode == Fluent_DarkMode::Fluent_DarkModeType::System){
-        return systemDark();
+        return _systemDark;
     }else{
         return false;
     }

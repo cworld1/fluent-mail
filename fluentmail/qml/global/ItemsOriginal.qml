@@ -1,4 +1,4 @@
-﻿pragma Singleton
+pragma Singleton
 
 import QtQuick
 import FluentUI
@@ -233,6 +233,12 @@ FluObject {
             title: "Dialog"
             onTap: {
                 navigationView.push("qrc:/fluentmail/qml/page/T_Dialog.qml")
+            }
+        }
+        FluPaneItem{
+            title:"ComboBox"
+            onTap:{
+                navigationView.push("qrc:/fluentmail/qml/page/T_ComboBox.qml")
             }
         }
         FluPaneItem {

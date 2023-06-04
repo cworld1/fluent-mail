@@ -1,4 +1,4 @@
-﻿#ifndef FLUTHEME_H
+#ifndef FLUTHEME_H
 #define FLUTHEME_H
 
 #include <QObject>
@@ -47,6 +47,7 @@ public:
     Q_SIGNAL void darkChanged();
 private:
     bool _dark;
+    bool _systemDark;
     bool eventFilter(QObject *obj, QEvent *event);
     bool systemDark();
 };

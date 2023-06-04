@@ -1,4 +1,4 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Controls
 import FluentUI
 
@@ -13,4 +13,9 @@ Text {
     verticalAlignment: Text.AlignVCenter
     color: iconColor
     text: (String.fromCharCode(iconSource).toString(16))
+
+    FontLoader{
+        source: "../Font/Segoe_Fluent_Icons.ttf"
+    }
+
 }

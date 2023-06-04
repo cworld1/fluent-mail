@@ -1,4 +1,4 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Controls
 import QtQuick.Window
 import QtQuick.Layouts
@@ -67,8 +67,8 @@ Rectangle{
                 color:root.textColor
             }
             FluToggleSwitch{
-                selected: FluTheme.dark
-                clickFunc:function(){
+                checked: FluTheme.dark
+                clickListener: function(){
                     if(FluTheme.dark){
                         FluTheme.darkMode = FluDarkMode.Light
                     }else{

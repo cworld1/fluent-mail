@@ -1,4 +1,4 @@
-﻿#ifndef FLUTOOLS_H
+#ifndef FLUTOOLS_H
 #define FLUTOOLS_H
 
 #include <QObject>
@@ -47,6 +47,8 @@ public:
     Q_INVOKABLE bool isLinux();
 
     Q_INVOKABLE bool isWin();
+
+    Q_INVOKABLE void setQuitOnLastWindowClosed(bool val);
 
 };
 

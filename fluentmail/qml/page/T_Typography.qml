@@ -1,4 +1,4 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import FluentUI
@@ -8,6 +8,7 @@ FluContentPage {
     property real textScale: 1
 
     title: "Typography"
+    rightPadding: 10
 
     Component.onCompleted: {
         slider.seek(0)

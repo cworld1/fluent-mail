@@ -1,4 +1,4 @@
-﻿#include "FluTools.h"
+#include "FluTools.h"
 #include <QGuiApplication>
 #include <QClipboard>
 #include <QUuid>
@@ -63,4 +63,6 @@ bool FluTools::isWin(){
 #endif
 }
 
-
+void FluTools::setQuitOnLastWindowClosed(bool val){
+    qApp->setQuitOnLastWindowClosed(val);
+}

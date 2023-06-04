@@ -42,7 +42,7 @@ FluScrollablePage {
                 anchors.centerIn: parent
                 spacing: 3
                 FluCheckBox {
-                    selected: dataModel.is_readed
+                    checked: dataModel.is_readed
                 }
             }
         }

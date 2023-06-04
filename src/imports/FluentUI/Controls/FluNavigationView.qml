@@ -1,4 +1,4 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import QtQuick.Controls.Basic
@@ -352,8 +352,6 @@ Item {
                             if(model.tapFunc){
                                 model.tapFunc()
                             }else{
-                                model.tap()
-                                d.stackItems.push(model)
                                 nav_list.currentIndex = nav_list.count-layout_footer.count+idx
                                 layout_footer.currentIndex = idx
                                 if(d.isMinimal || d.isCompact){
@@ -636,13 +634,13 @@ Item {
             sourceItem:nav_swipe
             anchors.fill: layout_list
             color: {
-                if(d.isMinimal){
+                if(d.isMinimalAndPanel || d.isCompactAndPanel){
                     return FluTheme.dark ? Qt.rgba(61/255,61/255,61/255,1) : Qt.rgba(243/255,243/255,243/255,1)
                 }
                 return "transparent"
             }
-            visible: d.isMinimal
-            rectX: layout_list.x
+            visible: d.isMinimalAndPanel || d.isCompactAndPanel
+            rectX: d.isCompactAndPanel ? (layout_list.x - 50) : layout_list.x
             rectY: layout_list.y - 60
             acrylicOpacity:0.9
         }
@@ -769,6 +767,15 @@ Item {
                     return footerItems.children
                 }
             }
+            onCurrentIndexChanged: {
+                if(d.enableStack){
+                    var item = model[currentIndex]
+                    if(item instanceof FluPaneItem){
+                        item.tap()
+                        d.stackItems.push(item)
+                    }
+                }
+            }
             highlightMoveDuration: 150
             highlight: Item{
                 clip: true
@@ -813,9 +820,9 @@ Item {
                 duration: 83
             }
         }
-        background: Rectangle{
+        background: FluRectangle{
             width: 160
-            radius: 4
+            radius: [4,4,4,4]
             FluShadow{
                 radius: 4
             }
@@ -889,7 +896,7 @@ Item {
     function getItems(){
         return nav_list.model
     }
-    function push(url){
+    function push(url,argument={}){
         if (nav_swipe.depth>0)
         {
             let page = nav_swipe.find(function(item) {
@@ -915,7 +922,7 @@ Item {
                 }
             }
         }
-        nav_swipe.push(url,{url:url})
+        nav_swipe.push(url,Object.assign(argument,{url:url}))
     }
     function getCurrentIndex(){
         return nav_list.currentIndex

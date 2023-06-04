@@ -1,6 +1,6 @@
 #include <windows.h>
 
-IDI_ICON1 ICON "favicon.ico"
+IDI_ICON1 ICON "res/image/favicon.ico"
 
 #define STR(x) #x
 #define VER_JOIN(a,b,c,d) STR(a.b.c.d)
