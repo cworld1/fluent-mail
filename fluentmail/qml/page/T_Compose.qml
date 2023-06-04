@@ -97,14 +97,21 @@ FluScrollablePage {
                         textbox_subject.text,
                         textbox_content.text
                     )
-                    showSuccess("保存成功")
+                    showSuccess("保存成功！")
                 }
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
             }
             FluFilledButton {
                 text: lang.send
                 onClicked: {
-                    showSuccess("点击发送")
+                    appInfo.user.saveDraft(
+                        draft.id,
+                        textbox_email.text,
+                        textbox_subject.text,
+                        textbox_content.text
+                    )
+                    appInfo.user.sendDraft(draft.id)
+                    showSuccess("发送成功！")
                 }
                 Layout.alignment: Qt.AlignRight
             }

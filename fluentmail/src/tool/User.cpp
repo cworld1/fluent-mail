@@ -440,6 +440,29 @@ bool User::saveDraft(const QString &id, const QString &email, const QString &sub
 }
 
 /**
+ * @brief 发送草稿
+ * @param id 草稿 id
+ * @return bool 是否成功
+ */
+bool User::sendDraft(const QString &id)
+{
+    QString cmd = "INSERT INTO sent (draft_id, user_id) "
+                  "VALUES (" +
+                  id +
+                  ", (SELECT user_id FROM cur_user));"
+                  "UPDATE drafts SET is_sent = 1 WHERE id = " +
+                  id + ";";
+    if (query.exec(cmd))
+        qDebug() << "发送草稿成功！id：" << id;
+    else
+    {
+        qDebug() << "发送草稿失败：" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+
+/**
  * @brief 获取邮件列表
  * @param page 页码
  * @param page_size 每页数量

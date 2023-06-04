@@ -143,6 +143,7 @@ public:
     Q_INVOKABLE bool updateDraft(const QString &id);
     Q_INVOKABLE bool deleteDraft(const QString &id);
     Q_INVOKABLE bool saveDraft(const QString &id, const QString &email, const QString &subject, const QString &content);
+    Q_INVOKABLE bool sendDraft(const QString &id);
 
     // 邮件相关
     Q_INVOKABLE QList<QObject *> getMails(int page = 1, int page_size = 10, const QString &filter = "is_deleted = 0");
