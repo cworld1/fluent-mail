@@ -389,7 +389,7 @@ DraftObject *User::getLatestDraft(bool is_new)
     {
         // 获取最新草稿
         QString cmd = "SELECT id, email, subject, content, updated_at "
-                      "FROM drafts ORDER BY updated_at DESC LIMIT 1;";
+                      "FROM drafts WHERE is_sent = 0 ORDER BY updated_at DESC LIMIT 1;";
         if (query.exec(cmd))
         {
             query.next();
