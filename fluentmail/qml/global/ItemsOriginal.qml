@@ -194,12 +194,12 @@ FluObject {
                 navigationView.push("qrc:/fluentmail/qml/page/T_RatingControl.qml")
             }
         }
-        FluPaneItem {
-            title: "Badge"
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_Badge.qml")
-            }
-        }
+        // FluPaneItem {
+        //     title: "Badge"
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_Badge.qml")
+        //     }
+        // }
         FluPaneItem {
             title: "Rectangle"
             onTap: {
