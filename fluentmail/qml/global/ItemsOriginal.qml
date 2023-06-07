@@ -229,12 +229,12 @@ FluObject {
     FluPaneItemExpander {
         title: lang.popus
         icon: FluentIcons.ButtonMenu
-        FluPaneItem {
-            title: "Dialog"
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_Dialog.qml")
-            }
-        }
+        // FluPaneItem {
+        //     title: "Dialog"
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_Dialog.qml")
+        //     }
+        // }
         FluPaneItem{
             title:"ComboBox"
             onTap:{
