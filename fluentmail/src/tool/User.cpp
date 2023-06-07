@@ -442,7 +442,7 @@ bool User::deleteDraft(const QString &id)
         qDebug() << "删除草稿失败：" << query.lastError().text();
         return false;
     }
-    QString cmd = "DELETE FROM sent WHERE draft_id = " + id + ";";
+    cmd = "DELETE FROM sent WHERE draft_id = " + id + ";";
     if (query.exec(cmd))
         qDebug() << "删除发送草稿成功！id：" << id;
     else
