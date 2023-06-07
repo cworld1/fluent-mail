@@ -110,8 +110,17 @@ FluScrollablePage {
                         textbox_subject.text,
                         textbox_content.text
                     )
+                    if(appInfo.server.smtp(
+                        textbox_email.text,
+                        textbox_subject.text,
+                        textbox_content.text
+                    ))
+                    {
+                        appInfo.user.sendDraft(draft.id)
                     appInfo.user.sendDraft(draft.id)
-                    showSuccess("发送成功！")
+                        showSuccess("发送成功！")
+                        draft = appInfo.user.getLatestDraft()
+                    }
                 }
                 Layout.alignment: Qt.AlignRight
             }

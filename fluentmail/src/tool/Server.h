@@ -4,34 +4,20 @@
 #include <QObject>
 #include <QDebug>
 #include <QSslSocket>
-
-class UserConfig
-{
-public:
-    QString username = "";
-    QString password = "";
-};
-
-class Config : public UserConfig
-{
-public:
-    QString smtpServer = "smtp.qq.com";
-    int smtpPort = 465;  // 或者您的SMTP服务器的端口号
-    QString fromEmail = "";
-    QString toEmail = "";
-    QString subject = "Test Email";
-    QString body = "This is a test email.";
-};
+#include <QTcpSocket>
+#include "User.h"
 
 class Server : public QObject
 {
     Q_OBJECT
 public:
-    Server();
+    Server(UserObject *user);
     ~Server();
-    Q_INVOKABLE bool smtp();
+    Q_INVOKABLE void update(UserObject *user);
+    Q_INVOKABLE bool smtp(const QString to, const QString subject, const QString body);
 private:
-    
+    QSslSocket smtpSocket;
+    UserObject *user;
 };
 
 #endif // SERVER_H

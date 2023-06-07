@@ -131,6 +131,7 @@ public:
     // 用户相关
     Q_INVOKABLE QList<QObject *> getUsers();
     Q_INVOKABLE QString getCurUser();
+    Q_INVOKABLE UserObject *getCurConfig();
     Q_INVOKABLE bool setUser(const QString id);
     Q_INVOKABLE bool delUser(const QString id);
     Q_INVOKABLE bool addUser(const QString &name, const QString &email, const QString &passwd,

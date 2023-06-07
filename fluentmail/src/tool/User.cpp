@@ -221,6 +221,38 @@ QString User::getCurUser()
 }
 
 /**
+ * @brief 获取当前用户配置
+ * @return UserObject 用户配置
+ */
+UserObject *User::getCurConfig()
+{
+    QString cmd = "SELECT id, name, email, passwd, smtp, smtp_port, pop3, pop3_port "
+                  "FROM users WHERE id = (SELECT user_id FROM cur_user);";
+    if (query.exec(cmd))
+    {
+        query.next();
+        QString id = query.value(0).toString();
+        QString name = query.value(1).toString();
+        QString email = query.value(2).toString();
+        QString passwd = query.value(3).toString();
+        QString smtp = query.value(4).toString();
+        int smtp_port = query.value(5).toInt();
+        QString pop3 = query.value(6).toString();
+        int pop3_port = query.value(7).toInt();
+
+        UserObject *userObject = new UserObject(
+            id, name, email, passwd,
+            smtp, smtp_port, pop3, pop3_port);
+        return userObject;
+    }
+    else
+    {
+        qDebug() << "查询失败：" << query.lastError().text();
+        return nullptr;
+    }
+}
+
+/**
  * @brief 设置当前用户
  * @param id 用户 id
  */

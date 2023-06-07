@@ -20,7 +20,7 @@ AppInfo::AppInfo(QObject *parent) : QObject{parent}
     // 初始化用户数据
     user(new User());
     // 初始化邮箱服务
-    server(new Server());
+    server(new Server(user()->getCurConfig()));
 }
 
 void AppInfo::init(QQmlApplicationEngine *engine){
