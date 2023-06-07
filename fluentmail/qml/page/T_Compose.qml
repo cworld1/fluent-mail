@@ -117,8 +117,7 @@ FluScrollablePage {
                     ))
                     {
                         appInfo.user.sendDraft(draft.id)
-                    appInfo.user.sendDraft(draft.id)
-                        showSuccess("发送成功！")
+                        showSuccess(lang.send_success)
                         draft = appInfo.user.getLatestDraft()
                     }
                 }

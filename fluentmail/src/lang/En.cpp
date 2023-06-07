@@ -52,6 +52,7 @@ En::En(QObject *parent) : Lang{parent}
     new_draft("New draft");
     save_to_drafts("Save to drafts");
     send("Send");
+    send_success("Send successful!");
 
     // 用户管理
     manage_user("Manage user");

@@ -56,6 +56,7 @@ class Lang : public QObject
     Q_PROPERTY_AUTO(QString, new_draft);
     Q_PROPERTY_AUTO(QString, save_to_drafts);
     Q_PROPERTY_AUTO(QString, send);
+    Q_PROPERTY_AUTO(QString, send_success);
 
     // 用户管理
     Q_PROPERTY_AUTO(QString, manage_user);

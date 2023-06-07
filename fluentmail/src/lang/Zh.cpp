@@ -52,6 +52,7 @@ Zh::Zh(QObject *parent) : Lang{parent}
     new_draft("新建草稿");
     save_to_drafts("保存到草稿箱");
     send("发送");
+    send_success("发送成功！");
 
     // 用户管理
     manage_user("用户管理");
