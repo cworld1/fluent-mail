@@ -139,12 +139,12 @@ FluObject {
     FluPaneItemExpander {
         title: lang.form
         icon: FluentIcons.GridView
-        FluPaneItem {
-            title: "TextBox"
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_TextBox.qml")
-            }
-        }
+        // FluPaneItem {
+        //     title: "TextBox"
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_TextBox.qml")
+        //     }
+        // }
         FluPaneItem {
             title: "TimePicker"
             onTap: {
