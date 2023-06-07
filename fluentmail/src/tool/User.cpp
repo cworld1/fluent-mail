@@ -489,14 +489,21 @@ bool User::sendDraft(const QString &id)
     QString cmd = "INSERT INTO sent (draft_id, user_id) "
                   "VALUES (" +
                   id +
-                  ", (SELECT user_id FROM cur_user));"
-                  "UPDATE drafts SET is_sent = 1 WHERE id = " +
-                  id + ";";
+                  ", (SELECT user_id FROM cur_user));";
     if (query.exec(cmd))
-        qDebug() << "发送草稿成功！id：" << id;
+        qDebug() << "新增发送成功！id：" << id;
     else
     {
-        qDebug() << "发送草稿失败：" << query.lastError().text();
+        qDebug() << "新增发送失败：" << query.lastError().text();
+        return false;
+    }
+    cmd = "UPDATE drafts SET is_sent = 1 WHERE id = " +
+          id + ";";
+    if (query.exec(cmd))
+        qDebug() << "更新草稿成功！id：" << id;
+    else
+    {
+        qDebug() << "更新草稿失败：" << query.lastError().text();
         return false;
     }
     return true;
