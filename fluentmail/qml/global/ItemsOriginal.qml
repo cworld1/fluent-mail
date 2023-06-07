@@ -98,13 +98,13 @@ FluObject {
     FluPaneItemExpander {
         title: lang.basic_input
         icon: FluentIcons.CheckboxComposite
-        FluPaneItem {
-            title: "Buttons"
-            image: "qrc:/fluentmail/res/image/control/Button.png"
-            desc: "A control that responds to user input and raisesa Click event."
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_Buttons.qml")
-            }
+        // FluPaneItem {
+        //     title: "Buttons"
+        //     image: "qrc:/fluentmail/res/image/control/Button.png"
+        //     desc: "A control that responds to user input and raisesa Click event."
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_Buttons.qml")
+        //     }
         }
         FluPaneItem {
             title: "Text"
