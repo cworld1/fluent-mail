@@ -241,12 +241,12 @@ FluObject {
                 navigationView.push("qrc:/fluentmail/qml/page/T_ComboBox.qml")
             }
         }
-        FluPaneItem {
-            title: "Tooltip"
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_Tooltip.qml")
-            }
-        }
+        // FluPaneItem {
+        //     title: "Tooltip"
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_Tooltip.qml")
+        //     }
+        // }
         FluPaneItem {
             title: "Menu"
             onTap: {
