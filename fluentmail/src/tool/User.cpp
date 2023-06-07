@@ -569,3 +569,19 @@ void User::updateMail(const QString &id, const QString &field)
     else
         qDebug() << "更新邮件失败：" << query.lastError().text();
 }
+
+/**
+ * @brief 添加邮件
+ * @param mail 邮件对象
+ * @return bool 是否成功
+ */
+bool User::addMail(MailObject *mail)
+{
+    qDebug() << "添加邮件：";
+    qDebug () << "MessageId：" << mail->id();
+    qDebug () << "Email：" << mail->email();
+    qDebug () << "Subject：" << mail->subject();
+    qDebug () << "Content：" << mail->content();
+    qDebug () << "RecievedAt：" << mail->recieved_at();
+    return true;
+}

@@ -209,7 +209,13 @@ FluScrollablePage {
                     text: "Test"
                     onClicked: {
                         appInfo.buttonclick("Test")
-                        console.log(appInfo.server.smtp())
+                        // console.log(appInfo.server.smtp("111@gmail.com", "Test", "Hello world"))
+                        if(appInfo.server.pop3Init())
+                        {
+                            console.log(appInfo.server.pop3Number())
+                            console.log(appInfo.user.addMail(appInfo.server.pop3Get(1)))
+                            console.log(appInfo.server.pop3Quit())
+                        }
                     }
                 }
             }

@@ -15,8 +15,15 @@ public:
     ~Server();
     Q_INVOKABLE void update(UserObject *user);
     Q_INVOKABLE bool smtp(const QString to, const QString subject, const QString body);
+    Q_INVOKABLE bool pop3Init();
+    Q_INVOKABLE int pop3Number();
+    // Q_INVOKABLE bool pop3List();
+    Q_INVOKABLE MailObject *pop3Get(int id);
+    Q_INVOKABLE bool pop3Quit();
+
 private:
     QSslSocket smtpSocket;
+    QSslSocket pop3Socket;
     UserObject *user;
 };
 

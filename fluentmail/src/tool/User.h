@@ -20,16 +20,36 @@ class UserObject : public QObject
     Q_PROPERTY(QString id READ id NOTIFY changed)
     Q_PROPERTY(QString name READ name NOTIFY changed)
     Q_PROPERTY(QString email READ email NOTIFY changed)
+    Q_PROPERTY(QString passwd READ passwd NOTIFY changed)
+    Q_PROPERTY(QString smtp READ smtp NOTIFY changed)
+    Q_PROPERTY(int smtp_port READ smtp_port NOTIFY changed)
+    Q_PROPERTY(QString pop3 READ pop3 NOTIFY changed)
+    Q_PROPERTY(int pop3_port READ pop3_port NOTIFY changed)
     Q_PROPERTY(bool isCurUser READ isCurUser WRITE isCurUser NOTIFY changed)
 
 public:
+    UserObject()
+    {
+    }
     UserObject(const QString &id, const QString &name, const QString &email, const bool &isCurUser = false)
         : m_id(id), m_name(name), m_email(email), m_isCurUser(isCurUser)
+    {
+    }
+    UserObject(const QString &id, const QString &name, const QString &email, const QString &passwd,
+               const QString &smtp, const int smtp_port,
+               const QString &pop3, const int pop3_port, const bool &isCurUser = false)
+        : m_id(id), m_name(name), m_email(email), m_passwd(passwd), m_smtp(smtp), m_smtp_port(smtp_port),
+          m_pop3(pop3), m_pop3_port(pop3_port), m_isCurUser(isCurUser)
     {
     }
     QString id() const { return m_id; }
     QString name() const { return m_name; }
     QString email() const { return m_email; }
+    QString passwd() const { return m_passwd; }
+    QString smtp() const { return m_smtp; }
+    int smtp_port() const { return m_smtp_port; }
+    QString pop3() const { return m_pop3; }
+    int pop3_port() const { return m_pop3_port; }
     bool isCurUser() const { return m_isCurUser; }
     void isCurUser(bool isCurUser) { m_isCurUser = isCurUser; }
 
@@ -40,11 +60,16 @@ private:
     QString m_id;
     QString m_name;
     QString m_email;
+    QString m_passwd;
+    QString m_smtp;
+    int m_smtp_port;
+    QString m_pop3;
+    int m_pop3_port;
     bool m_isCurUser;
 };
 
 // 返回草稿列表
-class DraftObject : public QObject  
+class DraftObject : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(QString id READ id NOTIFY changed)
@@ -91,7 +116,7 @@ class MailObject : public QObject
 
 public:
     MailObject(const QString &id, const QString &email, QString &subject, QString &content, QString &recieved_at,
-               bool &is_readed, bool &is_starred, bool &is_deleted)
+               const bool &is_readed, const bool &is_starred, const bool &is_deleted)
         : m_id(id), m_email(email), m_subject(subject), m_content(content), m_recieved_at(recieved_at),
           m_is_readed(is_readed), m_is_starred(is_starred), m_is_deleted(is_deleted)
     {
@@ -137,7 +162,7 @@ public:
     Q_INVOKABLE bool addUser(const QString &name, const QString &email, const QString &passwd,
                              const QString &smtp, const int smtp_port,
                              const QString &pop3, const int pop3_port);
-    
+
     // 草稿相关
     Q_INVOKABLE QList<QObject *> getDrafts(int page = 1, int page_size = 10, const QString &filter = "is_sent = 0");
     Q_INVOKABLE DraftObject *getLatestDraft(bool is_new = false);
@@ -149,7 +174,8 @@ public:
     // 邮件相关
     Q_INVOKABLE QList<QObject *> getMails(int page = 1, int page_size = 10, const QString &filter = "is_deleted = 0");
     Q_INVOKABLE void updateMail(const QString &id, const QString &field);
-    
+    Q_INVOKABLE bool addMail(MailObject *mail);
+
 private:
     QSqlDatabase db;
     QSqlQuery query;
