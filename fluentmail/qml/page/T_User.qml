@@ -22,6 +22,7 @@ FluScrollablePage {
             ))
             {
                 showSuccess("添加成功！")
+                users_model = appInfo.user.getUsers()
             }
             else {
                 showError("添加失败！")
@@ -173,6 +174,7 @@ FluScrollablePage {
                             showError(lang.switch_failure)
                         }
                         else {
+                            appInfo.server.update(appInfo.user.getCurConfig());
                             showSuccess(lang.switch_success)
                             users_model = appInfo.user.getUsers()
                         }
