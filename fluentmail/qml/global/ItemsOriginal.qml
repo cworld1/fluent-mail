@@ -105,7 +105,7 @@ FluObject {
         //     onTap: {
         //         navigationView.push("qrc:/fluentmail/qml/page/T_Buttons.qml")
         //     }
-        }
+        // }
         FluPaneItem {
             title: "Text"
             onTap: {
