@@ -434,12 +434,20 @@ bool User::updateDraft(const QString &id)
  */
 bool User::deleteDraft(const QString &id)
 {
-    QString cmd = "DELETE FROM sent WHERE draft_id = " + id + "; DELETE FROM drafts WHERE id = " + id + ";";
+    QString cmd = "DELETE FROM drafts WHERE id = " + id + ";";
     if (query.exec(cmd))
         qDebug() << "删除草稿成功！id：" << id;
     else
     {
         qDebug() << "删除草稿失败：" << query.lastError().text();
+        return false;
+    }
+    QString cmd = "DELETE FROM sent WHERE draft_id = " + id + ";";
+    if (query.exec(cmd))
+        qDebug() << "删除发送草稿成功！id：" << id;
+    else
+    {
+        qDebug() << "删除发送草稿失败：" << query.lastError().text();
         return false;
     }
     return true;
