@@ -300,14 +300,14 @@ FluObject {
         //         navigationView.push("qrc:/fluentmail/qml/page/T_MultiWindow.qml")
         //     }
         // }
-        FluPaneItem {
-            title: "FlipView"
-            image: "qrc:/fluentmail/res/image/control/FlipView.png"
-            desc: "Presents a collection of items that the user canflip through, one item at a time."
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_FlipView.qml")
-            }
-        }
+        // FluPaneItem {
+        //     title: "FlipView"
+        //     image: "qrc:/fluentmail/res/image/control/FlipView.png"
+        //     desc: "Presents a collection of items that the user canflip through, one item at a time."
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_FlipView.qml")
+        //     }
+        // }
     }
 
     FluPaneItemExpander {
