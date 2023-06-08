@@ -205,17 +205,41 @@ FluScrollablePage {
                         FluApp.navigate("/about")
                     }
                 }
+                // FluFilledButton {
+                //     text: "Test"
+                //     onClicked: {
+                //         appInfo.buttonclick("Test")
+                //         // console.log(appInfo.server.smtp("111@gmail.com", "Test", "Hello world"))
+                //     }
+                // }
+                FluTextBox {
+                    id: textbox_count
+                    placeholderText: "Count"
+                    Layout.preferredWidth: 50
+                }
                 FluFilledButton {
-                    text: "Test"
+                    text: "Pop3Init"
                     onClicked: {
-                        appInfo.buttonclick("Test")
-                        // console.log(appInfo.server.smtp("111@gmail.com", "Test", "Hello world"))
                         if(appInfo.server.pop3Init())
                         {
                             console.log(appInfo.server.pop3Number())
-                            console.log(appInfo.user.addMail(appInfo.server.pop3Get(1)))
-                            console.log(appInfo.server.pop3Quit())
                         }
+                    }
+                }
+                FluFilledButton {
+                    text: "Pop3Get"
+                    onClicked: {
+                        console.log(
+                            appInfo.user.addMail(
+                                appInfo.server.pop3Get(textbox_count.text)
+                            )
+                        )
+                    }
+                }
+                FluFilledButton {
+                    text: "Pop3Quit"
+                    onClicked: {
+                        console.log(appInfo.server.pop3Quit())
                     }
                 }
             }

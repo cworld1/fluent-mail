@@ -36,6 +36,39 @@ FluScrollablePage {
             }
     }
 
+    FluIconButton {
+        iconSource: FluentIcons.Refresh
+        text: "刷新邮件"
+        Layout.alignment: Qt.AlignRight
+        onClicked: {
+            let success = true
+            if(!appInfo.server.pop3Init())
+            {
+                showError("配置失败")
+            }
+            for(let i = 0; i < 10; i++)
+            {
+                if(!appInfo.user.addMail(
+                        appInfo.server.pop3Get(i)
+                    ))
+                {
+                    showError("刷新失败")
+                    success = false
+                    break
+                }
+            }
+            if(success)
+            {
+                showSuccess("刷新成功")
+            }
+            loadData(table_view.pageCurrent, table_view.pageCount)
+            if(!appInfo.server.pop3Quit())
+            {
+                showError("退出失败")
+            }
+        }
+    }
+
     Component {
         id: com_readed
         Item {

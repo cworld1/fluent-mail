@@ -279,5 +279,4 @@ FluScrollablePage {
         model: ItemsOriginal.getRecentlyUpdatedData()
         delegate: com_item
     }
-
 }

@@ -147,6 +147,7 @@ bool User::createTables(QString dbType)
           "id INTEGER PRIMARY KEY " +
           incrementCmd +
           " NOT NULL, "
+          "message_id VARCHAR(255) NOT NULL UNIQUE, "
           "user_id INT NOT NULL, "
           "email VARCHAR(255) NOT NULL, "
           "subject VARCHAR(255) NOT NULL, "
@@ -164,7 +165,34 @@ bool User::createTables(QString dbType)
         return false;
     }
 
-    qDebug() << "成功创建表：" << debugList.join(", ");
+    // 创建 mails 触发器
+    cmd = "CREATE TRIGGER IF NOT EXISTS mails_trigger "
+        "BEFORE INSERT ON mails "
+        "FOR EACH ROW "
+        "BEGIN ";
+    if (dbType == "QSQLITE")
+    {
+        cmd += "SELECT CASE "
+            "WHEN EXISTS (SELECT 1 FROM mails WHERE message_id = NEW.message_id) "
+            "THEN RAISE(ABORT, 'Data with the same message_id already exists') "
+            "END; ";
+    }
+    else
+    {
+        cmd += "IF EXISTS (SELECT 1 FROM mails WHERE message_id = NEW.message_id) "
+            "THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Data with the same message_id already exists'; "
+            "END IF; ";
+    }
+    cmd += "END;";
+    if (query.exec(cmd))
+        debugList.append("mails 触发器");
+    else
+    {
+        qDebug() << "创建 mails 触发器失败：" << query.lastError().text();
+        return false;
+    }
+
+    qDebug() << "成功创建：" << debugList.join(", ");
 
     return true;
 }
@@ -532,8 +560,8 @@ QList<QObject *> User::getMails(int page, int page_size, const QString &filter)
         {
             QString id = query.value(0).toString();
             QString email = query.value(1).toString();
-            QString subject = query.value(2).toString();
-            QString content = query.value(3).toString();
+            QString subject = query.value(2).toString().left(13);
+            QString content = query.value(3).toString().left(30);
             QString recieved_at = query.value(4).toString();
             bool is_readed = query.value(5).toBool();
             bool is_starred = query.value(6).toBool();
@@ -577,11 +605,25 @@ void User::updateMail(const QString &id, const QString &field)
  */
 bool User::addMail(MailObject *mail)
 {
-    qDebug() << "添加邮件：";
-    qDebug () << "MessageId：" << mail->id();
-    qDebug () << "Email：" << mail->email();
-    qDebug () << "Subject：" << mail->subject();
-    qDebug () << "Content：" << mail->content();
-    qDebug () << "RecievedAt：" << mail->recieved_at();
+    // qDebug() << "添加邮件：";
+    // qDebug () << "MessageId：" << mail->id();
+    // qDebug () << "Email：" << mail->email();
+    // qDebug () << "Subject：" << mail->subject();
+    // qDebug () << "Content：" << mail->content();
+    // qDebug () << "RecievedAt：" << mail->recieved_at();
+    QString cmd = "INSERT INTO mails (message_id, user_id, email, subject, content, recieved_at) "
+                  "VALUES ('" +
+                  mail->id() + "', (SELECT user_id FROM cur_user), '" +
+                  mail->email() + "', '" +
+                  mail->subject() + "', '" +
+                  mail->content() + "', '" +
+                  mail->recieved_at() + "');";
+    if (query.exec(cmd))
+        qDebug() << "添加邮件成功！id：" << mail->id();
+    else
+    {
+        qDebug() << "添加邮件失败：" << query.lastError().text();
+        return false;
+    }
     return true;
 }
