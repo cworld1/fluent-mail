@@ -81,7 +81,7 @@ En::En(QObject *parent) : Lang{parent}
     locale("Locale");
     
     // 其他
-    basic_input("Basic Input");
+    // basic_input("Basic Input");
     form("Form");
     surface("Surfaces");
     popus("Popus");

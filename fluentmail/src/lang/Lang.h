@@ -82,7 +82,7 @@ class Lang : public QObject
     Q_PROPERTY_AUTO(QString, navigation_view_minimal);
     Q_PROPERTY_AUTO(QString, navigation_view_auto);
     
-    Q_PROPERTY_AUTO(QString, basic_input);
+    // Q_PROPERTY_AUTO(QString, basic_input);
     Q_PROPERTY_AUTO(QString, form);
     Q_PROPERTY_AUTO(QString, surface);
     Q_PROPERTY_AUTO(QString, popus);

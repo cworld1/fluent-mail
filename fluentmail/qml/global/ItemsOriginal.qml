@@ -95,9 +95,9 @@ FluObject {
     FluPaneItemSeparator {}
 
     // 其他的
-    FluPaneItemExpander {
-        title: lang.basic_input
-        icon: FluentIcons.CheckboxComposite
+    // FluPaneItemExpander {
+    //     title: lang.basic_input
+    //     icon: FluentIcons.CheckboxComposite
         // FluPaneItem {
         //     title: "Buttons"
         //     image: "qrc:/fluentmail/res/image/control/Button.png"
@@ -112,14 +112,14 @@ FluObject {
         //         navigationView.push("qrc:/fluentmail/qml/page/T_Text.qml")
         //     }
         // }
-        FluPaneItem {
-            title: "Slider"
-            image: "qrc:/fluentmail/res/image/control/Slider.png"
-            desc: "A control that lets the user select from a rangeof values by moving a Thumb control along atrack."
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_Slider.qml")
-            }
-        }
+        // FluPaneItem {
+        //     title: "Slider"
+        //     image: "qrc:/fluentmail/res/image/control/Slider.png"
+        //     desc: "A control that lets the user select from a rangeof values by moving a Thumb control along atrack."
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_Slider.qml")
+        //     }
+        // }
         // FluPaneItem {
         //     title: "CheckBox"
         //     image: "qrc:/fluentmail/res/image/control/Checkbox.png"
@@ -134,7 +134,7 @@ FluObject {
         //         navigationView.push("qrc:/fluentmail/qml/page/T_ToggleSwitch.qml")
         //     }
         // }
-    }
+    // }
 
     FluPaneItemExpander {
         title: lang.form

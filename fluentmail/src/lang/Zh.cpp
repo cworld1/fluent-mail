@@ -81,7 +81,7 @@ Zh::Zh(QObject *parent) : Lang{parent}
     locale("语言环境");
     
     // 其他
-    basic_input("基本输入");
+    // basic_input("基本输入");
     form("表单");
     surface("表面");
     popus("弹窗");
