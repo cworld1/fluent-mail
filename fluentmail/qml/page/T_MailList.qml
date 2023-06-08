@@ -1,4 +1,4 @@
-﻿import QtQuick
+import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
@@ -6,6 +6,7 @@ import FluentUI
 import "../component"
 
 FluScrollablePage {
+    property var detailPageRegister: registerForWindowResult("/detail")
     property var dataSource: []
     property var pane_title: ""
 
@@ -16,9 +17,9 @@ FluScrollablePage {
             { title: '已读', dataIndex: 'stats', width: 40 },
             { title: '发件人', dataIndex: 'email', width: 150 },
             { title: '标题', dataIndex: 'subject', width: 110 },
-            { title: '正文', dataIndex: 'content', width: 220 },
-            { title: '操作', dataIndex: 'action', width: 60 },
-            { title: '时间', dataIndex: 'recieved_at', width: 90 }
+            { title: '正文', dataIndex: 'content', width: 190 },
+            { title: '时间', dataIndex: 'received_at', width: 90 },
+            { title: '操作', dataIndex: 'action', width: 90 }
         ];
         table_view.columns = columns
         loadData(1, 10)
@@ -93,6 +94,18 @@ FluScrollablePage {
             Row {
                 anchors.centerIn: parent
                 spacing: 3
+                FluIconButton {
+                    iconSource: FluentIcons.FullScreen
+                    text: "查看"
+                    onClicked: {
+                        detailPageRegister.launch({
+                            email: dataObject.email,
+                            subject: dataObject.subject,
+                            content: dataObject.content,
+                            received_at: dataObject.received_at
+                        })
+                    }
+                }
                 FluIconButton {
                     iconSource: dataModel.is_starred ? FluentIcons.FavoriteStarFill : FluentIcons.FavoriteStar
                     text: "星标"

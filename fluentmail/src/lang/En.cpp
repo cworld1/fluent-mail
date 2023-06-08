@@ -1,4 +1,4 @@
-#include "En.h"
+﻿#include "En.h"
 
 En::En(QObject *parent) : Lang{parent}
 {
@@ -62,6 +62,9 @@ En::En(QObject *parent) : Lang{parent}
 
     // 关于
     about("About");
+
+    // 邮件详情
+    mail_detail("Mail detail");
 
     // 设置
     theme_color("Theme color");

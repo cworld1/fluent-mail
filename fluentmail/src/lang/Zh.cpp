@@ -1,4 +1,4 @@
-#include "Zh.h"
+﻿#include "Zh.h"
 
 Zh::Zh(QObject *parent) : Lang{parent}
 {
@@ -62,6 +62,9 @@ Zh::Zh(QObject *parent) : Lang{parent}
 
     // 关于
     about("关于");
+
+    // 邮件详情
+    mail_detail("邮件详情");
 
     // 设置
     theme_color("主题颜色");

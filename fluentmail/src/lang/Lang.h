@@ -1,4 +1,4 @@
-#ifndef LANG_H
+﻿#ifndef LANG_H
 #define LANG_H
 
 #include <QObject>
@@ -66,6 +66,9 @@ class Lang : public QObject
 
     // 关于
     Q_PROPERTY_AUTO(QString, about);
+
+    // 邮件详情
+    Q_PROPERTY_AUTO(QString, mail_detail);
 
     // 设置
     Q_PROPERTY_AUTO(QString, theme_color);
