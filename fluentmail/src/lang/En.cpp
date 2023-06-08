@@ -1,4 +1,4 @@
-﻿#include "En.h"
+#include "En.h"
 
 En::En(QObject *parent) : Lang{parent}
 {
@@ -79,13 +79,4 @@ En::En(QObject *parent) : Lang{parent}
     navigation_view_auto("Auto");
 
     locale("Locale");
-    
-    // 其他
-    // basic_input("Basic Input");
-    form("Form");
-    surface("Surfaces");
-    popus("Popus");
-    navigation("Navigation");
-    theming("Theming");
-    media("Media");
 }

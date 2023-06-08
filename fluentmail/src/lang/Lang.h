@@ -1,4 +1,4 @@
-﻿#ifndef LANG_H
+#ifndef LANG_H
 #define LANG_H
 
 #include <QObject>
@@ -82,13 +82,6 @@ class Lang : public QObject
     Q_PROPERTY_AUTO(QString, navigation_view_minimal);
     Q_PROPERTY_AUTO(QString, navigation_view_auto);
     
-    // Q_PROPERTY_AUTO(QString, basic_input);
-    Q_PROPERTY_AUTO(QString, form);
-    Q_PROPERTY_AUTO(QString, surface);
-    Q_PROPERTY_AUTO(QString, popus);
-    Q_PROPERTY_AUTO(QString, navigation);
-    Q_PROPERTY_AUTO(QString, theming);
-    Q_PROPERTY_AUTO(QString, media);
     Q_PROPERTY_AUTO(QString, locale);
 
 public:

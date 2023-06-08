@@ -1,4 +1,4 @@
-﻿#include "Zh.h"
+#include "Zh.h"
 
 Zh::Zh(QObject *parent) : Lang{parent}
 {
@@ -79,13 +79,4 @@ Zh::Zh(QObject *parent) : Lang{parent}
     navigation_view_auto("自动");
 
     locale("语言环境");
-    
-    // 其他
-    // basic_input("基本输入");
-    form("表单");
-    surface("表面");
-    popus("弹窗");
-    navigation("导航");
-    theming("主题");
-    media("媒体");
 }
