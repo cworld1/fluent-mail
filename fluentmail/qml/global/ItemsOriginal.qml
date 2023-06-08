@@ -106,12 +106,12 @@ FluObject {
         //         navigationView.push("qrc:/fluentmail/qml/page/T_Buttons.qml")
         //     }
         // }
-        FluPaneItem {
-            title: "Text"
-            onTap: {
-                navigationView.push("qrc:/fluentmail/qml/page/T_Text.qml")
-            }
-        }
+        // FluPaneItem {
+        //     title: "Text"
+        //     onTap: {
+        //         navigationView.push("qrc:/fluentmail/qml/page/T_Text.qml")
+        //     }
+        // }
         FluPaneItem {
             title: "Slider"
             image: "qrc:/fluentmail/res/image/control/Slider.png"
