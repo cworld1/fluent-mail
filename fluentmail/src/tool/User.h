@@ -109,15 +109,15 @@ class MailObject : public QObject
     Q_PROPERTY(QString email READ email NOTIFY changed)
     Q_PROPERTY(QString subject READ subject NOTIFY changed)
     Q_PROPERTY(QString content READ content NOTIFY changed)
-    Q_PROPERTY(QString recieved_at READ recieved_at NOTIFY changed)
+    Q_PROPERTY(QString received_at READ received_at NOTIFY changed)
     Q_PROPERTY(bool is_readed READ is_readed NOTIFY changed)
     Q_PROPERTY(bool is_starred READ is_starred NOTIFY changed)
     Q_PROPERTY(bool is_deleted READ is_deleted NOTIFY changed)
 
 public:
-    MailObject(const QString &id, const QString &email, QString &subject, QString &content, QString &recieved_at,
+    MailObject(const QString &id, const QString &email, QString &subject, QString &content, QString &received_at,
                const bool &is_readed, const bool &is_starred, const bool &is_deleted)
-        : m_id(id), m_email(email), m_subject(subject), m_content(content), m_recieved_at(recieved_at),
+        : m_id(id), m_email(email), m_subject(subject), m_content(content), m_received_at(received_at),
           m_is_readed(is_readed), m_is_starred(is_starred), m_is_deleted(is_deleted)
     {
     }
@@ -126,7 +126,7 @@ public:
     QString email() const { return m_email; }
     QString subject() const { return m_subject; }
     QString content() const { return m_content; }
-    QString recieved_at() const { return m_recieved_at.left(10); }
+    QString received_at() const { return m_received_at.left(10); }
     bool is_readed() const { return m_is_readed; }
     bool is_starred() const { return m_is_starred; }
     bool is_deleted() const { return m_is_deleted; }
@@ -139,7 +139,7 @@ private:
     QString m_email;
     QString m_subject;
     QString m_content;
-    QString m_recieved_at;
+    QString m_received_at;
     bool m_is_readed;
     bool m_is_starred;
     bool m_is_deleted;

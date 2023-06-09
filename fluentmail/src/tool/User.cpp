@@ -152,7 +152,7 @@ bool User::createTables(QString dbType)
           "email VARCHAR(255) NOT NULL, "
           "subject VARCHAR(255) NOT NULL, "
           "content TEXT NOT NULL, "
-          "recieved_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "
+          "received_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "
           "is_readed TINYINT DEFAULT 0, "
           "is_starred TINYINT DEFAULT 0, "
           "is_deleted TINYINT DEFAULT 0"
@@ -546,11 +546,11 @@ bool User::sendDraft(const QString &id)
 QList<QObject *> User::getMails(int page, int page_size, const QString &filter)
 {
     QList<QObject *> dataList;
-    QString cmd = "SELECT id, email, subject, content, recieved_at, is_readed, is_starred, is_deleted "
+    QString cmd = "SELECT id, email, subject, content, received_at, is_readed, is_starred, is_deleted "
                   "FROM mails WHERE " +
                   filter +
                   " AND user_id = (SELECT user_id FROM cur_user) "
-                  "ORDER BY recieved_at DESC "
+                  "ORDER BY received_at DESC "
                   "LIMIT " +
                   QString::number(page_size) + " OFFSET " +
                   QString::number((page - 1) * page_size) + ";";
@@ -562,14 +562,14 @@ QList<QObject *> User::getMails(int page, int page_size, const QString &filter)
             QString email = query.value(1).toString();
             QString subject = query.value(2).toString().left(13);
             QString content = query.value(3).toString().left(30);
-            QString recieved_at = query.value(4).toString();
+            QString received_at = query.value(4).toString();
             bool is_readed = query.value(5).toBool();
             bool is_starred = query.value(6).toBool();
             bool is_deleted = query.value(7).toBool();
-            // qDebug() << id << email << subject << content << recieved_at << is_readed << is_starred << is_deleted;
+            // qDebug() << id << email << subject << content << received_at << is_readed << is_starred << is_deleted;
 
             MailObject *mailObject = new MailObject(
-                id, email, subject, content, recieved_at,
+                id, email, subject, content, received_at,
                 is_readed, is_starred, is_deleted);
             dataList.append(mailObject);
         }
@@ -610,14 +610,14 @@ bool User::addMail(MailObject *mail)
     // qDebug () << "Email：" << mail->email();
     // qDebug () << "Subject：" << mail->subject();
     // qDebug () << "Content：" << mail->content();
-    // qDebug () << "RecievedAt：" << mail->recieved_at();
-    QString cmd = "INSERT INTO mails (message_id, user_id, email, subject, content, recieved_at) "
+    // qDebug () << "receivedAt：" << mail->received_at();
+    QString cmd = "INSERT INTO mails (message_id, user_id, email, subject, content, received_at) "
                   "VALUES ('" +
                   mail->id() + "', (SELECT user_id FROM cur_user), '" +
                   mail->email() + "', '" +
                   mail->subject() + "', '" +
                   mail->content() + "', '" +
-                  mail->recieved_at() + "');";
+                  mail->received_at() + "');";
     if (query.exec(cmd))
         qDebug() << "添加邮件成功！id：" << mail->id();
     else

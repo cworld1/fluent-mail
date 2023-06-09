@@ -1,4 +1,4 @@
-import QtQuick
+﻿import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Window
@@ -47,7 +47,7 @@ FluScrollablePage {
             {
                 showError("配置失败")
             }
-            for(let i = 0; i < 10; i++)
+            for(let i = 1; i <= 10; i++)
             {
                 if(!appInfo.user.addMail(
                         appInfo.server.pop3Get(i)
@@ -55,7 +55,6 @@ FluScrollablePage {
                 {
                     showError("刷新失败")
                     success = false
-                    break
                 }
             }
             if(success)

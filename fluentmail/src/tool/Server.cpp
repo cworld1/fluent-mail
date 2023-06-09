@@ -190,8 +190,8 @@ int Server::pop3Number()
 
 MailObject *Server::pop3Get(int id)
 {
-    QString recieved_content;
-    QString subject = "", recieved_at = "",
+    QString received_content;
+    QString subject = "", received_at = "",
             email = "", message_id = "", content = "";
     // 发送获取指定条邮件命令
     qDebug() << "Getting latest mail...";
@@ -199,10 +199,10 @@ MailObject *Server::pop3Get(int id)
     pop3Socket.waitForBytesWritten();
     if (pop3Socket.waitForReadyRead())
     {
-        recieved_content = pop3Socket.readAll().trimmed();
-        // qDebug() << recieved_content;
+        received_content = pop3Socket.readAll().trimmed();
+        // qDebug() << received_content;
         // 解析邮件内容
-        QStringList lines = recieved_content.split("\r\n");
+        QStringList lines = received_content.split("\r\n");
         bool is_content = false;
         for (const QString &line : lines)
         {
@@ -223,8 +223,8 @@ MailObject *Server::pop3Get(int id)
             }
             else if (line.startsWith("Date:"))
             {
-                recieved_at = line.mid(6).trimmed(); // 提取收到时间
-                qDebug() << "Date: " << recieved_at;
+                received_at = line.mid(6).trimmed(); // 提取收到时间
+                qDebug() << "Date: " << received_at;
             }
             else if (line.startsWith("From:"))
             {
@@ -249,7 +249,7 @@ MailObject *Server::pop3Get(int id)
         qDebug() << "Failed to read server response: " << pop3Socket.errorString();
     }
     MailObject *mailObject = new MailObject(
-        message_id, email, subject, content, recieved_at,
+        message_id, email, subject, content, received_at,
         false, false, false
     );
 
