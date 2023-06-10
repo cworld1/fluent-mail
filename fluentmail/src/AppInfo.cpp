@@ -62,8 +62,3 @@ bool AppInfo::isOwnerProcess(IPC *ipc){
     }
     return true;
 }
-
-void AppInfo::buttonclick(const QString &text)
-{
-    qDebug() << text;
-}

@@ -205,13 +205,6 @@ FluScrollablePage {
                         FluApp.navigate("/about")
                     }
                 }
-                // FluFilledButton {
-                //     text: "Test"
-                //     onClicked: {
-                //         appInfo.buttonclick("Test")
-                //         // console.log(appInfo.server.smtp("111@gmail.com", "Test", "Hello world"))
-                //     }
-                // }
                 FluTextBox {
                     id: textbox_count
                     placeholderText: "Count"

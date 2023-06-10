@@ -24,8 +24,6 @@ public:
     bool isOwnerProcess(IPC *ipc);
     // 更改语言
     Q_INVOKABLE void changeLang(const QString &locale);
-    // 获得用户信息
-    Q_INVOKABLE void buttonclick(const QString &text);
     // 激活窗口
     Q_SIGNAL void activeWindow();
 };
