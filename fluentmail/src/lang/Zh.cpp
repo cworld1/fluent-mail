@@ -35,7 +35,7 @@ Zh::Zh(QObject *parent) : Lang{parent}
     drafts("草稿");
     deleted("已删除");
 
-    user("用户");
+    user("账户");
     settings("设置");
 
     // 首页
@@ -54,11 +54,25 @@ Zh::Zh(QObject *parent) : Lang{parent}
     send("发送");
     send_success("发送成功！");
 
-    // 用户管理
-    manage_user("用户管理");
-    manage_user_add("添加用户");
+    // 账户管理
+    manage_user("账户管理");
+    manage_user_add("添加账户");
     manage_user_switch("切换");
     manage_user_delete("删除");
+
+    // 新增账户
+    user_name("用户名");
+    user_name_placeholder("用户名");
+    user_email("电子邮件");
+    user_email_placeholder("电子邮件地址");
+    user_password("密码");
+    user_password_placeholder("服务器密码");
+    user_smtp("SMTP");
+    user_smtp_placeholder("SMTP 服务器地址");
+    user_pop3("POP3");
+    user_pop3_placeholder("POP3 服务器地址");
+    user_port_placeholder("端口");
+    user_add_confirm("添加账户");
 
     // 关于
     about("关于");

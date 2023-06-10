@@ -58,11 +58,25 @@ class Lang : public QObject
     Q_PROPERTY_AUTO(QString, send);
     Q_PROPERTY_AUTO(QString, send_success);
 
-    // 用户管理
+    // 账户管理
     Q_PROPERTY_AUTO(QString, manage_user);
     Q_PROPERTY_AUTO(QString, manage_user_add);
     Q_PROPERTY_AUTO(QString, manage_user_switch);
     Q_PROPERTY_AUTO(QString, manage_user_delete);
+
+    // 新增账户
+    Q_PROPERTY_AUTO(QString, user_name);
+    Q_PROPERTY_AUTO(QString, user_name_placeholder);
+    Q_PROPERTY_AUTO(QString, user_email);
+    Q_PROPERTY_AUTO(QString, user_email_placeholder);
+    Q_PROPERTY_AUTO(QString, user_password);
+    Q_PROPERTY_AUTO(QString, user_password_placeholder);
+    Q_PROPERTY_AUTO(QString, user_smtp);
+    Q_PROPERTY_AUTO(QString, user_smtp_placeholder);
+    Q_PROPERTY_AUTO(QString, user_pop3);
+    Q_PROPERTY_AUTO(QString, user_pop3_placeholder);
+    Q_PROPERTY_AUTO(QString, user_port_placeholder);
+    Q_PROPERTY_AUTO(QString, user_add_confirm);
 
     // 关于
     Q_PROPERTY_AUTO(QString, about);

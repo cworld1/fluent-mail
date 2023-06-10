@@ -48,7 +48,7 @@ CustomWindow {
 
             // 标题
             FluText {
-                text: "Add user"
+                text: lang.manage_user_add
                 font: FluTextStyle.Title
                 Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
                 Layout.fillWidth: true
@@ -56,39 +56,39 @@ CustomWindow {
 
             // 名称
             FluText {
+                text: lang.user_name
                 Layout.topMargin: 10
                 Layout.bottomMargin: 1
-                text: "Name"
             }
             FluTextBox {
                 id: textbox_username
-                placeholderText: "Name"
+                placeholderText: lang.user_name_placeholder
                 Layout.alignment: Qt.AlignHCenter
                 Layout.fillWidth: true
             }
 
             // 邮箱
             FluText {
-                text: "Email"
+                text: lang.user_email
                 Layout.topMargin: 10
                 Layout.bottomMargin: 1
             }
             FluTextBox {
                 id: textbox_email
-                placeholderText: "Email"
+                placeholderText: lang.user_email_placeholder
                 Layout.alignment: Qt.AlignHCenter
                 Layout.fillWidth: true
             }
 
             // 密码
             FluText {
-                text: "Password"
+                text: lang.user_password
                 Layout.topMargin: 10
                 Layout.bottomMargin: 1
             }
             FluTextBox {
                 id: textbox_password
-                placeholderText: "请输入密码"
+                placeholderText: lang.user_password_placeholder
                 echoMode:TextInput.Password
                 Layout.alignment: Qt.AlignHCenter
                 Layout.fillWidth: true
@@ -96,7 +96,7 @@ CustomWindow {
 
             // SMTP
             FluText {
-                text: "SMTP"
+                text: lang.user_smtp
                 Layout.topMargin: 10
                 Layout.bottomMargin: 1
             }
@@ -104,13 +104,13 @@ CustomWindow {
                 spacing: 5
                 FluTextBox {
                     id: smtp_host
-                    placeholderText: "SMTP Site"
+                    placeholderText: lang.user_smtp_placeholder
                     Layout.fillWidth: true
                 }
                 FluAutoSuggestBox {
                     id: smtp_port
                     items: [ {title: "465"}, {title: "987"} ]
-                    placeholderText: "Port"
+                    placeholderText: lang.user_port_placeholder
                     Layout.preferredWidth: 100
                     Layout.alignment: Qt.AlignHCenter
                 }
@@ -118,7 +118,7 @@ CustomWindow {
 
             // POP3
             FluText {
-                text: "POP3"
+                text: lang.user_pop3
                 Layout.topMargin: 10
                 Layout.bottomMargin: 1
             }
@@ -126,20 +126,20 @@ CustomWindow {
                 spacing: 5
                 FluTextBox {
                     id: pop3_host
-                    placeholderText: "POP3 Site"
+                    placeholderText: lang.user_pop3_placeholder
                     Layout.fillWidth: true
                 }
                 FluAutoSuggestBox {
                     id: pop3_port
                     items: [ {title: "465"}, {title: "987"} ]
-                    placeholderText: "Port"
+                    placeholderText: lang.user_port_placeholder
                     Layout.preferredWidth: 100
                     Layout.alignment: Qt.AlignHCenter
                 }
             }
 
             FluFilledButton {
-                text: "登录"
+                text: lang.user_add_confirm
                 Layout.alignment: Qt.AlignRight
                 Layout.topMargin: 20
                 onClicked: {

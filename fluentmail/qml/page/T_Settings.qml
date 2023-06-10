@@ -112,7 +112,7 @@ FluScrollablePage {
     // 卡片（导航样式）
     FluArea {
         Layout.fillWidth: true
-        Layout.topMargin: 10
+        Layout.topMargin: 20
         height: 168
         paddings: 10
 
@@ -207,10 +207,10 @@ FluScrollablePage {
                 }
                 FluTextBox {
                     id: textbox_count
-                    placeholderText: "Count"
-                    Layout.preferredWidth: 50
+                    placeholderText: "Mail Count"
+                    Layout.preferredWidth: 120
                 }
-                FluFilledButton {
+                FluButton {
                     text: "Pop3Init"
                     onClicked: {
                         if(appInfo.server.pop3Init())
@@ -219,7 +219,7 @@ FluScrollablePage {
                         }
                     }
                 }
-                FluFilledButton {
+                FluButton {
                     text: "Pop3Get"
                     onClicked: {
                         console.log(
@@ -229,7 +229,7 @@ FluScrollablePage {
                         )
                     }
                 }
-                FluFilledButton {
+                FluButton {
                     text: "Pop3Quit"
                     onClicked: {
                         console.log(appInfo.server.pop3Quit())

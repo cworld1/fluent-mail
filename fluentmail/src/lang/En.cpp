@@ -54,11 +54,25 @@ En::En(QObject *parent) : Lang{parent}
     send("Send");
     send_success("Send successful!");
 
-    // 用户管理
+    // 账户管理
     manage_user("Manage user");
     manage_user_add("Add user");
     manage_user_switch("Switch");
     manage_user_delete("Delete");
+
+    // 新增账户
+    user_name("User name");
+    user_name_placeholder("User name");
+    user_email("Email");
+    user_email_placeholder("Email address");
+    user_password("Password");
+    user_password_placeholder("Password of server");
+    user_smtp("SMTP");
+    user_smtp_placeholder("SMTP server address");
+    user_pop3("POP3");
+    user_pop3_placeholder("POP3 server address");
+    user_port_placeholder("Port");
+    user_add_confirm("Add user");
 
     // 关于
     about("About");

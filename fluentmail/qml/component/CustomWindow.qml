@@ -4,7 +4,6 @@ import FluentUI
 import org.wangwenx190.FramelessHelper
 
 FluWindow {
-
     id: window
 
     property bool fixSize
@@ -24,9 +23,9 @@ FluWindow {
         darkText: lang.dark_mode
     }
 
-    Item{
-        id:container
-        anchors{
+    Item {
+        id: container
+        anchors {
             top: title_bar.bottom
             left: parent.left
             right: parent.right
@@ -35,8 +34,8 @@ FluWindow {
         clip: true
     }
 
-    FramelessHelper{
-        id:framless_helper
+    FramelessHelper {
+        id: framless_helper
         onReady: {
             setTitleBarItem(title_bar)
             framless_helper.moveWindowToDesktopCenter()
@@ -50,7 +49,7 @@ FluWindow {
             window.visible = true
         }
     }
-    Connections{
+    Connections {
         target: FluTheme
         function onDarkChanged(){
             if (FluTheme.dark)
@@ -67,5 +66,4 @@ FluWindow {
     function setTitleBarItem(com){
         framless_helper.setTitleBarItem(com)
     }
-
 }
