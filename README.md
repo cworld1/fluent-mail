@@ -1,6 +1,6 @@
 <div align=center>
 
-<img src="./doc/favicon.ico" height="100px">
+<img src="./docs/favicon.ico" height="100px">
 
 # FluentMail
 
@@ -8,13 +8,13 @@ A program to send and recieve emails with attachments.
 
 </div>
 
-![Light theme](doc/Screenshot-light.png)
-![Dark theme](doc/Screenshot-dark.png)
+![Light theme](docs/Screenshot-light.png)
+![Dark theme](docs/Screenshot-dark.png)
 
 <details>
 <summary>Something old...</summary>
 
-![Screenshot](./doc/screenshot.png)
+![Screenshot](./docs/screenshot.png)
 
 </details>
 

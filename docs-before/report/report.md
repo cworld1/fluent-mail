@@ -61,21 +61,21 @@
 
 ### 功能模块结构图
 
-![Drawing](../public/Drawing.png)
+![Drawing](./../public/Drawing.png)
 
 ### 三层数据流图
 
 顶层图：
 
-![Drawing2](../public/Drawing2.png)
+![Drawing2](./../public/Drawing2.png)
 
 0 层图：
 
-![Drawing3](../public/Drawing3.png)
+![Drawing3](./../public/Drawing3.png)
 
 1 层图：
 
-![Drawing4](../public/Drawing4.png)
+![Drawing4](./../public/Drawing4.png)
 
 ## 系统实现
 
