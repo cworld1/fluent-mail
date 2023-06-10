@@ -85,7 +85,9 @@ IPC::IPC(uint32_t profileId)
     processEvents();
 }
 
-// IPC 析构函数（在摧毁时自动调用）
+/**
+ * @brief IPC 析构函数。在摧毁时自动调用。
+ */
 IPC::~IPC()
 {
     if (!globalMemory.lock())
@@ -155,7 +157,10 @@ time_t IPC::postEvent(const QString &name, const QByteArray &data, uint32_t dest
     return result;
 }
 
-// 检验是否是当前所有者
+/**
+ * @brief 检查当前进程是否是 IPC 共享内存的所有者。
+ * @return 如果当前进程是所有者，则返回 true，否则返回 false。
+ */
 bool IPC::isCurrentOwner()
 {
     if (globalMemory.lock())

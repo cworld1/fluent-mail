@@ -198,8 +198,8 @@ bool User::createTables(QString dbType)
 }
 
 /**
- * @brief 获取所有用户信息（简短）
- * @return QList<QObject *> 用户信息列表
+ * @brief 获取所有账户信息（简短）
+ * @return QList<QObject *> 账户信息列表
  */
 QList<QObject *> User::getUsers()
 {
@@ -230,8 +230,8 @@ QList<QObject *> User::getUsers()
 }
 
 /**
- * @brief 获取当前用户信息
- * @return QString 用户名
+ * @brief 获取当前账户信息
+ * @return QString 账户名
  */
 QString User::getCurUser()
 {
@@ -249,8 +249,8 @@ QString User::getCurUser()
 }
 
 /**
- * @brief 获取当前用户配置
- * @return UserObject 用户配置
+ * @brief 获取当前账户配置
+ * @return UserObject 账户配置
  */
 UserObject *User::getCurConfig()
 {
@@ -281,42 +281,42 @@ UserObject *User::getCurConfig()
 }
 
 /**
- * @brief 设置当前用户
- * @param id 用户 id
+ * @brief 设置当前账户
+ * @param id 账户 id
  */
 bool User::setUser(const QString id)
 {
     QString cmd = "UPDATE cur_user SET user_id = " + id + ";";
     if (query.exec(cmd))
-        qDebug() << "设置当前用户成功！id：" << id;
+        qDebug() << "设置当前账户成功！id：" << id;
     else
     {
-        qDebug() << "设置当前用户失败：" << query.lastError().text();
+        qDebug() << "设置当前账户失败：" << query.lastError().text();
         return false;
     }
     return true;
 }
 
 /**
- * @brief 删除用户
- * @param id 用户 id
+ * @brief 删除账户
+ * @param id 账户 id
  */
 bool User::delUser(const QString id)
 {
     QString cmd = "DELETE FROM users WHERE id = " + id + ";";
     if (query.exec(cmd))
-        qDebug() << "删除用户成功！id：" << id;
+        qDebug() << "删除账户成功！id：" << id;
     else
     {
-        qDebug() << "删除用户失败：" << query.lastError().text();
+        qDebug() << "删除账户失败：" << query.lastError().text();
         return false;
     }
     return true;
 }
 
 /**
- * @brief 添加用户
- * @param name 用户名
+ * @brief 添加账户
+ * @param name 账户名
  * @param email 邮箱
  * @param passwd 密码
  * @param smtp SMTP 服务器
@@ -335,23 +335,23 @@ bool User::addUser(const QString &name, const QString &email, const QString &pas
                   smtp + "', " + QString::number(smtp_port) + ", '" +
                   pop3 + "', " + QString::number(pop3_port) + ");";
     if (query.exec(cmd))
-        qDebug() << "添加用户成功";
+        qDebug() << "添加账户成功";
     else
     {
-        qDebug() << "添加用户失败：" << query.lastError().text();
+        qDebug() << "添加账户失败：" << query.lastError().text();
         return false;
     }
 
-    // 设置当前用户
+    // 设置当前账户
     query.exec("select count(*) from cur_user;");
     if (query.next() && query.value(0).toInt() == 0)
         query.exec("INSERT INTO cur_user (user_id) VALUES (SELECT LAST_INSERT_ID());");
     else
         query.exec("UPDATE cur_user SET user_id = (SELECT LAST_INSERT_ID());");
     if (query.exec("SELECT user_id FROM cur_user;") && query.next())
-        qDebug() << "设置当前用户成功";
+        qDebug() << "设置当前账户成功";
     else
-        qDebug() << "设置当前用户失败：" << query.lastError().text();
+        qDebug() << "设置当前账户失败：" << query.lastError().text();
     return true;
 }
 

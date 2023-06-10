@@ -136,7 +136,7 @@ bool Server::pop3Init()
 
     // 登录认证
     qDebug() << "Sending authentication information...";
-    // 发送用户名
+    // 发送账户名
     pop3Socket.write("USER " + user->email().toUtf8() + "\r\n");
     pop3Socket.waitForBytesWritten();
     if (pop3Socket.waitForReadyRead())

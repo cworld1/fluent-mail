@@ -13,7 +13,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 
-// 返回用户信息
+// 返回账户信息
 class UserObject : public QObject
 {
     Q_OBJECT
@@ -153,7 +153,7 @@ public:
     explicit User(QObject *parent = nullptr);
     Q_INVOKABLE bool createTables(QString dbType);
 
-    // 用户相关
+    // 账户相关
     Q_INVOKABLE QList<QObject *> getUsers();
     Q_INVOKABLE QString getCurUser();
     Q_INVOKABLE UserObject *getCurConfig();
