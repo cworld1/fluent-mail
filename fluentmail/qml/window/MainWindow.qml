@@ -51,6 +51,12 @@ CustomWindow {
                 }
             }
             MenuItem {
+                text: lang.about
+                onTriggered: {
+                    FluApp.navigate("/about")
+                }
+            }
+            MenuItem {
                 text: lang.exit
                 onTriggered: {
                     window.deleteWindow()
