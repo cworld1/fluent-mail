@@ -47,6 +47,16 @@ FluScrollablePage {
             {
                 showError("配置失败")
             }
+            let count = appInfo.server.pop3Number()
+            if (count === 0)
+            {
+                showError("刷新失败")
+                return
+            }
+            if (count > 10)
+            {
+                count = 10
+            }
             for(let i = 1; i <= 10; i++)
             {
                 if(!appInfo.user.addMail(
