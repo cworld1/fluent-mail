@@ -14,6 +14,14 @@ void Server::update(UserObject *user)
     this->user = user;
 }
 
+/**
+ * @brief 发送邮件
+ *
+ * @param toemail 收件人邮箱
+ * @param emailContent 邮件内容
+ * @return true 发送成功
+ * @return false 发送失败
+ */
 bool Server::smtp(const QString toemail, const QString subject, const QString content)
 {
     // 构建邮件内容
@@ -114,6 +122,12 @@ bool Server::smtp(const QString toemail, const QString subject, const QString co
     return true;
 }
 
+/**
+ * @brief 初始化 POP3 连接
+ *
+ * @return true 连接成功
+ * @return false 连接失败
+ */
 bool Server::pop3Init()
 {
     qDebug() << "Waiting for connect...";
@@ -159,6 +173,11 @@ bool Server::pop3Init()
     return true;
 }
 
+/**
+ * @brief 获取邮件数量
+ *
+ * @return int 邮件数量
+ */
 int Server::pop3Number()
 {
     // 发送获取邮件数量命令
@@ -188,6 +207,12 @@ int Server::pop3Number()
     return true;
 }
 
+/**
+ * @brief 获取指定 ID 的邮件
+ *
+ * @param id 邮件 ID
+ * @return MailObject* 邮件对象指针
+ */
 MailObject *Server::pop3Get(int id)
 {
     QString received_content;
@@ -250,12 +275,17 @@ MailObject *Server::pop3Get(int id)
     }
     MailObject *mailObject = new MailObject(
         message_id, email, subject, content, received_at,
-        false, false, false
-    );
+        false, false, false);
 
     return mailObject;
 }
 
+/**
+ * @brief 退出 POP3 连接
+ *
+ * @return true 退出成功
+ * @return false 退出失败
+ */
 bool Server::pop3Quit()
 {
     // 断开与服务器的连接
