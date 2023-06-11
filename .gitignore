@@ -176,3 +176,4 @@ build
 db
 test
 settings.ini
+docs/report-full*
