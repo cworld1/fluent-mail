@@ -36,6 +36,8 @@ If you have some troubles about the version, please check and use the version be
 - CMake: 3.24.2
 - Ninja: 1.11.1
 
+If you want use MySQL database, please prepare MySQL server and qt dlls. You can download from [Qt MySQL Driver](https://github.com/thecodemonkey86/qt_mysql_driver).
+
 Then try clone the repository:
 
 ```bash
@@ -50,7 +52,20 @@ mkdir build
 cd build
 cmake -DCMAKE_PREFIX_PATH=<YOUR_QT_SDK_DIR_PATH> -DCMAKE_BUILD_TYPE=Release -GNinja <PATH_TO_THE_REPOSITORY>
 cmake --build . --config Release --target all --parallel
+cd ..
 ```
+
+Copy the settings file to the build directory:
+
+```bash
+cp settings.json bin/<debug/release>/data/settings.json
+```
+
+If need, edit the settings file to change the database settings. MySQL need dlls to run, see doc we given above. 
+
+## More about project
+
+Visit [docs](./docs/report.md) for more information.
 
 ## UI Design Scheme
 
