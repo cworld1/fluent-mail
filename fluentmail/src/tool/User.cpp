@@ -1,7 +1,7 @@
 #include "User.h"
 
-QString projectRoot = "../../";
-QString settingsFile = "settings.ini";
+QString projectRoot = "./";
+QString settingsFile = "data/settings.ini";
 
 /**
  * @class User
