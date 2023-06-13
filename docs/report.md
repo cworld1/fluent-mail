@@ -418,13 +418,13 @@ POP3 是较早的协议，最初设计为仅在一台计算机上使用。 与�
 
 用户的系统流程图：没有身份的用户需要先注册，登录系统后可以查看和修改个人信息、发送邮件等邮件管理操作。如下图 5-2 所示。
 
-![Alt text](report.assets/FlowchartDiagram1.png)
+![Alt text](./report.assets/FlowchartDiagram1.png)
 
 ### 系统模块
 
 通过系统模块的功能图描述，可以很直观的看到系统的各个功能组件，功能图如下图 5-3 所示。此模块的功能图是从整个系统出发，描绘出来的。其中介绍了管理员各个功能和基本用户的功能等等。用模块的功能图描绘整个系统，使系统各个功能清晰可见，层次分明，是一种比较好的方法。如图 7-1 所示。
 
-![系统功能模块图](D:%5CDownloads%5C%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E5%9B%BE.png)
+![Alt text](./report.assets/ConstructPic.png)
 
 ### 数据库结构
 

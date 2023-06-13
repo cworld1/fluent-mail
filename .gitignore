@@ -177,3 +177,5 @@ db
 test
 settings.ini
 docs/report-full*
+docs/*.docx
+docs/*.pdf
